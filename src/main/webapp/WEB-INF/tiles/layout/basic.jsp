@@ -16,11 +16,11 @@
 	<title><spring:message code="${title}"/></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
+	-->
     <!-- Custom styles for this template -->
     <link href="${pageContext.request.contextPath}/resources/css/conmigo.css" rel="stylesheet">
 
