@@ -14,11 +14,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table( name = "user", catalog = "conmigodb" )
-public class User extends GenericEntity<Integer> {
+public class User extends GenericEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
+	private Long id;
 	private String name;
 	private String surname;
 	private String lastname;
@@ -41,12 +41,12 @@ public class User extends GenericEntity<Integer> {
 	@Id
 	@GeneratedValue( strategy = IDENTITY )
 	@Column( name = "ID", unique = true, nullable = false )
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@Override
-	public void setId( final Integer id ) {
+	public void setId( final Long id ) {
 		this.id = id;
 	}
 
