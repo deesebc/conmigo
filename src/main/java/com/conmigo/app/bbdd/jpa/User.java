@@ -23,6 +23,9 @@ public class User extends GenericEntity<Integer> {
 	private String surname;
 	private String lastname;
 	private String email;
+	private String username;
+	private String password;
+	private boolean enable;
 
 	public User() {
 	}
@@ -34,6 +37,7 @@ public class User extends GenericEntity<Integer> {
 		this.email = email;
 	}
 
+	@Override
 	@Id
 	@GeneratedValue( strategy = IDENTITY )
 	@Column( name = "ID", unique = true, nullable = false )
@@ -41,6 +45,7 @@ public class User extends GenericEntity<Integer> {
 		return id;
 	}
 
+	@Override
 	public void setId( final Integer id ) {
 		this.id = id;
 	}
@@ -79,6 +84,33 @@ public class User extends GenericEntity<Integer> {
 
 	public void setEmail( final String email ) {
 		this.email = email;
+	}
+
+	@Column( name = "USERNAME", nullable = false, length = 50 )
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername( final String username ) {
+		this.username = username;
+	}
+
+	@Column( name = "PASSWORD", nullable = false, length = 50 )
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword( final String password ) {
+		this.password = password;
+	}
+
+	@Column( name = "ENABLE", nullable = false )
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable( final boolean enable ) {
+		this.enable = enable;
 	}
 
 }
