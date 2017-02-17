@@ -11,9 +11,14 @@
 		<put-attribute name="header" value="/WEB-INF/tiles/view/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="menu" value="/WEB-INF/tiles/view/menu.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" />
+		<!-- 
+		<put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" /> 
 		<put-attribute name="pageScripts" value="/WEB-INF/tiles/view/scripts/pageScripts.jsp" />
 		<put-attribute name="customScripts" value="" />		
+		-->
+		<put-attribute name="footer" value="" /> 
+		<put-attribute name="pageScripts" value="/WEB-INF/tiles/view/scripts/pageScripts.jsp" />
+		<put-attribute name="customScripts" value="" />	
 	</definition>
 
 	<definition name="layout.error" template="/WEB-INF/tiles/layout/errorBasic.jsp">
@@ -21,9 +26,14 @@
 		<put-attribute name="bodyClass" value="" />
 		<put-attribute name="header" value="/WEB-INF/tiles/view/header.jsp" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" />
+		<!-- 
+		<put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" /> 
 		<put-attribute name="pageScripts" value="/WEB-INF/tiles/view/scripts/pageScripts.jsp" />
-		<put-attribute name="customScripts" value="" />        
+		<put-attribute name="customScripts" value="" />		
+		-->
+		<put-attribute name="footer" value="" /> 
+		<put-attribute name="pageScripts" value="/WEB-INF/tiles/view/scripts/pageScripts.jsp" />
+		<put-attribute name="customScripts" value="" />	       
 	</definition>
 	
 	<definition name="layout.empty" template="/WEB-INF/tiles/layout/emptyBasic.jsp">
@@ -34,6 +44,15 @@
 	
 	<definition name="site.index" extends="layout.basic">
 		<put-attribute name="body" value="/WEB-INF/pages/index.jsp" />
+	</definition>
+	
+	<definition name="site.login" extends="layout.basic">
+		<put-attribute name="bodyClass" value="login" />
+		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
+	</definition>
+	
+	<definition name="site.403" extends="layout.basic">
+		<put-attribute name="body" value="/WEB-INF/pages/403.jsp" />
 	</definition>
 	
 	<!-- Error pages -->
