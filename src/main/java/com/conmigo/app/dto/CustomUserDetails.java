@@ -17,7 +17,7 @@ public class CustomUserDetails implements UserDetails {
 	 */
 	private static final long serialVersionUID = 4454136926840298913L;
 
-	private Integer id;
+	private Long id;
 	private String name;
 	private String surname;
 	private String lastname;
@@ -71,7 +71,7 @@ public class CustomUserDetails implements UserDetails {
 	/**
 	 * @return Valor de la propiedad id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -79,7 +79,7 @@ public class CustomUserDetails implements UserDetails {
 	 * @param id
 	 *            Valor de la propiedad id a setear
 	 */
-	public void setId( final Integer id ) {
+	public void setId( final Long id ) {
 		this.id = id;
 	}
 
