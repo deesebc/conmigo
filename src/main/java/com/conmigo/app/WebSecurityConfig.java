@@ -14,10 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
-import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.social.security.SpringSocialConfigurer;
-
-import com.conmigo.app.service.impl.CustomSocialUsersDetailService;
 
 @Configuration
 @EnableWebSecurity
@@ -58,11 +55,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// Adds the SocialAuthenticationFilter to Spring Security's filter chain. Nos permite que funcione la url /auth/provider
 				.and().apply( new SpringSocialConfigurer().postLoginUrl( "/" ).alwaysUsePostLoginUrl( true ) );
 		// @formatter:on
-	}
-
-	@Bean
-	public SocialUserDetailsService socialUserDetailsService() {
-		return new CustomSocialUsersDetailService( userDetailsService );
 	}
 
 	@Bean( name = "passwordEncoder" )

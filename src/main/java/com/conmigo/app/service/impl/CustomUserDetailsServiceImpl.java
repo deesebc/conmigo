@@ -3,8 +3,6 @@ package com.conmigo.app.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +14,6 @@ import com.conmigo.app.bbdd.jpa.User;
 import com.conmigo.app.dto.CustomUserDetails;
 
 @Service
-@Transactional
 public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired

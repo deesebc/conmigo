@@ -1,5 +1,6 @@
 package com.conmigo.app.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -7,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
+import org.springframework.stereotype.Service;
 
 /**
  * Clase que permite el Sign in de redes sociales
@@ -15,7 +17,9 @@ import org.springframework.social.security.SocialUserDetailsService;
  * @version 1.0
  * @created: 20 sept. 2016
  */
+@Service
 public class CustomSocialUsersDetailService implements SocialUserDetailsService {
+	@Autowired
 	private UserDetailsService userDetailsService;
 
 	public UserDetails loadUserByUsername( final String username ) throws UsernameNotFoundException {
