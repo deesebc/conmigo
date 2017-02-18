@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure( final HttpSecurity http ) throws Exception {
 		// @formatter:off
 		// configures form login
-		http.formLogin().loginPage( "/login" ).loginProcessingUrl( "/" ).failureUrl( "/login?param.error=bad_credentials" )
+		http.formLogin().loginPage( LOGIN_PAGE ).loginProcessingUrl( "/" ).failureUrl( "/login?param.error=bad_credentials" )
 				// configure form logout
 				.and().logout().logoutUrl( LOGOUT_PAGE ).deleteCookies( "JSESSIONID" ).logoutSuccessUrl( "/" ).permitAll()
 				// configure free access urls

@@ -16,6 +16,10 @@
     <li><a href="#about">Registro</a></li>
     <li><a href="#contact">Eventos</a></li>
     <li><a href="#contact">Mensajes</a></li>
+    <security:authorize access="isFullyAuthenticated()">
+    <li><a href="#contact">Hola <security:authentication property="principal.username" /></a></li>
+    <li><a href="/logout">Logout</a></li>
+    </security:authorize>
   </ul>
 </div><!--/.nav-collapse -->
 </header>
