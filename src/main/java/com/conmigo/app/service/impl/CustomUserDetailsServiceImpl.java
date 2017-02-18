@@ -20,10 +20,10 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 	private UserDao userDao;
 
 	@Override
-	public UserDetails loadUserByUsername( final String username ) throws UsernameNotFoundException {
-		User user = userDao.findByName( username );
+	public UserDetails loadUserByUsername( final String email ) throws UsernameNotFoundException {
+		User user = userDao.findByEmail( email );
 		if( user == null ) {
-			throw new UsernameNotFoundException( "No user present with username: " + username );
+			throw new UsernameNotFoundException( "No user present with username/email: " + email );
 		} else {
 			// List<String> userRoles = userTypeDao.findRoleByUserName( username );
 			// UserDto userDto = UserToDto.INSTANCE.convert( user );

@@ -17,6 +17,7 @@
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>
 <form class="form-signin" id="facebookForm" action="/auth/facebook">
+  <input type="hidden" name="scope" value="email, public_profile" />
   <h2 class="form-signin-heading">Please auth with Facebook</h2>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>

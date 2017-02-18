@@ -2,7 +2,10 @@ package com.conmigo.app.bbdd.jpa;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -15,6 +18,8 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
 	private static final long serialVersionUID = 4037578824025696367L;
 
 	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@Column( name = "ID", unique = true, nullable = false )
 	public abstract K getId();
 
 	public abstract void setId( K id );
