@@ -14,7 +14,7 @@
     <li class="active"><a href="#">Home</a></li>
     <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
     <li><a href="#about">Registro</a></li>
-    <li><a href="#contact">Eventos</a></li>
+    <li><a href="/events">Eventos</a></li>
     <li><a href="#contact">Mensajes</a></li>
     <security:authorize access="isFullyAuthenticated()">
     <li><a href="#contact">Hola <security:authentication property="principal.username" /></a></li>
