@@ -1,6 +1,7 @@
 package com.conmigo.app.service.impl;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UserProfile;
@@ -27,7 +28,7 @@ public class CustomConnectionSignUp implements ConnectionSignUp {
 			// seteamos a nulo para poder insertar AI MYSQL
 			userProfile.setId( null );
 			// generamos password
-			userProfile.setPassword( RandomStringUtils.randomAlphanumeric( 17 ) );
+			userProfile.setPassword( createEncryptPassword() );
 			// indicamos como username el correo
 			userProfile.setUsername( userProfile.getEmail() );
 			userProfile = usersDao.save( userProfile );
@@ -37,7 +38,6 @@ public class CustomConnectionSignUp implements ConnectionSignUp {
 			UserProfile profile = connection.fetchUserProfile();
 			email = profile.getEmail();
 		}
-
 		return email;
 	}
 
@@ -48,10 +48,8 @@ public class CustomConnectionSignUp implements ConnectionSignUp {
 		return usersDao;
 	}
 
-	/*
-	 * FacebookClient facebookClient = new DefaultFacebookClient(accessToken); User user = facebookClient.fetchObject("me", User.class, Parameter.with("metadata", 1)); String query =
-	 * "SELECT url FROM profile_pic WHERE id="+user.getId(); List users = facebookClient.executeFqlQuery(query, FqlURL.class); if(users != null) { FqlURL fqlURL = users.get(0); return fqlURL
-	 * .getUrl(); }
-	 */
+	private String createEncryptPassword() {
+		return new BCryptPasswordEncoder().encode( RandomStringUtils.randomAlphanumeric( 17 ) );
+	}
 
 }

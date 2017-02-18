@@ -4,8 +4,6 @@ import com.conmigo.app.bbdd.jpa.User;
 
 public interface UserDao extends GenericDao<User, Long> {
 
-	User findByName( String name );
-
-	User findByEmail( String email );
+	User findByUsernameOrEmail( final String username, final String email );
 
 }

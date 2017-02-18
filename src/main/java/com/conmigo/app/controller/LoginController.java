@@ -19,8 +19,6 @@ public class LoginController {
 	private final static Logger LOGGER = LoggerFactory.getLogger( LoginController.class );
 
 	private final static String REDIRECT_INDEX = "redirect:/";
-	private final static String RDT_INTERES = "redirect:/interes";
-	private final static String RDT_INTERES_WTO_DISCOURSE = "redirect:/interes?error_discourse=1";
 
 	public LoginController() {
 		super();

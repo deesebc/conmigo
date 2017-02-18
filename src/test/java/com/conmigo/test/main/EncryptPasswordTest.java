@@ -1,7 +1,3 @@
-/**
- * EncryptPasswordTest.java
- * Creado: 16 sept. 2016
- */
 package com.conmigo.test.main;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -18,7 +14,8 @@ public class EncryptPasswordTest {
 
 	public static void main( final String... args ) {
 		try {
-			String password = generatePassword();
+			// String password = generatePassword();
+			String password = "usuarioPrueba1";
 			System.out.println( "password: " + password );
 			String encrypt = encryptPassword( password );
 			System.out.println( "encrypt: " + encrypt );
