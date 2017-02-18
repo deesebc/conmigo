@@ -98,7 +98,7 @@ public class User extends GenericEntity<Long> {
 		this.username = username;
 	}
 
-	@Column( name = "PASSWORD", length = 50 )
+	@Column( name = "PASSWORD", length = 100 )
 	public String getPassword() {
 		return password;
 	}
