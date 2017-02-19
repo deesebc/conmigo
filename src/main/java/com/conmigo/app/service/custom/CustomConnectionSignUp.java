@@ -31,6 +31,7 @@ public class CustomConnectionSignUp implements ConnectionSignUp {
 			User userProfile = facebook.fetchObject( "me", User.class, fields );
 			// seteamos a nulo para poder insertar AI MYSQL
 			userProfile.setId( null );
+			userProfile.setEnable( true );
 			// generamos password
 			userProfile.setPassword( createEncryptPassword() );
 			// indicamos como username el correo

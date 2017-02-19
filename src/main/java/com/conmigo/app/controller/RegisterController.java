@@ -1,5 +1,6 @@
 package com.conmigo.app.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.beanutils.PropertyUtils;
@@ -7,6 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +36,9 @@ public class RegisterController {
 	@Autowired
 	private UserService uService;
 
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
 	public RegisterController() {
 		super();
 	}
@@ -45,14 +54,16 @@ public class RegisterController {
 	}
 
 	@PostMapping( value = "/register" )
-	public String handleUserCreateForm( @Valid @ModelAttribute( "form" ) final RegisterForm form, final BindingResult bindingResult ) {
+	public String handleUserCreateForm( @Valid @ModelAttribute( "registerForm" ) final RegisterForm form, final BindingResult bindingResult, final HttpServletRequest request ) {
 		if( bindingResult.hasErrors() ) {
 			return PAGE;
 		}
 		try {
 			UserDto uDto = new UserDto();
+			uDto.setEnable( true );
 			PropertyUtils.copyProperties( uDto, form );
 			uService.save( uDto );
+			authenticateUserAndSetSession( uDto, request );
 		} catch( DataIntegrityViolationException e ) {
 			bindingResult.reject( "email.exists", "Email already exists" );
 			return PAGE;
@@ -60,5 +71,19 @@ public class RegisterController {
 			LOGGER.error( except.getMessage(), except );
 		}
 		return "redirect:/events";
+	}
+
+	private void authenticateUserAndSetSession( final UserDto user, final HttpServletRequest request ) {
+		String username = user.getEmail();
+		String password = user.getPassword();
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( username, password );
+
+		// generate session if one doesn't exist
+		request.getSession();
+
+		token.setDetails( new WebAuthenticationDetails( request ) );
+		Authentication authenticatedUser = authenticationManager.authenticate( token );
+
+		SecurityContextHolder.getContext().setAuthentication( authenticatedUser );
 	}
 }
