@@ -43,7 +43,7 @@ public class SocialConfig implements SocialConfigurer {
 	@Override
 	public UsersConnectionRepository getUsersConnectionRepository( final ConnectionFactoryLocator connectionFactoryLocator ) {
 		JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository( dataSource, connectionFactoryLocator, Encryptors.noOpText() );
-		repository.setConnectionSignUp( new CustomConnectionSignUp( usersDao ) );
+		repository.setConnectionSignUp( new CustomConnectionSignUp() );
 		return repository;
 	}
 }
