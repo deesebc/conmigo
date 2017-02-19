@@ -1,6 +1,7 @@
 package com.conmigo.app.bbdd.jpa;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -8,7 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
@@ -24,61 +31,51 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
 
 	public abstract void setId( K id );
 
-	// protected Date creationDate;
-	// protected Date editDate;
-	// protected Integer creationUser;
-	// protected Integer editUser;
-	//
-	// /**
-	// * Descripcion del campo
-	// */
-	// private static final long serialVersionUID = 1L;
-	//
-	// @Transient
-	// public abstract K getId();
-	//
-	// public abstract void setId( K id );
-	//
-	// @Temporal( TemporalType.DATE )
-	// @Column( name = "CREATION_DATE" )
-	// @CreatedDate
-	// public Date getCreationDate() {
-	// return creationDate;
-	// }
-	//
-	// public void setCreationDate( final Date creationDate ) {
-	// this.creationDate = creationDate;
-	// }
-	//
-	// @Temporal( TemporalType.DATE )
-	// @Column( name = "EDIT_DATE" )
-	// @LastModifiedDate
-	// public Date getEditDate() {
-	// return editDate;
-	// }
-	//
-	// public void setEditDate( final Date editDate ) {
-	// this.editDate = editDate;
-	// }
-	//
-	// @Column( name = "CREATION_USER" )
-	// @CreatedBy
-	// public Integer getCreationUser() {
-	// return creationUser;
-	// }
-	//
-	// public void setCreationUser( final Integer creationUser ) {
-	// this.creationUser = creationUser;
-	// }
-	//
-	// @Column( name = "EDIT_USER" )
-	// @LastModifiedBy
-	// public Integer getEditUser() {
-	// return editUser;
-	// }
-	//
-	// public void setEditUser( final Integer editUser ) {
-	// this.editUser = editUser;
-	// }
+	private Long createdBy;
+	private Date createdDate;
+	private Long lastModifiedBy;
+	private Date lastModifiedDate;
+
+	@Column( name = "CREATED_BY", nullable = false )
+	@CreatedBy
+	public long getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy( final long createdBy ) {
+		this.createdBy = createdBy;
+	}
+
+	@Temporal( TemporalType.TIMESTAMP )
+	@Column( name = "CREATED_DATE", nullable = false, length = 19 )
+	@CreatedDate
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate( final Date createdDate ) {
+		this.createdDate = createdDate;
+	}
+
+	@Column( name = "LAST_MODIFIED_BY" )
+	@LastModifiedBy
+	public Long getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy( final Long lastModifiedBy ) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	@Temporal( TemporalType.TIMESTAMP )
+	@Column( name = "LAST_MODIFIED_DATE", length = 19 )
+	@LastModifiedDate
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate( final Date lastModifiedDate ) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
 }
