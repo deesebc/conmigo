@@ -12,13 +12,10 @@ public class CustomAuditorAware implements AuditorAware<Long> {
 
 	@Override
 	public Long getCurrentAuditor() {
-
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
 		if( authentication == null || !authentication.isAuthenticated() || !(authentication.getPrincipal() instanceof CustomUserDetails) ) {
 			return null;
 		}
-
 		return ((CustomUserDetails) authentication.getPrincipal()).getId();
 	}
 
