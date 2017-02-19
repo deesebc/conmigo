@@ -1,4 +1,4 @@
-package com.conmigo.app.service.impl;
+package com.conmigo.app.service.custom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import com.conmigo.app.bbdd.jpa.User;
 import com.conmigo.app.dto.CustomUserDetails;
 
 @Service
-public class CustomUserDetailsServiceImpl implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserDao userDao;

@@ -51,8 +51,11 @@
 	</definition>
 	
 	<definition name="site.login" extends="layout.basic">
-		<put-attribute name="bodyClass" value="login" />
 		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
+	</definition>
+	
+	<definition name="site.register" extends="layout.basic">
+		<put-attribute name="body" value="/WEB-INF/pages/register.jsp" />
 	</definition>
 	
 	<definition name="site.403" extends="layout.basic">

@@ -1,4 +1,4 @@
-package com.conmigo.app.service.impl;
+package com.conmigo.app.service.custom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

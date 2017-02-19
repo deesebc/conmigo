@@ -27,7 +27,6 @@ public class LoginController {
 		if( SecurityUtil.isFullyAuthenticated() ) {
 			retorno = REDIRECT_INDEX;
 		}
-
 		return retorno;
 	}
 

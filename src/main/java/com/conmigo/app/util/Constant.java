@@ -13,4 +13,8 @@ public final class Constant {
 	public final static String ANONYMOUS_USER = "anonymousUser";
 	public final static String LOCALE_ES = "es";
 
+	public static enum Role {
+		USER, ADMIN
+	}
+
 }

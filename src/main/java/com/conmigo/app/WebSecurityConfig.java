@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 @Configuration
@@ -34,16 +33,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure( final HttpSecurity http ) throws Exception {
 		// @formatter:off
-
-		http.authorizeRequests().antMatchers( PUBLIC_PAGES ).permitAll().antMatchers( RESTRICTED_PAGES ).fullyAuthenticated().anyRequest().authenticated()
+		http.authorizeRequests()
+				// configure free access urls
+				.antMatchers( PUBLIC_PAGES ).permitAll()
+				// configure user pages
+				.antMatchers( RESTRICTED_PAGES ).fullyAuthenticated()
+				// autenticar cualquier otra url
+				.anyRequest().authenticated()
 				// configures form login
 				.and().formLogin().loginPage( LOGIN_PAGE ).failureUrl( "/login?error=bad_credentials" )
 				// configure form logout
 				.and().logout().logoutUrl( LOGOUT_PAGE ).deleteCookies( "JSESSIONID" ).logoutSuccessUrl( "/" ).permitAll()
-				// configure free access urls
-				.and().authorizeRequests().antMatchers( PUBLIC_PAGES ).permitAll()
-				// configure user pages
-
 				// configure remember me
 				.and().rememberMe()
 				// Adds the SocialAuthenticationFilter to Spring Security's filter chain. Nos permite que funcione la url /auth/provider
@@ -51,14 +51,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:on
 	}
 
-	@Bean( name = "passwordEncoder" )
-	public PasswordEncoder passwordencoder() {
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
 	@Autowired
 	public void configAuthentication( final AuthenticationManagerBuilder auth ) throws Exception {
-		auth.userDetailsService( userDetailsService ).passwordEncoder( passwordencoder() );
+		auth.userDetailsService( userDetailsService ).passwordEncoder( bCryptPasswordEncoder() );
 	}
 
 }

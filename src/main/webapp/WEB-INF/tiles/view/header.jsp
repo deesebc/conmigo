@@ -12,13 +12,15 @@
 <div id="navbar" class="collapse navbar-collapse">
   <ul class="nav navbar-nav">
     <li class="active"><a href="#">Home</a></li>
-    <li><a href="${pageContext.request.contextPath}/login">Login</a></li>
-    <li><a href="#about">Registro</a></li>
     <li><a href="/events">Eventos</a></li>
     <li><a href="#contact">Mensajes</a></li>
     <security:authorize access="isFullyAuthenticated()">
-    <li><a href="#contact">Hola <security:authentication property="principal.username" /></a></li>
-    <li><a href="/logout">Logout</a></li>
+    	<li><a href="${pageContext.request.contextPath}/login">Login</a></li>
+    	<li><a href="${pageContext.request.contextPath}/register">Register</a></li>
+    </security:authorize>
+    <security:authorize access="isFullyAuthenticated()">
+    	<li><a href="#contact">Hola <security:authentication property="principal.username" /></a></li>
+    	<li><a href="/logout">Logout</a></li>
     </security:authorize>
   </ul>
 </div><!--/.nav-collapse -->

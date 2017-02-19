@@ -1,4 +1,4 @@
-package com.conmigo.app.service.impl;
+package com.conmigo.app.service.custom;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

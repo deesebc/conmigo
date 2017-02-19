@@ -15,7 +15,7 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 
-import com.conmigo.app.service.impl.CustomConnectionSignUp;
+import com.conmigo.app.service.custom.CustomConnectionSignUp;
 
 /**
  * Created by Mohamed on 5/29/2014
