@@ -10,6 +10,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class UserconnectionId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String userId;
 	private String providerId;
 	private String providerUserId;
@@ -17,7 +18,7 @@ public class UserconnectionId implements java.io.Serializable {
 	public UserconnectionId() {
 	}
 
-	public UserconnectionId( String userId, String providerId, String providerUserId ) {
+	public UserconnectionId( final String userId, final String providerId, final String providerUserId ) {
 		this.userId = userId;
 		this.providerId = providerId;
 		this.providerUserId = providerUserId;
@@ -25,51 +26,56 @@ public class UserconnectionId implements java.io.Serializable {
 
 	@Column( name = "userId", nullable = false )
 	public String getUserId() {
-		return this.userId;
+		return userId;
 	}
 
-	public void setUserId( String userId ) {
+	public void setUserId( final String userId ) {
 		this.userId = userId;
 	}
 
 	@Column( name = "providerId", nullable = false )
 	public String getProviderId() {
-		return this.providerId;
+		return providerId;
 	}
 
-	public void setProviderId( String providerId ) {
+	public void setProviderId( final String providerId ) {
 		this.providerId = providerId;
 	}
 
 	@Column( name = "providerUserId", nullable = false )
 	public String getProviderUserId() {
-		return this.providerUserId;
+		return providerUserId;
 	}
 
-	public void setProviderUserId( String providerUserId ) {
+	public void setProviderUserId( final String providerUserId ) {
 		this.providerUserId = providerUserId;
 	}
 
-	public boolean equals( Object other ) {
-		if( (this == other) )
+	@Override
+	public boolean equals( final Object other ) {
+		if( this == other ) {
 			return true;
-		if( (other == null) )
+		}
+		if( other == null ) {
 			return false;
-		if( !(other instanceof UserconnectionId) )
+		}
+		if( !(other instanceof UserconnectionId) ) {
 			return false;
+		}
 		UserconnectionId castOther = (UserconnectionId) other;
 
-		return ((this.getUserId() == castOther.getUserId()) || (this.getUserId() != null && castOther.getUserId() != null && this.getUserId().equals( castOther.getUserId() )))
-				&& ((this.getProviderId() == castOther.getProviderId()) || (this.getProviderId() != null && castOther.getProviderId() != null && this.getProviderId().equals( castOther.getProviderId() )))
-				&& ((this.getProviderUserId() == castOther.getProviderUserId()) || (this.getProviderUserId() != null && castOther.getProviderUserId() != null && this.getProviderUserId().equals( castOther.getProviderUserId() )));
+		return (getUserId() == castOther.getUserId() || getUserId() != null && castOther.getUserId() != null && getUserId().equals( castOther.getUserId() ))
+				&& (getProviderId() == castOther.getProviderId() || getProviderId() != null && castOther.getProviderId() != null && getProviderId().equals( castOther.getProviderId() ))
+				&& (getProviderUserId() == castOther.getProviderUserId() || getProviderUserId() != null && castOther.getProviderUserId() != null && getProviderUserId().equals( castOther.getProviderUserId() ));
 	}
 
+	@Override
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + (getUserId() == null ? 0 : this.getUserId().hashCode());
-		result = 37 * result + (getProviderId() == null ? 0 : this.getProviderId().hashCode());
-		result = 37 * result + (getProviderUserId() == null ? 0 : this.getProviderUserId().hashCode());
+		result = 37 * result + (getUserId() == null ? 0 : getUserId().hashCode());
+		result = 37 * result + (getProviderId() == null ? 0 : getProviderId().hashCode());
+		result = 37 * result + (getProviderUserId() == null ? 0 : getProviderUserId().hashCode());
 		return result;
 	}
 

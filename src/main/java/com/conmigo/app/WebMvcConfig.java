@@ -25,7 +25,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		messageSource.setBasenames( "/resources/i18n/messages", "classpath:/conmigo" );
 		messageSource.setUseCodeAsDefaultMessage( true );
 		messageSource.setDefaultEncoding( "UTF-8" );
-		// messageSource.setParentMessageSource( i18nMessageResourceAware() );
 		return messageSource;
 	}
 

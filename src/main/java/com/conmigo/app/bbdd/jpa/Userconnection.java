@@ -16,6 +16,7 @@ import javax.persistence.UniqueConstraint;
 @Table( name = "userconnection", catalog = "conmigodb", uniqueConstraints = @UniqueConstraint( columnNames = { "userId", "providerId", "rank" } ) )
 public class Userconnection implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private UserconnectionId id;
 	private int rank;
 	private String displayName;
@@ -29,13 +30,13 @@ public class Userconnection implements java.io.Serializable {
 	public Userconnection() {
 	}
 
-	public Userconnection( UserconnectionId id, int rank, String accessToken ) {
+	public Userconnection( final UserconnectionId id, final int rank, final String accessToken ) {
 		this.id = id;
 		this.rank = rank;
 		this.accessToken = accessToken;
 	}
 
-	public Userconnection( UserconnectionId id, int rank, String displayName, String profileUrl, String imageUrl, String accessToken, String secret, String refreshToken, Long expireTime ) {
+	public Userconnection( final UserconnectionId id, final int rank, final String displayName, final String profileUrl, final String imageUrl, final String accessToken, final String secret, final String refreshToken, final Long expireTime ) {
 		this.id = id;
 		this.rank = rank;
 		this.displayName = displayName;
@@ -52,82 +53,82 @@ public class Userconnection implements java.io.Serializable {
 	@AttributeOverrides( { @AttributeOverride( name = "userId", column = @Column( name = "userId", nullable = false ) ), @AttributeOverride( name = "providerId", column = @Column( name = "providerId", nullable = false ) ),
 			@AttributeOverride( name = "providerUserId", column = @Column( name = "providerUserId", nullable = false ) ) } )
 	public UserconnectionId getId() {
-		return this.id;
+		return id;
 	}
 
-	public void setId( UserconnectionId id ) {
+	public void setId( final UserconnectionId id ) {
 		this.id = id;
 	}
 
 	@Column( name = "rank", nullable = false )
 	public int getRank() {
-		return this.rank;
+		return rank;
 	}
 
-	public void setRank( int rank ) {
+	public void setRank( final int rank ) {
 		this.rank = rank;
 	}
 
 	@Column( name = "displayName" )
 	public String getDisplayName() {
-		return this.displayName;
+		return displayName;
 	}
 
-	public void setDisplayName( String displayName ) {
+	public void setDisplayName( final String displayName ) {
 		this.displayName = displayName;
 	}
 
 	@Column( name = "profileUrl", length = 512 )
 	public String getProfileUrl() {
-		return this.profileUrl;
+		return profileUrl;
 	}
 
-	public void setProfileUrl( String profileUrl ) {
+	public void setProfileUrl( final String profileUrl ) {
 		this.profileUrl = profileUrl;
 	}
 
 	@Column( name = "imageUrl", length = 512 )
 	public String getImageUrl() {
-		return this.imageUrl;
+		return imageUrl;
 	}
 
-	public void setImageUrl( String imageUrl ) {
+	public void setImageUrl( final String imageUrl ) {
 		this.imageUrl = imageUrl;
 	}
 
 	@Column( name = "accessToken", nullable = false, length = 1024 )
 	public String getAccessToken() {
-		return this.accessToken;
+		return accessToken;
 	}
 
-	public void setAccessToken( String accessToken ) {
+	public void setAccessToken( final String accessToken ) {
 		this.accessToken = accessToken;
 	}
 
 	@Column( name = "secret" )
 	public String getSecret() {
-		return this.secret;
+		return secret;
 	}
 
-	public void setSecret( String secret ) {
+	public void setSecret( final String secret ) {
 		this.secret = secret;
 	}
 
 	@Column( name = "refreshToken" )
 	public String getRefreshToken() {
-		return this.refreshToken;
+		return refreshToken;
 	}
 
-	public void setRefreshToken( String refreshToken ) {
+	public void setRefreshToken( final String refreshToken ) {
 		this.refreshToken = refreshToken;
 	}
 
 	@Column( name = "expireTime" )
 	public Long getExpireTime() {
-		return this.expireTime;
+		return expireTime;
 	}
 
-	public void setExpireTime( Long expireTime ) {
+	public void setExpireTime( final Long expireTime ) {
 		this.expireTime = expireTime;
 	}
 

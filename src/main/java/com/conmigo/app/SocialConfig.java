@@ -15,7 +15,6 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 
-import com.conmigo.app.bbdd.dao.UserDao;
 import com.conmigo.app.service.impl.CustomConnectionSignUp;
 
 /**
@@ -27,9 +26,6 @@ public class SocialConfig implements SocialConfigurer {
 
 	@Autowired
 	private DataSource dataSource;
-
-	@Autowired
-	private UserDao usersDao;
 
 	@Override
 	public void addConnectionFactories( final ConnectionFactoryConfigurer connectionFactoryConfigurer, final Environment environment ) {

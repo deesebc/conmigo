@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.conmigo.app.util.SecurityUtil;
+
 @Controller
 public class LoginController {
 
@@ -27,9 +29,9 @@ public class LoginController {
 	@RequestMapping( value = "/login", method = RequestMethod.GET )
 	public String login( @RequestParam( value = "error", required = false ) final String error ) {
 		String retorno = "site.login";
-		// if( SecurityUtil.isFullyAuthenticated() ) {
-		// retorno = REDIRECT_INDEX;
-		// }
+		if( SecurityUtil.isFullyAuthenticated() ) {
+			retorno = REDIRECT_INDEX;
+		}
 
 		return retorno;
 	}
