@@ -31,10 +31,10 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
 
 	public abstract void setId( K id );
 
-	private Long createdBy;
-	private Date createdDate;
-	private Long lastModifiedBy;
-	private Date lastModifiedDate;
+	protected Long createdBy;
+	protected Date createdDate;
+	protected Long lastModifiedBy;
+	protected Date lastModifiedDate;
 
 	@Column( name = "CREATED_BY", nullable = false )
 	@CreatedBy

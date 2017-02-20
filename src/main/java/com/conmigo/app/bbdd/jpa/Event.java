@@ -15,21 +15,31 @@ public class Event extends GenericEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	private long id;
 	private String name;
 	private Date date;
+	private String place;
+	private String type;
 
 	public Event() {
 	}
 
-	public Event( final Long id ) {
+	public Event( final long id, final long createdBy, final Date createdDate ) {
 		this.id = id;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
 	}
 
-	public Event( final Long id, final String name, final Date date, final long createdBy, final Date createdDate, final Long lastModifiedBy, final Date lastModifiedDate ) {
+	public Event( final long id, final String name, final Date date, final String place, final String type, final long createdBy, final Date createdDate, final Long lastModifiedBy, final Date lastModifiedDate ) {
 		this.id = id;
 		this.name = name;
 		this.date = date;
+		this.place = place;
+		this.type = type;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
 	}
 
 	@Override
@@ -61,6 +71,24 @@ public class Event extends GenericEntity<Long> {
 
 	public void setDate( final Date date ) {
 		this.date = date;
+	}
+
+	@Column( name = "PLACE", length = 50 )
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace( final String place ) {
+		this.place = place;
+	}
+
+	@Column( name = "TYPE", length = 50 )
+	public String getType() {
+		return type;
+	}
+
+	public void setType( final String type ) {
+		this.type = type;
 	}
 
 }
