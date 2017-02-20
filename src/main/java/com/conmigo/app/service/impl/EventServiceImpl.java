@@ -4,6 +4,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.conmigo.app.bbdd.dao.EventDao;
@@ -40,6 +42,12 @@ public class EventServiceImpl extends GenericBSImpl<EventDto, Event, Long> imple
 
 	public void setDao( final EventDao dao ) {
 		this.dao = dao;
+	}
+
+	@Override
+	public Page<EventDto> findByNameContainingIgnoreCase( final Pageable pageRequest, final String name ) {
+		final Page<Event> pageEntities = dao.findByNameContainingIgnoreCase( pageRequest, name );
+		return pageEntities.map( getConverterToDTO() );
 	}
 
 }
