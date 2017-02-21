@@ -12,28 +12,13 @@
     <meta name="_csrf" content="${_csrf.token}"/>
     <link rel="icon" href="../../favicon.ico">
 
-	<tiles:importAttribute name="title" />
-	<title><spring:message code="${title}"/></title>
+	<title><tiles:importAttribute name="title" /></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-	-->
     <!-- Custom styles for this template -->
     <link href="${pageContext.request.contextPath}/resources/css/conmigo.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
   </head>
 
   <body>
