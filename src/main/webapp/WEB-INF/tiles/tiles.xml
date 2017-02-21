@@ -33,7 +33,7 @@
 		-->
 		<put-attribute name="footer" value="" /> 
 		<put-attribute name="pageScripts" value="/WEB-INF/tiles/view/scripts/pageScripts.jsp" />
-		<put-attribute name="customScripts" value="" />	       
+		<put-attribute name="customScripts" value="/WEB-INF/tiles/view/scripts/event.jsp" />	       
 	</definition>
 	
 	<definition name="layout.empty" template="/WEB-INF/tiles/layout/emptyBasic.jsp">

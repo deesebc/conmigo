@@ -33,6 +33,17 @@
 		     <form:errors path="date" cssClass="error-label" element="label" />
 		  </div>
 		  
+		  <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+		  
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
 		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form:form>
