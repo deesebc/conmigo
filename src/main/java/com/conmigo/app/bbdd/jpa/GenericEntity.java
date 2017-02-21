@@ -38,7 +38,7 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
 
 	@Column( name = "CREATED_BY", nullable = false )
 	@CreatedBy
-	public long getCreatedBy() {
+	public Long getCreatedBy() {
 		return createdBy;
 	}
 
