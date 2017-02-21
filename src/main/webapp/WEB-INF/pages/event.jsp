@@ -2,7 +2,7 @@
 <div class="starter-template">
 	<h1>Event Page</h1>
 	<div>
-		<form:form modelAttribute="eventForm" method="post" action="${pageContext.request.contextPath}/event" cssClass="form-signin">
+		<form:form modelAttribute="eventForm" method="post" action="${pageContext.request.contextPath}/event/create" cssClass="form-signin">
 		  <h2 class="form-signin-heading">Create your Event</h2>
 		  <form:select path="type" id="type" class="js-example-basic-single form-control required" cssErrorClass="form-control required haserror">
 			  <form:option value="" selected="selected"><spring:message code="c.choose.option" /></form:option>

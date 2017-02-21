@@ -7,10 +7,10 @@ public abstract class GenericDto<K extends Serializable> implements Serializable
 
 	private static final long serialVersionUID = 1L;
 
-	private Long createdBy;
-	private Date createdDate;
-	private Long lastModifiedBy;
-	private Date lastModifiedDate;
+	protected Long createdBy;
+	protected Date createdDate;
+	protected Long lastModifiedBy;
+	protected Date lastModifiedDate;
 
 	public abstract K getId();
 
