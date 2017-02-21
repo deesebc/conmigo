@@ -25,24 +25,14 @@
 		     <form:errors path="place" cssClass="error-label" element="label" />
 		  </div>
 		  
-		  <div class="form-group">
-		    <label for="date">Date</label>
-		    <!--<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="nameHelp" placeholder="Enter email">-->
-		    <form:input path="date" id="date" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="dateHelp" placeholder="Enter date" />
-		    <small id="dateHelp" class="form-text text-muted">Fecha del evento</small>
-		     <form:errors path="date" cssClass="error-label" element="label" />
-		  </div>
-		  
-		  <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
+           <div class="form-group">
+               <div class='input-group date' id='datetimepicker'>
+                   <form:input path="date" id="date" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="dateHelp" placeholder="Enter date" />
+                   <span class="input-group-addon">
+                       <span class="glyphicon glyphicon-calendar"></span>
+                   </span>
+               </div>
+           </div>
 		  
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
 		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
