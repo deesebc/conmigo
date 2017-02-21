@@ -28,8 +28,8 @@ public class EventController {
 	private final static Logger LOGGER = LoggerFactory.getLogger( RegisterController.class );
 
 	private final static String PAGE = "site.event";
-	private final static String REDIRECT_EVENT = "redirect:/events";
-	private final static String FORWARD_EVENT = "forward:/events";
+	private final static String REDIRECT_EVENT = "redirect:/events/";
+	private final static String FORWARD_EVENT = "forward:/events/";
 
 	@Autowired
 	EventService eService;

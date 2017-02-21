@@ -70,7 +70,7 @@ public class RegisterController {
 		} catch( Exception except ) {
 			LOGGER.error( except.getMessage(), except );
 		}
-		return "redirect:/events";
+		return "redirect:/events/";
 	}
 
 	private void authenticateUserAndSetSession( final UserDto user, final HttpServletRequest request ) {

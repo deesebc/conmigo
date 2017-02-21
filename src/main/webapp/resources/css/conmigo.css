@@ -3,5 +3,8 @@ body {
 }
 .starter-template {
   padding: 40px 15px;
+}
+.starter-template-center {
+  padding: 40px 15px;
   text-align: center;
 }
