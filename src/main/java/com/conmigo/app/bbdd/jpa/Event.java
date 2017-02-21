@@ -15,7 +15,7 @@ public class Event extends GenericEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
-	private long id;
+	private Long id;
 	private String name;
 	private Date date;
 	private String place;
@@ -24,13 +24,13 @@ public class Event extends GenericEntity<Long> {
 	public Event() {
 	}
 
-	public Event( final long id, final long createdBy, final Date createdDate ) {
+	public Event( final Long id, final Long createdBy, final Date createdDate ) {
 		this.id = id;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 	}
 
-	public Event( final long id, final String name, final Date date, final String place, final String type, final long createdBy, final Date createdDate, final Long lastModifiedBy, final Date lastModifiedDate ) {
+	public Event( final Long id, final String name, final Date date, final String place, final String type, final Long createdBy, final Date createdDate, final Long lastModifiedBy, final Date lastModifiedDate ) {
 		this.id = id;
 		this.name = name;
 		this.date = date;

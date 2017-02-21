@@ -22,8 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private final static String LOGIN_PAGE = "/login";
 	private final static String LOGOUT_PAGE = "/logout";
 
-	private final static String[] PUBLIC_PAGES = { "/", "/error", "/register", LOGIN_PAGE, LOGOUT_PAGE };
-	private final static String[] RESTRICTED_PAGES = { "/events" };
+	private final static String[] PUBLIC_PAGES = { "/", "/error", "/register", "/events", LOGIN_PAGE, LOGOUT_PAGE };
+	private final static String[] RESTRICTED_PAGES = { "/event/create" };
 
 	@Override
 	public void configure( final WebSecurity web ) throws Exception {

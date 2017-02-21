@@ -6,7 +6,7 @@
 
 	<!-- Templates -->
 	<definition name="layout.basic" template="/WEB-INF/tiles/layout/basic.jsp">
-		<put-attribute name="title" value="i.ntf.title" />
+		<put-attribute name="title" value="Conmigo" />
 		<put-attribute name="bodyClass" value="" />
 		<put-attribute name="header" value="/WEB-INF/tiles/view/header.jsp" />
 		<put-attribute name="body" value="" />
@@ -22,7 +22,7 @@
 	</definition>
 
 	<definition name="layout.error" template="/WEB-INF/tiles/layout/errorBasic.jsp">
-		<put-attribute name="title" value="i.error.page" />
+		<put-attribute name="title" value="Pagina de Error" />
 		<put-attribute name="bodyClass" value="" />
 		<put-attribute name="header" value="/WEB-INF/tiles/view/header.jsp" />
 		<put-attribute name="body" value="" />
@@ -48,6 +48,11 @@
 	
 	<definition name="site.events" extends="layout.basic">
 		<put-attribute name="body" value="/WEB-INF/pages/events.jsp" />
+	</definition>
+	
+	<definition name="site.event" extends="layout.basic">
+		<put-attribute name="body" value="/WEB-INF/pages/event.jsp" />
+		<put-attribute name="customScripts" value="/WEB-INF/tiles/view/scripts/eventScript.jsp" />	
 	</definition>
 	
 	<definition name="site.login" extends="layout.basic">
