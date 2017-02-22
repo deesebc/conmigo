@@ -13,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,10 +68,12 @@ public class RegisterController {
 			UserDto uDto = new UserDto();
 			uDto.setEnable( true );
 			PropertyUtils.copyProperties( uDto, form );
+			// codificamos el password
+			uDto.setPassword( new BCryptPasswordEncoder().encode( form.getPassword() ) );
 			RoleDto rolDto = new RoleDto( Long.valueOf( roleUserId ) );
 			uDto.getRoles().add( rolDto );
 			uService.save( uDto );
-			authenticateUserAndSetSession( uDto, request );
+			authenticateUserAndSetSession( uDto.getEmail(), form.getPassword(), request );
 		} catch( DataIntegrityViolationException e ) {
 			bindingResult.reject( "email.exists", "Email already exists" );
 			return PAGE;
@@ -80,10 +83,8 @@ public class RegisterController {
 		return "redirect:/events/";
 	}
 
-	private void authenticateUserAndSetSession( final UserDto user, final HttpServletRequest request ) {
-		String username = user.getEmail();
-		String password = user.getPassword();
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( username, password );
+	private void authenticateUserAndSetSession( final String username, final String pwdNoEncrypt, final HttpServletRequest request ) {
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( username, pwdNoEncrypt );
 
 		// generate session if one doesn't exist
 		request.getSession();
