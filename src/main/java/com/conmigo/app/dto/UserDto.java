@@ -1,5 +1,9 @@
 package com.conmigo.app.dto;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 public class UserDto extends GenericDto<Long> {
 
 	private static final long serialVersionUID = 1L;
@@ -12,15 +16,29 @@ public class UserDto extends GenericDto<Long> {
 	protected String username;
 	protected String password;
 	protected boolean enable;
+	private Set<RoleDto> roles = new HashSet<RoleDto>( 0 );
 
 	public UserDto() {
 	}
 
-	public UserDto( final String name, final String firstName, final String lastName, final String email ) {
+	public UserDto( final long createdBy, final Date createdDate ) {
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+	}
+
+	public UserDto( final String name, final String firstName, final String lastName, final String email, final String username, final String password, final Boolean enable, final long createdBy, final Date createdDate, final Long lastModifiedBy, final Date lastModifiedDate, final Set<RoleDto> roles ) {
 		this.name = name;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.enable = enable;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
+		this.roles = roles;
 	}
 
 	@Override
@@ -87,6 +105,21 @@ public class UserDto extends GenericDto<Long> {
 
 	public void setEnable( final boolean enable ) {
 		this.enable = enable;
+	}
+
+	/**
+	 * @return Valor de la propiedad roles
+	 */
+	public Set<RoleDto> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles
+	 *            Valor de la propiedad roles a setear
+	 */
+	public void setRoles( final Set<RoleDto> roles ) {
+		this.roles = roles;
 	}
 
 }

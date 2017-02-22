@@ -3,6 +3,7 @@ package com.conmigo.app.dto;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +11,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
+import com.conmigo.app.bbdd.jpa.Role;
 import com.conmigo.app.bbdd.jpa.User;
 
 public class CustomUserDetails extends User implements UserDetails {
@@ -26,13 +28,21 @@ public class CustomUserDetails extends User implements UserDetails {
 		userRoles = new ArrayList<>();
 	}
 
-	public CustomUserDetails( final User user, final List<String> userRoles ) {
+	public CustomUserDetails( final User user ) {
 		try {
 			PropertyUtils.copyProperties( this, user );
 		} catch( Exception except ) {
 			except.printStackTrace();
 		}
-		this.userRoles = userRoles;
+		userRoles = getRoles( user.getRoles() );
+	}
+
+	private List<String> getRoles( final Set<Role> roles ) {
+		List<String> userRoles = new ArrayList<>();
+		for( Role rol : roles ) {
+			userRoles.add( rol.getName() );
+		}
+		return userRoles;
 	}
 
 	@Override

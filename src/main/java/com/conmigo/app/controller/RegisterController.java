@@ -7,6 +7,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.conmigo.app.dto.RoleDto;
 import com.conmigo.app.dto.UserDto;
 import com.conmigo.app.form.RegisterForm;
 import com.conmigo.app.service.UserService;
@@ -38,6 +40,9 @@ public class RegisterController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+
+	@Value( "${role.user.id}" )
+	private String roleUserId;
 
 	public RegisterController() {
 		super();
@@ -62,6 +67,8 @@ public class RegisterController {
 			UserDto uDto = new UserDto();
 			uDto.setEnable( true );
 			PropertyUtils.copyProperties( uDto, form );
+			RoleDto rolDto = new RoleDto( Long.valueOf( roleUserId ) );
+			uDto.getRoles().add( rolDto );
 			uService.save( uDto );
 			authenticateUserAndSetSession( uDto, request );
 		} catch( DataIntegrityViolationException e ) {

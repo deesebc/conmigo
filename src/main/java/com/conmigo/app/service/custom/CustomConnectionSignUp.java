@@ -3,6 +3,7 @@ package com.conmigo.app.service.custom;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
@@ -11,6 +12,7 @@ import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Service;
 
 import com.conmigo.app.bbdd.dao.UserDao;
+import com.conmigo.app.bbdd.jpa.Role;
 import com.conmigo.app.bbdd.jpa.User;
 
 @Service
@@ -18,6 +20,9 @@ public class CustomConnectionSignUp implements ConnectionSignUp {
 
 	@Autowired
 	private UserDao uDao;
+
+	@Value( "${role.user.id}" )
+	private String roleUserId;
 
 	public CustomConnectionSignUp() {
 		super();
@@ -37,6 +42,8 @@ public class CustomConnectionSignUp implements ConnectionSignUp {
 			userProfile.setPassword( createEncryptPassword() );
 			// indicamos como username el correo
 			userProfile.setUsername( userProfile.getEmail() );
+			Role rolDto = new Role( Long.valueOf( roleUserId ) );
+			userProfile.getRoles().add( rolDto );
 			userProfile = uDao.save( userProfile );
 			email = userProfile.getEmail();
 		} else {

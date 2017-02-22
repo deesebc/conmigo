@@ -1,8 +1,5 @@
 package com.conmigo.app.service.custom;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,11 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if( user == null ) {
 			throw new UsernameNotFoundException( "No user present with username/email: " + username );
 		} else {
-			// List<String> userRoles = userTypeDao.findRoleByUserName( username );
-			// UserDto userDto = UserToDto.INSTANCE.convert( user );
-			List<String> userRoles = new ArrayList<>();
-			userRoles.add( "USER" );
-			return new CustomUserDetails( user, userRoles );
+			return new CustomUserDetails( user );
 		}
 	}
 
