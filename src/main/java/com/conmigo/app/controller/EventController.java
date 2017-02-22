@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.conmigo.app.dto.EventDto;
+import com.conmigo.app.dto.UserDto;
 import com.conmigo.app.form.EventForm;
 import com.conmigo.app.service.EventService;
 import com.conmigo.app.util.ComboUtil;
+import com.conmigo.app.util.SecurityUtil;
 
 @Controller
 @RequestMapping( "/event" )
@@ -41,14 +43,26 @@ public class EventController {
 		return PAGE;
 	}
 
-	@PostMapping( value = "/create" )
-	public String create( @Valid @ModelAttribute( "eventForm" ) final EventForm eventForm, final BindingResult bindingResult, final Model model ) {
+	@PostMapping( value = "/create", params = "pass" )
+	public String createAndPass( @Valid @ModelAttribute( "eventForm" ) final EventForm eventForm, final BindingResult bindingResult, final Model model ) {
+		return createEvent( eventForm, bindingResult, false );
+	}
+
+	@PostMapping( value = "/create", params = "join" )
+	public String createAndJoin( @Valid @ModelAttribute( "eventForm" ) final EventForm eventForm, final BindingResult bindingResult, final Model model ) {
+		return createEvent( eventForm, bindingResult, true );
+	}
+
+	private String createEvent( final EventForm eventForm, final BindingResult bindingResult, final Boolean join ) {
 		if( bindingResult.hasErrors() ) {
 			return PAGE;
 		}
 		try {
 			EventDto eDto = new EventDto();
 			PropertyUtils.copyProperties( eDto, eventForm );
+			if( join ) {
+				eDto.getUsers().add( new UserDto( SecurityUtil.getIdUser() ) );
+			}
 			eService.save( eDto );
 		} catch( Exception except ) {
 			LOGGER.error( except.getMessage(), except );

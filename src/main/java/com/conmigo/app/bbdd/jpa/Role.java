@@ -24,6 +24,7 @@ public class Role extends GenericEntity<Long> {
 	private String description;
 
 	public Role() {
+		super();
 	}
 
 	public Role( final Long id ) {

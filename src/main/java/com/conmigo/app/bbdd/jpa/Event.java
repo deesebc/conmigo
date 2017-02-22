@@ -1,12 +1,18 @@
 package com.conmigo.app.bbdd.jpa;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,18 +28,13 @@ public class Event extends GenericEntity<Long> {
 	private Date date;
 	private String place;
 	private String type;
+	private Set<User> users = new HashSet<User>( 0 );
 
 	public Event() {
+		super();
 	}
 
-	public Event( final Long id, final Long createdBy, final Date createdDate ) {
-		this.id = id;
-		this.createdBy = createdBy;
-		this.createdDate = createdDate;
-	}
-
-	public Event( final Long id, final String name, final Date date, final String place, final String type, final Long createdBy, final Date createdDate, final Long lastModifiedBy, final Date lastModifiedDate ) {
-		this.id = id;
+	public Event( final String name, final Date date, final String place, final String type, final Long createdBy, final Date createdDate, final Long lastModifiedBy, final Date lastModifiedDate, final Set<User> users ) {
 		this.name = name;
 		this.date = date;
 		this.place = place;
@@ -42,6 +43,7 @@ public class Event extends GenericEntity<Long> {
 		this.createdDate = createdDate;
 		this.lastModifiedBy = lastModifiedBy;
 		this.lastModifiedDate = lastModifiedDate;
+		this.users = users;
 	}
 
 	@Override
@@ -92,6 +94,16 @@ public class Event extends GenericEntity<Long> {
 
 	public void setType( final String type ) {
 		this.type = type;
+	}
+
+	@ManyToMany( fetch = FetchType.LAZY )
+	@JoinTable( name = "user_event", catalog = "conmigodb", joinColumns = { @JoinColumn( name = "EVENT", nullable = false, updatable = false ) }, inverseJoinColumns = { @JoinColumn( name = "USER", nullable = false, updatable = false ) } )
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers( final Set<User> users ) {
+		this.users = users;
 	}
 
 }

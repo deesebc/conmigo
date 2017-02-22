@@ -34,7 +34,7 @@
                </div>
            </div>
 		  
-		  <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+		  <button class="btn btn-lg btn-primary btn-block" type="submit" id="pass" name="pass">Create</button>&nbsp;&nbsp; <button class="btn btn-lg btn-primary btn-block" type="submit" id="join" name="join">Create And Join</button>
 		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form:form>
 	</div>

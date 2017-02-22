@@ -19,6 +19,12 @@ public class UserDto extends GenericDto<Long> {
 	private Set<RoleDto> roles = new HashSet<RoleDto>( 0 );
 
 	public UserDto() {
+		super();
+	}
+
+	public UserDto( final Long id ) {
+		super();
+		this.id = id;
 	}
 
 	public UserDto( final long createdBy, final Date createdDate ) {
