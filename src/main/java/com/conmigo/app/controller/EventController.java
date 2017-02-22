@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.conmigo.app.dto.EventDto;
 import com.conmigo.app.dto.UserDto;
@@ -68,5 +69,32 @@ public class EventController {
 			LOGGER.error( except.getMessage(), except );
 		}
 		return REDIRECT_EVENT;
+	}
+
+	@PostMapping( value = "/" )
+	public String view( @RequestParam( "id" ) final Long id, final Model model ) {
+		viewEvent( id, model, false );
+		return PAGE;
+	}
+
+	@PostMapping( value = "/join" )
+	public String join( @RequestParam( "id" ) final Long id, final Model model ) {
+		viewEvent( id, model, true );
+		return PAGE;
+	}
+
+	private void viewEvent( final Long id, final Model model, final Boolean join ) {
+		try {
+			EventDto eDto = eService.findById( id );
+			if( join ) {
+				eDto.getUsers().add( new UserDto( SecurityUtil.getIdUser() ) );
+				eDto = eService.save( eDto );
+			}
+			EventForm eventForm = new EventForm();
+			PropertyUtils.copyProperties( eventForm, eDto );
+			model.addAttribute( "eventForm", eventForm );
+		} catch( Exception except ) {
+			LOGGER.error( except.getMessage(), except );
+		}
 	}
 }

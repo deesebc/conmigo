@@ -20,6 +20,7 @@
 					<th>Name</th>
 					<th>Place</th>
 					<th>Date</th>
+					<th>Acciones</th>
 				</thead>
 				<tbody>
 					<c:forEach items="${events}" var="item" varStatus="status">
@@ -28,6 +29,7 @@
 							<td>${item.name}</td>
 							<td>${item.place}</td>
 							<td>${item.date}</td>
+							<td><button class="btn btn-primary" onclick="javascript: seeEvent(${item.id})">VER</button>&nbsp&nbsp;<button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})">APUNTARSE</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -41,4 +43,14 @@
 			<!-- acceso publico a la pagina, y si no tiene permiso se meustra el boton en gris con display que indique que para crear se tiene que logar -->
 		</p>
 	</div>
+</div>
+<div>
+	<form id="seeEventForm" action="${pageContext.request.contextPath}/event/" method="post">
+		<input type="hidden" id="idSeeEvent" name="id" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
+	<form id="joinEventForm" action="${pageContext.request.contextPath}/event/join" method="post">
+		<input type="hidden" id="idJoinEvent" name="id" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
 </div>

@@ -44,6 +44,7 @@
 	
 	<definition name="site.events" extends="layout.basic">
 		<put-attribute name="body" value="/WEB-INF/pages/events.jsp" />
+		<put-attribute name="customScripts" value="/WEB-INF/tiles/view/scripts/eventsScript.jsp" />
 	</definition>
 	
 	<definition name="site.event" extends="layout.basic">
