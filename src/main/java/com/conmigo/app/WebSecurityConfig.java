@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 @Configuration
@@ -43,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// configures form login
 				.and().formLogin().loginPage( LOGIN_PAGE ).failureUrl( "/login?error=bad_credentials" )
 				// configure form logout
-				.and().logout().logoutUrl( LOGOUT_PAGE ).deleteCookies( "JSESSIONID" ).logoutSuccessUrl( "/" ).permitAll()
+				.and().logout().logoutUrl( LOGOUT_PAGE ).deleteCookies( "JSESSIONID" ).logoutSuccessUrl( "/" ).logoutRequestMatcher( new AntPathRequestMatcher( LOGOUT_PAGE ) ).permitAll()
 				// configure remember me
 				.and().rememberMe()
 				// Adds the SocialAuthenticationFilter to Spring Security's filter chain. Nos permite que funcione la url /auth/provider

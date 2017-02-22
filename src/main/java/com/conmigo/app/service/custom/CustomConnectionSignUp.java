@@ -42,6 +42,7 @@ public class CustomConnectionSignUp implements ConnectionSignUp {
 			userProfile.setPassword( createEncryptPassword() );
 			// indicamos como username el correo
 			userProfile.setUsername( userProfile.getEmail() );
+			// indicamos rol usuario
 			Role rolDto = new Role( Long.valueOf( roleUserId ) );
 			userProfile.getRoles().add( rolDto );
 			userProfile = uDao.save( userProfile );

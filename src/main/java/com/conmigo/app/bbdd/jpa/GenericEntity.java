@@ -42,7 +42,7 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
 		return createdBy;
 	}
 
-	public void setCreatedBy( final long createdBy ) {
+	public void setCreatedBy( final Long createdBy ) {
 		this.createdBy = createdBy;
 	}
 

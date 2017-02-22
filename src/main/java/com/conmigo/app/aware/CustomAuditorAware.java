@@ -14,7 +14,7 @@ public class CustomAuditorAware implements AuditorAware<Long> {
 	public Long getCurrentAuditor() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if( authentication == null || !authentication.isAuthenticated() || !(authentication.getPrincipal() instanceof CustomUserDetails) ) {
-			return null;
+			return 0l;
 		}
 		return ((CustomUserDetails) authentication.getPrincipal()).getId();
 	}

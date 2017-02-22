@@ -11,11 +11,10 @@ import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurer;
 import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
-
-import com.conmigo.app.service.custom.CustomConnectionSignUp;
 
 /**
  * Created by Mohamed on 5/29/2014
@@ -26,6 +25,9 @@ public class SocialConfig implements SocialConfigurer {
 
 	@Autowired
 	private DataSource dataSource;
+
+	@Autowired
+	private ConnectionSignUp customConnection;
 
 	@Override
 	public void addConnectionFactories( final ConnectionFactoryConfigurer connectionFactoryConfigurer, final Environment environment ) {
@@ -39,7 +41,7 @@ public class SocialConfig implements SocialConfigurer {
 	@Override
 	public UsersConnectionRepository getUsersConnectionRepository( final ConnectionFactoryLocator connectionFactoryLocator ) {
 		JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository( dataSource, connectionFactoryLocator, Encryptors.noOpText() );
-		repository.setConnectionSignUp( new CustomConnectionSignUp() );
+		repository.setConnectionSignUp( customConnection );
 		return repository;
 	}
 }
