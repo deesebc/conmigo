@@ -52,6 +52,11 @@
 		<put-attribute name="customScripts" value="/WEB-INF/tiles/view/scripts/eventScript.jsp" />	
 	</definition>
 	
+	<definition name="site.messages" extends="layout.basic">
+		<put-attribute name="body" value="/WEB-INF/pages/messages.jsp" />
+		<put-attribute name="customScripts" value="" />
+	</definition>
+	
 	<definition name="site.login" extends="layout.basic">
 		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
 	</definition>

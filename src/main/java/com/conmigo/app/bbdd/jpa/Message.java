@@ -25,8 +25,8 @@ public class Message extends GenericEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private User userBySender;
-	private User userByReceiver;
+	private User sender;
+	private User receiver;
 	private String message;
 	private Date date;
 
@@ -34,13 +34,13 @@ public class Message extends GenericEntity<Long> {
 	}
 
 	public Message( final User userBySender, final User userByReceiver ) {
-		this.userBySender = userBySender;
-		this.userByReceiver = userByReceiver;
+		sender = userBySender;
+		receiver = userByReceiver;
 	}
 
 	public Message( final User userBySender, final User userByReceiver, final String message, final Date date, final Long createdBy, final Date createdDate, final Long lastModifiedBy, final Date lastModifiedDate ) {
-		this.userBySender = userBySender;
-		this.userByReceiver = userByReceiver;
+		sender = userBySender;
+		receiver = userByReceiver;
 		this.message = message;
 		this.date = date;
 		this.createdBy = createdBy;
@@ -64,22 +64,22 @@ public class Message extends GenericEntity<Long> {
 
 	@ManyToOne( fetch = FetchType.LAZY )
 	@JoinColumn( name = "SENDER", nullable = false )
-	public User getUserBySender() {
-		return userBySender;
+	public User getSender() {
+		return sender;
 	}
 
-	public void setUserBySender( final User userBySender ) {
-		this.userBySender = userBySender;
+	public void setSender( final User userBySender ) {
+		sender = userBySender;
 	}
 
 	@ManyToOne( fetch = FetchType.LAZY )
 	@JoinColumn( name = "RECEIVER", nullable = false )
-	public User getUserByReceiver() {
-		return userByReceiver;
+	public User getReceiver() {
+		return receiver;
 	}
 
-	public void setUserByReceiver( final User userByReceiver ) {
-		this.userByReceiver = userByReceiver;
+	public void setReceiver( final User userByReceiver ) {
+		receiver = userByReceiver;
 	}
 
 	@Column( name = "MESSAGE", length = 65535 )

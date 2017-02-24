@@ -10,8 +10,8 @@ public class MessageDto extends GenericDto<Long> {
 
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private UserDto userBySender;
-	private UserDto userByReceiver;
+	private UserDto sender;
+	private UserDto receiver;
 	private String message;
 	private Date date;
 
@@ -19,13 +19,13 @@ public class MessageDto extends GenericDto<Long> {
 	}
 
 	public MessageDto( final UserDto userBySender, final UserDto userByReceiver ) {
-		this.userBySender = userBySender;
-		this.userByReceiver = userByReceiver;
+		sender = userBySender;
+		receiver = userByReceiver;
 	}
 
 	public MessageDto( final UserDto userBySender, final UserDto userByReceiver, final String message, final Date date, final Long createdBy, final Date createdDate, final Long lastModifiedBy, final Date lastModifiedDate ) {
-		this.userBySender = userBySender;
-		this.userByReceiver = userByReceiver;
+		sender = userBySender;
+		receiver = userByReceiver;
 		this.message = message;
 		this.date = date;
 		this.createdBy = createdBy;
@@ -44,20 +44,20 @@ public class MessageDto extends GenericDto<Long> {
 		this.id = id;
 	}
 
-	public UserDto getUserBySender() {
-		return userBySender;
+	public UserDto getSender() {
+		return sender;
 	}
 
-	public void setUserBySender( final UserDto userBySender ) {
-		this.userBySender = userBySender;
+	public void setSender( final UserDto userBySender ) {
+		sender = userBySender;
 	}
 
-	public UserDto getUserByReceiver() {
-		return userByReceiver;
+	public UserDto getReceiver() {
+		return receiver;
 	}
 
-	public void setUserByReceiver( final UserDto userByReceiver ) {
-		this.userByReceiver = userByReceiver;
+	public void setReceiver( final UserDto userByReceiver ) {
+		receiver = userByReceiver;
 	}
 
 	public String getMessage() {
