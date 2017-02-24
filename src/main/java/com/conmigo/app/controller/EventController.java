@@ -73,28 +73,21 @@ public class EventController {
 
 	@PostMapping( value = "/" )
 	public String view( @RequestParam( "id" ) final Long id, final Model model ) {
-		viewEvent( id, model, false );
-		return PAGE;
+		return viewAndJoin( id, model, false );
 	}
 
 	@PostMapping( value = "/join" )
 	public String join( @RequestParam( "id" ) final Long id, final Model model ) {
-		viewEvent( id, model, true );
-		return PAGE;
+		return viewAndJoin( id, model, true );
 	}
 
-	private void viewEvent( final Long id, final Model model, final Boolean join ) {
-		try {
-			EventDto eDto = eService.findById( id );
-			if( join ) {
-				eDto.getUsers().add( new UserDto( SecurityUtil.getIdUser() ) );
-				eDto = eService.save( eDto );
-			}
-			EventForm eventForm = new EventForm();
-			PropertyUtils.copyProperties( eventForm, eDto );
-			model.addAttribute( "eventForm", eventForm );
-		} catch( Exception except ) {
-			LOGGER.error( except.getMessage(), except );
+	private String viewAndJoin( final Long id, final Model model, final Boolean join ) {
+		EventDto eDto = eService.findById( id );
+		if( join ) {
+			eDto.getUsers().add( new UserDto( SecurityUtil.getIdUser() ) );
+			eDto = eService.save( eDto );
 		}
+		model.addAttribute( "event", eDto );
+		return PAGE;
 	}
 }
