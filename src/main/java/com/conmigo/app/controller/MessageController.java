@@ -37,6 +37,7 @@ public class MessageController {
 			UserDto userFrom = new UserDto( Long.valueOf( message.getUserIdMessageFrom() ) );
 			messageDto.setSender( userFrom );
 			messageDto.setDate( Calendar.getInstance().getTime() );
+			messageDto.setMessage( message.getMessage() );
 			mService.save( messageDto );
 		} catch( Exception except ) {
 			LOGGER.error( except.getMessage(), except );

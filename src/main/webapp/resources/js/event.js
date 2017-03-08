@@ -19,7 +19,7 @@ function sendMessage(){
 			beforeSend : function(jqXHR) {
 				var csrf_token = $('meta[name=_csrf]').attr('content');
 				jqXHR.setRequestHeader('X-CSRF-Token', csrf_token);
-				$('#mensaggesDialog').prepend('<div class="loading">Loading&#8230;</div>');
+				$('#mesaggeDialog').prepend('<div class="loading">Loading&#8230;</div>');
 				$('.loading').addClass('absolute');
 			},
 			url : config.contextPath + "/message/",
@@ -29,11 +29,11 @@ function sendMessage(){
 	        success: function (data, textStatus, xhr) {
 	            // correcto 
 	        	$('.loading').remove();
-	        	$('#mensaggesDialog').modal('toggle');
+	        	$('#mesaggeDialog').modal('toggle');
 	        },
 	        error: function (data, textStatus, xhr) {
 	        	$('.loading').remove();
-	        	$('#mensaggesDialog').modal('toggle');
+	        	$('#mesaggeDialog').modal('toggle');
 	        	if(data.status == 409){
 	        		showPanel(translations.errorCompNoAddMore, 'danger', 'fav-warning', '.global-messages', true);
 	        	}else{
@@ -42,6 +42,7 @@ function sendMessage(){
 	        }
 		});
 	} else {
+		console.log('else');
 		// El comentario debe estar relleno
 		showPanel(translations.ratingValidationError, 'danger','rating-warning', '.rating-popup-messages', false);
 	}
