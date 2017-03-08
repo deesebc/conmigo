@@ -92,7 +92,7 @@
 								<td>${item.email}</td>
 								<td>
 									<c:if test="${item.id ne user.id}">
-										<button class="btn btn-primary" onclick="javascript: sendMessage(${item.id})">ENVIAR MENSAJES</button>
+										<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#mensaggesDialog" onclick="javascript: setUserIdMessageTo(${item.id});">ENVIAR MENSAJES</button>
 									</c:if>
 								</td>
 							</tr>
@@ -102,4 +102,22 @@
 			</c:if>
 		</div>
 	</c:if>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="mensaggesDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Enviar Mensaje</h4>
+      </div>
+      <div class="modal-body interest-grid col-xs-12"> 
+      	<textarea id="message" name="message"></textarea> 
+      	<input type="hidden" id="userIdMessageFrom" name="userIdMessageFrom" value="${user.id}" />	
+      </div>
+      <div class="modal-footer">
+        <button id="save-message" href="javascript:sendMessage();" class="btn btn-primary">ENVIAR</button>
+      </div>
+    </div>
+  </div>
 </div>
