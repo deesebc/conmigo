@@ -8,13 +8,13 @@ import java.util.Set;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.security.SocialUserDetails;
 import org.springframework.util.StringUtils;
 
 import com.conmigo.app.bbdd.jpa.Role;
 import com.conmigo.app.bbdd.jpa.User;
 
-public class CustomUserDetails extends User implements UserDetails {
+public class CustomUserDetails extends User implements SocialUserDetails {
 
 	/**
 	 * Descripcion del campo
@@ -69,6 +69,11 @@ public class CustomUserDetails extends User implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return super.isEnable();
+	}
+
+	@Override
+	public String getUserId() {
+		return super.getId().toString();
 	}
 
 }
