@@ -12,7 +12,7 @@ function sendMessage(){
 	jsonObj["userIdMessageFrom"] = $('#userIdMessageFrom').val();
 	jsonObj["message"] = $('#message').val();
 	
-	if ($('#comment').val() != '') {
+	if ($.trim($("#message").val())) {
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
@@ -27,27 +27,29 @@ function sendMessage(){
 			contentType: 'application/json; charset=utf-8', 
 	        timeout: 600000, 
 	        success: function (data, textStatus, xhr) {
-	            // correcto 
+	            // quitamos el cargando 
 	        	$('.loading').remove();
+	        	//ocultamos el dialogo
 	        	$('#mesaggeDialog').modal('toggle');
+	        	//borramos local storage
+	        	localStorage.removeItem("userIdMessageTo");
+	        	// mostramos mensaje de creacion
+	        	showPanel(translations.sMessageCreate, 'success', 'message-success', '.global-messages', true);
 	        },
 	        error: function (data, textStatus, xhr) {
+	        	// quitamos el cargando 
 	        	$('.loading').remove();
+	        	//ocultamos el dialogo
 	        	$('#mesaggeDialog').modal('toggle');
-	        	if(data.status == 409){
-	        		showPanel(translations.errorCompNoAddMore, 'danger', 'fav-warning', '.global-messages', true);
-	        	}else{
-	        		showPanel(translations.ajaxError, 'danger', 'fav-warning', '.global-messages', true);
-	        	}
+	        	//borramos local storage
+	        	localStorage.removeItem("userIdMessageTo");
+	        	// mostramos mensaje de error
+	        	showPanel(translations.eAjaxError, 'danger', 'message-error', '.global-messages', true);
 	        }
 		});
 	} else {
-		console.log('else');
 		// El comentario debe estar relleno
-		showPanel(translations.ratingValidationError, 'danger','rating-warning', '.rating-popup-messages', false);
+		showPanel(translations.eMessageNotEmpty, 'danger','message-empty', '.create-popup-messages', false);
 	}
-	
-	//borramos local storage
-	localStorage.removeItem("userIdMessageTo");
 }
 

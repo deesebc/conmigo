@@ -1,5 +1,6 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
 <div class="starter-template col-md-12">
+	<div class="col-xs-12 global-messages"></div>
 	<c:if test="${event eq null}">
 		<form:form modelAttribute="eventForm" method="post" action="${pageContext.request.contextPath}/event/create" cssClass="form-signin">
 			<div class="col-md-12">
@@ -112,6 +113,7 @@
         <h4 class="modal-title" id="myModalLabel">Enviar Mensaje</h4>
       </div>
       <div class="modal-body interest-grid col-xs-12"> 
+      	<div class="create-popup-messages"></div>
       	<textarea id="message" name="message"></textarea> 
       	<input type="hidden" id="userIdMessageFrom" name="userIdMessageFrom" value="${user.id}" />	
       </div>
