@@ -1,5 +1,7 @@
 package com.conmigo.app.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,11 @@ public class UserServiceImpl extends GenericBSImpl<UserDto, User, Long> implemen
 
 	public void setDao( final UserDao dao ) {
 		this.dao = dao;
+	}
+
+	@Override
+	public List<Long> getEventIdsByUser( final Long idUser ) {
+		return dao.getEventIdsByUser( idUser );
 	}
 
 }

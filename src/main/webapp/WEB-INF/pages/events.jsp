@@ -29,7 +29,17 @@
 							<td>${item.name}</td>
 							<td>${item.place}</td>
 							<td>${item.date}</td>
-							<td><button class="btn btn-primary" onclick="javascript: seeEvent(${item.id})">VER</button>&nbsp&nbsp;<button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})">APUNTARSE</button></td>
+							<td>
+								<button class="btn btn-primary" onclick="javascript: seeEvent(${item.id})">VER</button>&nbsp;&nbsp;
+								<c:choose>
+								  <c:when test="${fn:contains(userEvents, item.id)}">
+								    <button class="btn btn-primary" onclick="javascript: disjoinToEvent(${item.id})">DES-APUNTARSE</button>
+								  </c:when>
+								  <c:otherwise>
+								    <button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})">APUNTARSE</button>
+								  </c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -51,6 +61,10 @@
 	</form>
 	<form id="joinEventForm" action="${pageContext.request.contextPath}/event/join" method="post">
 		<input type="hidden" id="idJoinEvent" name="id" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
+	<form id="disjoinEventForm" action="${pageContext.request.contextPath}/event/disjoin" method="post">
+		<input type="hidden" id="idDisjoinEvent" name="id" />
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
 </div>

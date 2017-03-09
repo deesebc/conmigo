@@ -81,6 +81,14 @@ public class EventController {
 		return viewAndJoin( id, model, true );
 	}
 
+	@PostMapping( value = "/disjoin" )
+	public String disjoin( @RequestParam( "id" ) final Long id, final Model model ) {
+		EventDto eDto = eService.findById( id );
+		eDto.getUsers().remove( new UserDto( SecurityUtil.getIdUser() ) );
+		eDto = eService.save( eDto );
+		return REDIRECT_EVENT;
+	}
+
 	private String viewAndJoin( final Long id, final Model model, final Boolean join ) {
 		EventDto eDto = eService.findById( id );
 		if( join ) {
