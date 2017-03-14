@@ -11,10 +11,11 @@
 </div>
 <div id="navbar" class="collapse navbar-collapse">
   <ul class="nav navbar-nav">
-    <li class="active"><a href="#">Home</a></li>
+    <li class="active"><a href="/">Home</a></li>
     <li><a href="/events/">Eventos</a></li>
-    <li><a href="#contact">Mensajes</a></li>
+    <li><a href="/messages/">Mensajes</a></li>
     <security:authorize access="!isFullyAuthenticated()">
+    	<li><a href="/profile/">Perfil</a></li>
     	<li><a href="${pageContext.request.contextPath}/login">Login</a></li>
     	<li><a href="${pageContext.request.contextPath}/register">Register</a></li>
     </security:authorize>
