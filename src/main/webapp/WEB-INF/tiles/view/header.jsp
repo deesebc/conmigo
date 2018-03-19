@@ -7,13 +7,12 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </button>
-  <a class="navbar-brand" href="#">Project name</a>
+  <a class="navbar-brand active" href="/">Conmigo</a>
 </div>
 <div id="navbar" class="collapse navbar-collapse">
   <ul class="nav navbar-nav">
-    <li class="active"><a href="/">Home</a></li>
-    <li><a href="/events/">Eventos</a></li>
-    <li><a href="/messages/">Mensajes</a></li>
+    <li class=${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'events') ? 'active':''}><a href="/events/">Eventos</a></li>
+    <li class=${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'messages') ? 'active':''}><a href="/messages/">Mensajes</a></li>
     <security:authorize access="!isFullyAuthenticated()">
     	<li><a href="/profile/">Perfil</a></li>
     	<li><a href="${pageContext.request.contextPath}/login">Login</a></li>
