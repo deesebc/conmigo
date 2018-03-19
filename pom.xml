@@ -147,7 +147,7 @@
 				<tomcat.pool.maxActive>8</tomcat.pool.maxActive>
 				<tomcat.pool.maxIdle>6</tomcat.pool.maxIdle>
 				<tomcat.pool.minIdle>4</tomcat.pool.minIdle>
-				<pool.rds.mysql>jdbc:mysql://127.0.0.1:3308/conmigodb</pool.rds.mysql>
+				<pool.rds.mysql>jdbc:mysql://127.0.0.1:3306/conmigodb</pool.rds.mysql>
 				<spring.social.facebook.appId></spring.social.facebook.appId>
 				<spring.social.facebook.appSecret></spring.social.facebook.appSecret>
 				<logging.level.com.conmigo.app>DEBUG</logging.level.com.conmigo.app>
