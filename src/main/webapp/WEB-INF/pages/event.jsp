@@ -4,11 +4,11 @@
 	<c:if test="${event eq null}">
 		<form:form modelAttribute="eventForm" method="post" action="${pageContext.request.contextPath}/event/create" cssClass="form-signin">
 			<div class="col-md-12">
-				<h2 class="form-signin-heading">Create your Event</h2>
+				<h2 class="form-signin-heading"><spring:message code="c.createYourEvent" /></h2>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					<label for="name">Evento</label>
+					<label for="name"><spring:message code="l.event" /></label>
 					<form:select path="type" id="type" class="js-example-basic-single form-control required" cssErrorClass="form-control required haserror">
 						<form:option value="" selected="selected"><spring:message code="c.choose.option" /></form:option>
 						<form:options items="${types}" />
@@ -16,17 +16,17 @@
 				</div>
 				  
 				<div class="form-group">
-				    <label for="name">Name</label>
+				    <label for="name"><spring:message code="l.name" /></label>
 				    <form:input path="name" id="name" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="nameHelp" placeholder="Enter name" />
-				    <small id="nameHelp" class="form-text text-muted">Nombre del evento al que quieres ir</small>
+				    <small id="nameHelp" class="form-text text-muted"><spring:message code="c.nameEventWhichYouWant" /></small>
 				     <form:errors path="name" cssClass="error-label" element="label" />
 				  </div>
 			</div>
 			<div class="col-md-6">  
 				  <div class="form-group">
-				    <label for="place">Place</label>
+				    <label for="place"><spring:message code="l.place" /></label>
 				    <form:input path="place" id="place" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="placeHelp" placeholder="Enter place" />
-				    <small id="placeHelp" class="form-text text-muted">Nombre del evento al que quieres ir</small>
+				    <small id="placeHelp" class="form-text text-muted"><spring:message code="c.nameEventWhichYouWant" /></small>
 				    <form:errors path="place" cssClass="error-label" element="label" />
 				  </div>
 				  
@@ -37,15 +37,15 @@
 		                       <span class="glyphicon glyphicon-calendar" ></span>
 		                   </span>
 		               </div>
-		               <small id="dateHelp" class="form-text text-muted">Fecha del evento al que quieres ir</small>
+		               <small id="dateHelp" class="form-text text-muted"><spring:message code="c.eventDate" /></small>
 		           </div>
 		    </div>
 		    <div class="col-md-12">
 				<div class="col-md-6">	  
-					<button class="btn btn-lg btn-primary btn-block" type="submit" id="pass" name="pass">Create</button>
+					<button class="btn btn-lg btn-primary btn-block" type="submit" id="pass" name="pass"><spring:message code="b.createIt" /></button>
 				</div>
 				<div class="col-md-6">
-					<button class="btn btn-lg btn-primary btn-block" type="submit" id="join" name="join">Create And Join</button>
+					<button class="btn btn-lg btn-primary btn-block" type="submit" id="join" name="join"><spring:message code="b.createAndJoin" /></button>
 				</div>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -59,8 +59,8 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					<label for="name">Evento</label>
-					<spring:message code="${event.type }" />
+					<label for="name"><spring:message code="l.event" /></label>
+					<spring:message code="event.type" />
 				</div>
 				  
 				<div class="form-group">

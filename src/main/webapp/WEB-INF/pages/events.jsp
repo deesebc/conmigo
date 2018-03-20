@@ -7,7 +7,7 @@
 		  		<input id="name" name="name" cssErrorClass="form-control required haserror" type="text" maxlength="50" class="form-control required"  placeholder="Busca el evento al que quieres ir" />
 		  	</div>
 		  	<div class="col-md-2">
-		  		<button type="submit" class="btn btn-primary">Buscar</button>
+		  		<button type="submit" class="btn btn-primary"><spring:message code="b.search" /></button>
 		  	</div>
 		  </div>
 		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -16,27 +16,27 @@
 		<c:if test="${not empty events}">
 			<table class="table table-striped">
 				<thead>
-					<th>Type</th>
-					<th>Name</th>
-					<th>Place</th>
-					<th>Date</th>
-					<th>Acciones</th>
+					<th><spring:message code="l.type" /></th>
+					<th><spring:message code="l.name" /></th>
+					<th><spring:message code="l.place" /></th>
+					<th><spring:message code="l.date" /></th>
+					<th><spring:message code="l.actions" /></th>
 				</thead>
 				<tbody>
 					<c:forEach items="${events}" var="item" varStatus="status">
 						<tr>
-							<td><spring:message code="${item.type}" /></td>
+							<td><spring:message code="item.type" /></td>
 							<td>${item.name}</td>
 							<td>${item.place}</td>
 							<td>${item.date}</td>
 							<td>
-								<button class="btn btn-primary" onclick="javascript: seeEvent(${item.id})">VER</button>&nbsp;&nbsp;
+								<button class="btn btn-primary" onclick="javascript: seeEvent(${item.id})"><spring:message code="b.see" /></button>&nbsp;&nbsp;
 								<c:choose>
 								  <c:when test="${fn:contains(userEvents, item.id)}">
-								    <button class="btn btn-primary" onclick="javascript: disjoinToEvent(${item.id})">DES-APUNTARSE</button>
+								    <button class="btn btn-primary" onclick="javascript: disjoinToEvent(${item.id})"><spring:message code="b.disjoin" /></button>
 								  </c:when>
 								  <c:otherwise>
-								    <button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})">APUNTARSE</button>
+								    <button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})"><spring:message code="b.join" /></button>
 								  </c:otherwise>
 								</c:choose>
 							</td>

@@ -1,13 +1,13 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
 <form  class="form-signin" action="${pageContext.request.contextPath}/login" method="post">
-  <h2 class="form-signin-heading">Please sign in</h2>
-  <label for="inputEmail" class="sr-only">Email address</label>
+  <h2 class="form-signin-heading"><spring:message code="c.pleaseSignIn" /></h2>
+  <label for="inputEmail" class="sr-only"><spring:message code="l.email" /></label>
   <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="username" required autofocus>
-  <label for="inputPassword" class="sr-only">Password</label>
+  <label for="inputPassword" class="sr-only"><spring:message code="l.password" /></label>
   <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required >
   <div class="checkbox">
     <label>
-      <input type="checkbox" value="remember-me"> Remember me
+      <input type="checkbox" value="remember-me"><spring:message code="l.rememberMe" />
     </label>
   </div>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
@@ -15,6 +15,6 @@
 </form>
 <form class="form-signin" id="facebookForm" action="/auth/facebook">
   <input type="hidden" name="scope" value="email, public_profile" />
-  <h2 class="form-signin-heading">Please auth with Facebook</h2>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <h2 class="form-signin-heading"><spring:message code="c.pleaseAuthFacebook" /></h2>
+  <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="b.login" /></button>
 </form>
