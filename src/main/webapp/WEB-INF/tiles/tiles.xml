@@ -65,6 +65,10 @@
 		<put-attribute name="body" value="/WEB-INF/pages/register.jsp" />
 	</definition>
 	
+	<definition name="site.profile" extends="layout.basic">
+		<put-attribute name="body" value="/WEB-INF/pages/profile.jsp" />
+	</definition>
+	
 	<definition name="site.403" extends="layout.basic">
 		<put-attribute name="body" value="/WEB-INF/pages/403.jsp" />
 	</definition>
