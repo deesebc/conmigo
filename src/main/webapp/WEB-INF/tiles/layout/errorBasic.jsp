@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,10 +9,13 @@
     <meta name="description" content="Conmigo - Tu Web Amiga">
     <meta name="author" content="dsbc">
     <meta name="_csrf" content="${_csrf.token}"/>
+    
     <link rel="icon" href="../../favicon.ico">
 	<title><tiles:getAsString name="title" /></title>
+	
 	<!-- Bootstrap core CSS -->
     <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="${pageContext.request.contextPath}/resources/css/conmigo.css" rel="stylesheet">
 </head>
