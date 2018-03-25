@@ -92,9 +92,14 @@
 								<td>${item.name}</td>
 								<td>${item.email}</td>
 								<td>
-									<c:if test="${item.id ne user.id}">
-										<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#mesaggeDialog" onclick="javascript: setUserIdMessageTo(${item.id});">ENVIAR MENSAJES</button>
-									</c:if>
+									<security:authorize access="isFullyAuthenticated()">
+										<c:if test="${item.id ne user.id}">
+											<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#mesaggeDialog" onclick="javascript: setUserIdMessageTo(${item.id},${user.id});"><spring:message code="b.sendMessage" /></button>
+										</c:if>
+									</security:authorize>
+									<security:authorize access="!isFullyAuthenticated()">
+										<button class="btn btn-primary disabled" type="button" disabled><spring:message code="b.sendMessage" /></button>
+									</security:authorize>
 								</td>
 							</tr>
 						</c:forEach>
@@ -110,15 +115,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Enviar Mensaje</h4>
+        <h4 class="modal-title" id="myModalLabel"><spring:message code="b.sendMessage" /></h4>
       </div>
       <div class="modal-body interest-grid col-xs-12"> 
       	<div class="create-popup-messages"></div>
-      	<textarea id="message" name="message"></textarea> 
-      	<input type="hidden" id="userIdMessageFrom" name="userIdMessageFrom" value="${user.id}" />	
+      	<textarea id="message" name="message"></textarea> 	
       </div>
       <div class="modal-footer">
-        <button id="save-message" onclick="javascript:sendMessage();" class="btn btn-primary">ENVIAR</button>
+        <button id="save-message" onclick="javascript:sendMessage();" class="btn btn-primary"><spring:message code="b.sendMessage" /></button>
       </div>
     </div>
   </div>

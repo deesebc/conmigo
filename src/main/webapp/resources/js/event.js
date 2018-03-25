@@ -1,15 +1,17 @@
-function setUserIdMessageTo(userId){
-	localStorage.setItem("userIdMessageTo", userId);
+function setUserIdMessageTo(userIdMessageTo, userIdMessageFrom){
+	localStorage.setItem("userIdMessageTo", userToId);
+	localStorage.setItem("userIdMessageFrom", userIdMessageFrom);
 	//borramos el mensaje anterior
 	$('#message').val('');
 }
 
 function sendMessage(){
 	var userIdMessageTo= localStorage.getItem("userIdMessageTo");
+	var userIdMessageFrom= localStorage.getItem("userIdMessageFrom");
 	
 	jsonObj = {}
 	jsonObj["userIdMessageTo"] = userIdMessageTo;
-	jsonObj["userIdMessageFrom"] = $('#userIdMessageFrom').val();
+	jsonObj["userIdMessageFrom"] = userIdMessageFrom;
 	jsonObj["message"] = $('#message').val();
 	
 	if ($.trim($("#message").val())) {
