@@ -1,8 +1,9 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
 <div class="starter-template">
 	<div class="col-md-12">
+		<br/>
 		<form modelAttribute="eventForm" method="post" action="${pageContext.request.contextPath}/events/search" cssClass="form-signin">
-		  <div class="form-group">
+		  <div class="row">
 		  	<div class="col-md-10">
 		  		<input id="name" name="name" cssErrorClass="form-control required haserror" type="text" maxlength="50" class="form-control required"  placeholder="Busca el evento al que quieres ir" />
 		  	</div>
@@ -12,8 +13,8 @@
 		  </div>
 		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
-	<br/><br/><br/><br/>
 		<c:if test="${not empty events}">
+			<br/>
 			<table class="table table-striped">
 				<thead>
 					<th><spring:message code="l.type" /></th>
@@ -53,6 +54,7 @@
 			<!-- acceso publico a la pagina, y si no tiene permiso se meustra el boton en gris con display que indique que para crear se tiene que logar -->
 		</p>
 	</div>
+	<br/>
 </div>
 <div>
 	<form id="seeEventForm" action="${pageContext.request.contextPath}/event/" method="post">

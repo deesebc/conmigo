@@ -1,28 +1,37 @@
 <%@ include file="taglib.jsp"%>
-<header>
-<div class="navbar-header">
-  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
+  <a class="navbar-brand" href="/"><spring:message code="l.conmigo" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand active" href="/">Conmigo</a>
-</div>
-<div id="navbar" class="collapse navbar-collapse">
-  <ul class="nav navbar-nav">
-    <li class=${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'events') ? 'active':''}><a href="/events/">Eventos</a></li>
-    <li class=${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'messages') ? 'active':''}><a href="/messages/">Mensajes</a></li>
-    <security:authorize access="!isFullyAuthenticated()">
-    	<li class=${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'login') ? 'active':''}><a href="${pageContext.request.contextPath}/login">Login</a></li>
-    	<li class=${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'register') ? 'active':''}><a href="${pageContext.request.contextPath}/register">Register</a></li>
-    </security:authorize>
-    <li class=${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'contact') ? 'active':''}><a href="${pageContext.request.contextPath}/contact/">Contacto</a></a></li>
-    <security:authorize access="isFullyAuthenticated()">
-    	<li class=${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'profile') ? 'active':''}><a href="${pageContext.request.contextPath}/profile/">Perfil</a></li>
-    	<li><a href="/logout">Logout</a></li>
-    	<li><a href="#contact">Hola <security:authentication property="principal.username" /><li>
-    </security:authorize>
-  </ul>
-</div><!--/.nav-collapse -->
-</header>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'events') ? 'active':''}">
+      	<a class="nav-link" href="${pageContext.request.contextPath}/events/"><spring:message code="l.events" /></a>
+      </li>
+      <li class="nav-item ${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'messages') ? 'active':''}">
+      	<a class="nav-link" href="${pageContext.request.contextPath}/messages/"><spring:message code="l.messages" /></a>
+      </li>
+      <security:authorize access="isFullyAuthenticated()">
+	    <li class="${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'profile') ? 'active':''}">
+	    	<a class="nav-link" href="${pageContext.request.contextPath}/profile/"><spring:message code="l.profile" /></a>
+	    </li>
+	    <li><a class="nav-link" href="${pageContext.request.contextPath}/logout"><spring:message code="l.logout" /></a></li>
+	    <li><a class="nav-link" href="#"><spring:message code="l.hello" /> <security:authentication property="principal.username" /></a><li>
+	  </security:authorize>
+      <security:authorize access="!isFullyAuthenticated()">
+	    <li class="${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'login') ? 'active':''}">
+	    	<a class="nav-link" href="${pageContext.request.contextPath}/login"><spring:message code="l.login" /></a>
+	    </li>
+	  	<li class="${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'register') ? 'active':''}">
+	  		<a class="nav-link" href="${pageContext.request.contextPath}/register"><spring:message code="l.registerYou" /></a>
+	  	</li>
+	  </security:authorize>
+    </ul>
+    <!-- 
+    <form class="form-inline mt-2 mt-md-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    -->
+  </div>
+
