@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +15,7 @@
 	<title><tiles:importAttribute name="title" /></title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="${pageContext.request.contextPath}/resources/css/conmigo.css" rel="stylesheet">
@@ -32,6 +32,12 @@
     <div class="container">
 	  <tiles:insertAttribute name="body" />
     </div><!-- /.container -->
+    
+    <footer class="footer">
+      <div class="container">
+      	<tiles:insertAttribute name="footer" />
+      </div>
+    </footer>
 
 
     <!-- Bootstrap core JavaScript
