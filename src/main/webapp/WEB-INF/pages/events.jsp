@@ -1,7 +1,19 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
+<c:set var="btnJoinDisable" value="disabled" />
+<security:authorize access="isFullyAuthenticated()">
+	<c:set var="btnJoinDisable" value="" />
+</security:authorize>
 <div class="starter-template">
 	<div class="col-md-12">
 		<br/>
+		<security:authorize access="!isFullyAuthenticated()">
+			<div class="alert alert-warning" role="alert">
+			  <spring:message code="c.joinAndSearchPerson" />
+			  <a href="${pageContext.request.contextPath}/register" class="alert-link"><spring:message code="b.registerYou" /></a>
+			  &nbsp;<spring:message code="c.or" />&nbsp;
+			  <a href="${pageContext.request.contextPath}/login" class="alert-link"><spring:message code="b.login" /></a>
+			</div>
+		</security:authorize>
 		<form modelAttribute="eventForm" method="post" action="${pageContext.request.contextPath}/events/search" cssClass="form-signin">
 		  <div class="row">
 		  	<div class="col-md-10">
@@ -34,10 +46,10 @@
 								<button class="btn btn-primary" onclick="javascript: seeEvent(${item.id})"><spring:message code="b.see" /></button>&nbsp;&nbsp;
 								<c:choose>
 								  <c:when test="${fn:contains(userEvents, item.id)}">
-								    <button class="btn btn-primary" onclick="javascript: disjoinToEvent(${item.id})"><spring:message code="b.disjoin" /></button>
+								    <button class="btn btn-primary" onclick="javascript: disjoinToEvent(${item.id})" ><spring:message code="b.disjoin" /></button>
 								  </c:when>
 								  <c:otherwise>
-								    <button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})"><spring:message code="b.join" /></button>
+								    <button class="btn btn-primary ${btnJoinDisable}" onclick="javascript: joinToEvent(${item.id})" ${btnJoinDisable}"><spring:message code="b.join" /></button>
 								  </c:otherwise>
 								</c:choose>
 							</td>
