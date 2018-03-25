@@ -7,6 +7,7 @@
 	<!-- Templates -->
 	<definition name="layout.basic" template="/WEB-INF/tiles/layout/basic.jsp">
 		<put-attribute name="title" value="Conmigo" />
+		<put-attribute name="pageCssStyle" value="" />
 		<put-attribute name="bodyClass" value="" />
 		<put-attribute name="header" value="/WEB-INF/tiles/view/header.jsp" />
 		<put-attribute name="body" value="" />
@@ -52,6 +53,7 @@
 	</definition>
 	
 	<definition name="site.login" extends="layout.basic">
+		<put-attribute name="pageCssStyle" value="/WEB-INF/tiles/view/css/signinCss.jsp" />
 		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
 	</definition>
 	

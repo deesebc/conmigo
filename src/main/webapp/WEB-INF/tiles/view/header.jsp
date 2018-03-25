@@ -6,24 +6,24 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'events') ? 'active':''}">
-      	<a class="nav-link" href="${pageContext.request.contextPath}events/"><spring:message code="l.events" /></a>
+      	<a class="nav-link" href="${pageContext.request.contextPath}/events/"><spring:message code="l.events" /></a>
       </li>
       <li class="nav-item ${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'messages') ? 'active':''}">
-      	<a class="nav-link" href="${pageContext.request.contextPath}messages/"><spring:message code="l.messages" /></a>
+      	<a class="nav-link" href="${pageContext.request.contextPath}/messages/"><spring:message code="l.messages" /></a>
       </li>
       <security:authorize access="isFullyAuthenticated()">
 	    <li class="${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'profile') ? 'active':''}">
-	    	<a class="nav-link" href="${pageContext.request.contextPath}profile/"><spring:message code="l.profile" /></a>
+	    	<a class="nav-link" href="${pageContext.request.contextPath}/profile/"><spring:message code="l.profile" /></a>
 	    </li>
-	    <li><a class="nav-link" href="/logout"><spring:message code="l.logout" /></a></li>
+	    <li><a class="nav-link" href="${pageContext.request.contextPath}/logout"><spring:message code="l.logout" /></a></li>
 	    <li><a class="nav-link" href="#"><spring:message code="l.hello" /> <security:authentication property="principal.username" /></a><li>
 	  </security:authorize>
       <security:authorize access="!isFullyAuthenticated()">
 	    <li class="${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'login') ? 'active':''}">
-	    	<a class="nav-link" href="${pageContext.request.contextPath}login"><spring:message code="l.login" /></a>
+	    	<a class="nav-link" href="${pageContext.request.contextPath}/login"><spring:message code="l.login" /></a>
 	    </li>
 	  	<li class="${fn:contains(requestScope['javax.servlet.forward.request_uri'], 'register') ? 'active':''}">
-	  		<a class="nav-link" href="${pageContext.request.contextPath}register"><spring:message code="l.registerYou" /></a>
+	  		<a class="nav-link" href="${pageContext.request.contextPath}/register"><spring:message code="l.registerYou" /></a>
 	  	</li>
 	  </security:authorize>
     </ul>

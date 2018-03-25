@@ -1,1 +1,1 @@
-<span class="text-muted">Place sticky footer content here.</span>
+<span class="text-muted">&copy; 2017-2018</span>

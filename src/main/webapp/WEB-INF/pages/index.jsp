@@ -5,8 +5,8 @@
     <p class="lead text-muted">Texto introductorio</p>
     <security:authorize access="!isFullyAuthenticated()">
 	    <p>
-	      <a href="${pageContext.request.contextPath}register" class="btn btn-primary my-2"><spring:message code="l.registerYou" /></a>
-	      <a href="${pageContext.request.contextPath}events/" class="btn btn-secondary my-2"><spring:message code="l.events" /></a>
+	      <a href="${pageContext.request.contextPath}/register" class="btn btn-primary my-2"><spring:message code="l.registerYou" /></a>
+	      <a href="${pageContext.request.contextPath}/events/" class="btn btn-secondary my-2"><spring:message code="l.events" /></a>
 	    </p>
     </security:authorize>
     <security:authorize access="isFullyAuthenticated()">
