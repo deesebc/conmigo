@@ -58,6 +58,7 @@
 	</definition>
 	
 	<definition name="site.register" extends="layout.basic">
+		<put-attribute name="pageCssStyle" value="/WEB-INF/tiles/view/css/signinCss.jsp" />
 		<put-attribute name="body" value="/WEB-INF/pages/register.jsp" />
 	</definition>
 	
