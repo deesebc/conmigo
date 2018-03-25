@@ -66,6 +66,14 @@
 		<put-attribute name="body" value="/WEB-INF/pages/profile.jsp" />
 	</definition>
 	
+	<definition name="site.legalAdvice" extends="layout.basic">
+		<put-attribute name="body" value="/WEB-INF/pages/legalAdvice.jsp" />
+	</definition>
+	
+	<definition name="site.aboutUs" extends="layout.basic">
+		<put-attribute name="body" value="/WEB-INF/pages/aboutUs.jsp" />
+	</definition>
+	
 	<definition name="site.403" extends="layout.basic">
 		<put-attribute name="body" value="/WEB-INF/pages/403.jsp" />
 	</definition>
