@@ -1,4 +1,18 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
- <h1 class="mt-5">Sticky footer with fixed navbar</h1>
-      <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
-      <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Index example</h1>
+    <p class="lead text-muted">Texto introductorio</p>
+    <security:authorize access="!isFullyAuthenticated()">
+	    <p>
+	      <a href="${pageContext.request.contextPath}register" class="btn btn-primary my-2"><spring:message code="l.registerYou" /></a>
+	      <a href="${pageContext.request.contextPath}events/" class="btn btn-secondary my-2"><spring:message code="l.events" /></a>
+	    </p>
+    </security:authorize>
+    <security:authorize access="isFullyAuthenticated()">
+	    <p>
+	      Poner listado de eventos de la ciudad que aún no hayan pasado
+	    </p>
+    </security:authorize>
+  </div>
+</section>
