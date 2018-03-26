@@ -1,6 +1,7 @@
 body > .container {
     padding: 60px 15px 0;
-} 
+}
+.center{margin:auto;} 
 /** Inicio LOADING **/
 /* Absolute Center Spinner */
 .loading {

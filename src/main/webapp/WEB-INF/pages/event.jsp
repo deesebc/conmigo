@@ -52,11 +52,10 @@
 		</form:form>
 	</c:if>
 	<c:if test="${event ne null}">
+		<c:set var="showBtnJoin" value="true" />
 		<security:authentication var="user" property="principal" />
+		<br/>
 		<div class="col-md-12">
-			<div class="col-md-12">
-				<h2 class="form-signin-heading">VIEW your Event</h2>
-			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="name"><spring:message code="l.event" /></label>
@@ -96,6 +95,10 @@
 										<c:if test="${item.id ne user.id}">
 											<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#mesaggeDialog" onclick="javascript: setUserIdMessageTo(${item.id},${user.id});"><spring:message code="b.sendMessage" /></button>
 										</c:if>
+										<c:if test="${item.id eq user.id}">
+											<button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})""><spring:message code="b.disjoin" /></button>
+											<c:set var="showBtnJoin" value="false" />
+										</c:if>
 									</security:authorize>
 									<security:authorize access="!isFullyAuthenticated()">
 										<button class="btn btn-primary disabled" type="button" disabled><spring:message code="b.sendMessage" /></button>
@@ -107,6 +110,16 @@
 				</table>
 			</c:if>
 		</div>
+		<section class="row">
+		  <div class="btn-group center">
+		    &nbsp;<button type="button" class="btn btn-secondary"><spring:message code="b.back" /></button>&nbsp;
+		    <security:authorize access="isFullyAuthenticated()">
+		  		<c:if test="${showBtnJoin}">
+		    		&nbsp;<button type="button" class="btn btn-primary"><spring:message code="b.join" /></button>&nbsp;
+		  		</c:if>
+		  	</security:authorize>
+		  </div>
+		</section>
 	</c:if>
 </div>
 <!-- Modal -->

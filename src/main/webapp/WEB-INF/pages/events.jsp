@@ -58,10 +58,9 @@
 				</tbody>
 			</table>
 		</c:if>
-		<br/>
 		<p>
 			<form id="createEventForm" action="${pageContext.request.contextPath}/event/create">
-				<spring:message code="c.ifDontSeeCreateIt" />&nbsp;<button type="submit" class="btn btn-primary"><spring:message code="b.createIt" /></button>
+				<spring:message code="c.ifDontSeeCreateIt" />&nbsp;&nbsp;<button type="submit" class="btn btn-primary"><spring:message code="b.createIt" /></button>
 			</form>
 			<!-- acceso publico a la pagina, y si no tiene permiso se meustra el boton en gris con display que indique que para crear se tiene que logar -->
 		</p>
