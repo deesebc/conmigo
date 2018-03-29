@@ -112,7 +112,9 @@
 		</div>
 		<section class="row">
 		  <div class="btn-group center">
-		    &nbsp;<button type="button" class="btn btn-secondary"><spring:message code="b.back" /></button>&nbsp;
+		  	<form action="${pageContext.request.contextPath}/events/">
+		    &nbsp;<button type="submit" class="btn btn-secondary"><spring:message code="b.back" /></button>&nbsp;
+		    </form>
 		    <security:authorize access="isFullyAuthenticated()">
 		  		<c:if test="${showBtnJoin}">
 		    		&nbsp;<button type="button" class="btn btn-primary"><spring:message code="b.join" /></button>&nbsp;
