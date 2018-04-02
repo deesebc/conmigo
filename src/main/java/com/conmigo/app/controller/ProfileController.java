@@ -1,5 +1,6 @@
 package com.conmigo.app.controller;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.conmigo.app.dto.UserDto;
+import com.conmigo.app.form.ProfileForm;
 import com.conmigo.app.service.UserService;
 import com.conmigo.app.util.SecurityUtil;
 
@@ -25,10 +27,16 @@ public class ProfileController {
 
     @GetMapping(value = "/")
     public String access(final Model model) {
-	if (SecurityUtil.isFullyAuthenticated()) {
-	    final Long idUser = SecurityUtil.getIdUser();
-	    final UserDto user = uService.findById(idUser);
-	    model.addAttribute("user", user);
+	try {
+	    if (SecurityUtil.isFullyAuthenticated()) {
+		final Long idUser = SecurityUtil.getIdUser();
+		final UserDto user = uService.findById(idUser);
+		final ProfileForm form = new ProfileForm();
+		PropertyUtils.copyProperties(form, user);
+		model.addAttribute("form", form);
+	    }
+	} catch (final Exception except) {
+	    LOGGER.error(except.getMessage(), except);
 	}
 	return PAGE;
     }
