@@ -77,4 +77,12 @@ public abstract class GenericDto<K extends Serializable> implements Serializable
         this.lastModifiedDate = lastModifiedDate;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(final Boolean active) {
+        this.active = active;
+    }
+
 }
