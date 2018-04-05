@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `conmigodb` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `conmigodb`;
--- MySQL dump 10.13  Distrib 5.7.21, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: 127.0.0.1    Database: conmigodb
+-- Host: localhost    Database: conmigodb
 -- ------------------------------------------------------
--- Server version	5.7.21-0ubuntu0.16.04.1
+-- Server version	5.7.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -94,6 +94,9 @@ CREATE TABLE `user` (
   `EMAIL` varchar(50) DEFAULT NULL,
   `USERNAME` varchar(50) DEFAULT NULL,
   `PASSWORD` varchar(100) DEFAULT NULL,
+  `BIRTHDATE` date DEFAULT NULL,
+  `TOWN` varchar(50) DEFAULT NULL,
+  `GENDER` varchar(1) DEFAULT NULL,
   `ENABLE` tinyint(1) DEFAULT '1',
   `CREATED_BY` bigint(20) NOT NULL,
   `CREATED_DATE` date NOT NULL,
@@ -112,7 +115,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (6,'Usuario Prueba 1','Usuario','Prueba 1','usuarioPrueba1@usuario.es','usuarioPrueba1@usuario.es','$2a$10$1qPncyzzUrqfuC5swqkxGuMKAv3RGJI/u7QmSi7Ota7OxtFe7Y.AG',1,0,'2017-02-20',NULL,NULL,1),(11,'Mariela Bc','Mariela','Bc','marielabc2000@yahoo.es','marielabc2000@yahoo.es','$2a$10$H0J2B5ikhrjLzf2.D1oEteDyFn9WRHJI5y3BxD5rRbcqoCpMG63fy',1,0,'2017-02-22',0,'2017-02-22',1),(14,NULL,NULL,NULL,'usuarioPrueba6@usuario.es',NULL,'$2a$10$BLI4EN8LvWkooHO1RKKrE.hOwRSjSbmKY6S0RJ2GCt8ZZRdkrVouK',1,0,'2017-02-22',0,'2017-02-22',1),(15,NULL,NULL,NULL,'usuarioPrueba7@usuario.es',NULL,'$2a$10$/LY6h7vJeq8jXm9kEoHsuuZbgReuIIWtATKXnY4dJOuTiNfZhQbeW',1,0,'2017-02-22',0,'2017-02-22',1),(16,NULL,NULL,NULL,'usuarioPrueba8@usuario.es',NULL,'$2a$10$CBHk38KmD3FRcT3LXnj7AOFjH6.2A9riVEan2iDXOX0dS4LpCbmXq',1,0,'2017-02-22',0,'2017-02-22',1),(17,NULL,NULL,NULL,'usuarioPrueba2@correo.es',NULL,'$2a$10$3V4uBBvdzr1QvAY2/aVXBerEnh3FNHP8M6bHe.NHrkztrp6RWjPR.',1,0,'2018-03-24',0,'2018-03-24',1),(18,NULL,NULL,NULL,'asdf',NULL,'$2a$10$fpPRYJYmySuEbBU9E4YQBehv5fzFxAJkvZUOG8rYpUHCDy4YHaZRC',1,0,'2018-03-25',0,'2018-03-25',1),(19,NULL,NULL,NULL,'usuarioPrueba4@correo.es',NULL,'$2a$10$89p1i.gGXguXsy9NZlDnxupJBjkpQphrAX1OB71gOa6g3xJ1F9NLS',1,0,'2018-03-25',0,'2018-03-25',1);
+INSERT INTO `user` VALUES (6,'Usuario Prueba 1','Usuario','Prueba 1','usuarioPrueba1@usuario.es','usuarioPrueba1@usuario.es','$2a$10$1qPncyzzUrqfuC5swqkxGuMKAv3RGJI/u7QmSi7Ota7OxtFe7Y.AG',NULL,NULL,NULL,1,0,'2017-02-20',NULL,NULL,1),(11,'Mariela Bc','Mariela','Bc','marielabc2000@yahoo.es','marielabc2000@yahoo.es','$2a$10$H0J2B5ikhrjLzf2.D1oEteDyFn9WRHJI5y3BxD5rRbcqoCpMG63fy',NULL,NULL,NULL,1,0,'2017-02-22',0,'2017-02-22',1),(14,NULL,NULL,NULL,'usuarioPrueba6@usuario.es',NULL,'$2a$10$BLI4EN8LvWkooHO1RKKrE.hOwRSjSbmKY6S0RJ2GCt8ZZRdkrVouK',NULL,NULL,NULL,1,0,'2017-02-22',0,'2017-02-22',1),(15,NULL,NULL,NULL,'usuarioPrueba7@usuario.es',NULL,'$2a$10$/LY6h7vJeq8jXm9kEoHsuuZbgReuIIWtATKXnY4dJOuTiNfZhQbeW',NULL,NULL,NULL,1,0,'2017-02-22',0,'2017-02-22',1),(16,NULL,NULL,NULL,'usuarioPrueba8@usuario.es',NULL,'$2a$10$CBHk38KmD3FRcT3LXnj7AOFjH6.2A9riVEan2iDXOX0dS4LpCbmXq',NULL,NULL,NULL,1,0,'2017-02-22',0,'2017-02-22',1),(17,NULL,NULL,NULL,'usuarioPrueba2@correo.es',NULL,'$2a$10$3V4uBBvdzr1QvAY2/aVXBerEnh3FNHP8M6bHe.NHrkztrp6RWjPR.',NULL,NULL,NULL,1,0,'2018-03-24',0,'2018-03-24',1),(18,NULL,NULL,NULL,'asdf',NULL,'$2a$10$fpPRYJYmySuEbBU9E4YQBehv5fzFxAJkvZUOG8rYpUHCDy4YHaZRC',NULL,NULL,NULL,1,0,'2018-03-25',0,'2018-03-25',1),(19,NULL,NULL,NULL,'usuarioPrueba4@correo.es',NULL,'$2a$10$89p1i.gGXguXsy9NZlDnxupJBjkpQphrAX1OB71gOa6g3xJ1F9NLS',NULL,NULL,NULL,1,0,'2018-03-25',0,'2018-03-25',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-02 18:05:28
+-- Dump completed on 2018-04-05 22:32:04
