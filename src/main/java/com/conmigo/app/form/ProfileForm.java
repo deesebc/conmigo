@@ -1,5 +1,7 @@
 package com.conmigo.app.form;
 
+import java.util.Date;
+
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -16,74 +18,84 @@ public class ProfileForm {
     private String lastName;
     private String name;
     @NotEmpty
-    private String password;
-    @NotEmpty
-    private String repeatPassword;
-    @NotEmpty
     private String username;
+    @NotNull
+    private Date birthdate;
+    @NotEmpty
+    private String gender;
+    @NotEmpty
+    private String town;
 
     public String getEmail() {
-	return email;
+        return email;
     }
 
     public String getFirstName() {
-	return firstName;
+        return firstName;
     }
 
     public Long getId() {
-	return id;
+        return id;
     }
 
     public String getLastName() {
-	return lastName;
+        return lastName;
     }
 
     public String getName() {
-	return name;
-    }
-
-    public String getPassword() {
-	return password;
-    }
-
-    public String getRepeatPassword() {
-	return repeatPassword;
+        return name;
     }
 
     public String getUsername() {
-	return username;
+        return username;
     }
 
-    public void setEmail(String email) {
-	this.email = email;
+    public void setEmail(final String email) {
+        this.email = email;
     }
 
-    public void setFirstName(String firstName) {
-	this.firstName = firstName;
+    public void setFirstName(final String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setId(Long id) {
-	this.id = id;
+    public void setId(final Long id) {
+        this.id = id;
     }
 
-    public void setLastName(String lastName) {
-	this.lastName = lastName;
+    public void setLastName(final String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setName(String name) {
-	this.name = name;
+    public void setName(final String name) {
+        this.name = name;
     }
 
-    public void setPassword(String password) {
-	this.password = password;
+    public void setUsername(final String username) {
+        this.username = username;
     }
 
-    public void setRepeatPassword(String repeatPassword) {
-	this.repeatPassword = repeatPassword;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
-    public void setUsername(String username) {
-	this.username = username;
+    public void setBirthdate(final Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(final String gender) {
+        this.gender = gender;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(final String town) {
+        this.town = town;
     }
 
 }

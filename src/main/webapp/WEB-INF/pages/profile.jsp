@@ -34,17 +34,28 @@
 		     </div>
 		</div>
 		<div class="form-group row">
-		     <div class="col"><label for="name" class="col-form-label"><spring:message code="l.password" /></label></div>
+		     <div class="col"><label for="birthdate" class="col-form-label"><spring:message code="l.birthdate" /></label></div>
 		     <div class="col-4">
-			    <form:input path="password" id="password" cssErrorClass="form-control required haserror" type="password" maxlength="50" cssClass="form-control required" aria-describedby="passwordHelp" placeholder="Enter password" />
-			    <small id="passwordHelp" class="form-text text-muted"><spring:message code="h.changePassword" /></small>
-			     <form:errors path="password" cssClass="error-label" element="label" />
+			    <form:input path="birthdate" id="birthdate" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="birthdatedHelp" placeholder="Enter birthdate" />
+			    <small id="birthdateHelp" class="form-text text-muted"><spring:message code="h.birthdate" /></small>
+			     <form:errors path="birthdate" cssClass="error-label" element="label" />
 			</div>
-			<div class="col"><label for="repeatPassword" class="col-form-label"><spring:message code="l.repeatPassword" /></label></div>
+			<div class="col"><label for="gender" class="col-form-label"><spring:message code="l.gender" /></label></div>
 		     <div class="col-4">
-			    <form:input path="repeatPassword" id="repeatPassword" cssErrorClass="form-control required haserror" type="password" maxlength="50" cssClass="form-control required" aria-describedby="repeatPasswordHelp" placeholder="Repeat password" />
-			    <small id="repeatPasswordHelp" class="form-text text-muted"><spring:message code="h.repeatPassword" /></small>
-			    <form:errors path="repeatPassword" cssClass="error-label" element="label" />
+			    <form:input path="gender" id="gender" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="genderHelp" placeholder="Enter gender" />
+			    <small id="genderHelp" class="form-text text-muted"><spring:message code="h.gender" /></small>
+			    <form:errors path="gender" cssClass="error-label" element="label" />
+			</div>
+		</div>
+		<div class="form-group row">
+		     <div class="col"><label for="town" class="col-form-label"><spring:message code="l.town" /></label></div>
+		     <div class="col-4">
+			    <form:input path="town" id="town" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="townHelp" placeholder="Enter town" />
+			    <small id="townHelp" class="form-text text-muted"><spring:message code="h.town" /></small>
+			     <form:errors path="town" cssClass="error-label" element="label" />
+			</div>
+			<div class="col"></div>
+		     <div class="col-4">
 			</div>
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
