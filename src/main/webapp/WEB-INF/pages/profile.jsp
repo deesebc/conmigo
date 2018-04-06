@@ -22,7 +22,7 @@
 		<div class="form-group row">
 		    <div class="col"><label for="email" class="col-form-label"><spring:message code="l.email" /></label></div>
 		    <div class="col-4">
-			    <form:input path="email" id="email" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="emailHelp" placeholder="Enter email" />
+			    <form:input path="email" id="email" cssErrorClass="form-control required haserror" type="email" maxlength="50" cssClass="form-control required" aria-describedby="emailHelp" placeholder="Enter email" />
 			    <small id="emailHelp" class="form-text text-muted"><spring:message code="h.email" /></small>
 			    <form:errors path="email" cssClass="error-label" element="label" />
 		     </div>
