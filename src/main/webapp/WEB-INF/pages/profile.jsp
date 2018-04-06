@@ -42,7 +42,10 @@
 			</div>
 			<div class="col"><label for="gender" class="col-form-label"><spring:message code="l.gender" /></label></div>
 		     <div class="col-4">
-			    <form:input path="gender" id="gender" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="genderHelp" placeholder="Enter gender" />
+		     	<form:select path="gender">
+		     		<form:option value="-">-</form:option>
+		     		<form:options cssClass="form-control" items="${genderList}" itemLabel="name" itemValue="value"/>
+		     	</form:select>
 			    <small id="genderHelp" class="form-text text-muted"><spring:message code="h.gender" /></small>
 			    <form:errors path="gender" cssClass="error-label" element="label" />
 			</div>
