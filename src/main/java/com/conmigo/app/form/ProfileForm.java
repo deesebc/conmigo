@@ -3,23 +3,31 @@ package com.conmigo.app.form;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class ProfileForm {
 
     @NotEmpty
+    @Size(max = 50)
+    @Email
     private String email;
+    @Size(max = 50)
     private String firstName;
     @NotNull
     private Long id;
+    @Size(max = 50)
     private String lastName;
     @NotEmpty
+    @Size(max = 50)
     private String username;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
     private String gender;
+    @Size(max = 50)
     private String town;
 
     public String getEmail() {
