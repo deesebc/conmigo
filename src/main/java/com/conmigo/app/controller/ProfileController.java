@@ -76,6 +76,9 @@ public class ProfileController {
     public String update2(@Valid @ModelAttribute("form") final ProfileForm profileForm, final BindingResult bindingResult,
             final Model model) {
         try {
+            if (bindingResult.hasErrors()) {
+                return PAGE;
+            }
             CustomUserDetails user = SecurityUtil.getUserDetails();
             UserDto uDto = new UserDto();
             PropertyUtils.copyProperties(uDto, user);

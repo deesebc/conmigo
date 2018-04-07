@@ -17,7 +17,7 @@ public class ProfileForm {
     private String lastName;
     @NotEmpty
     private String username;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
     private String gender;
     private String town;
