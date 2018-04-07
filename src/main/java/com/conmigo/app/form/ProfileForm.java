@@ -5,25 +5,21 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class ProfileForm {
 
     @NotEmpty
     private String email;
-    @NotEmpty
     private String firstName;
     @NotNull
     private Long id;
-    @NotEmpty
     private String lastName;
-    private String name;
     @NotEmpty
     private String username;
-    @NotNull
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birthdate;
-    @NotEmpty
     private String gender;
-    @NotEmpty
     private String town;
 
     public String getEmail() {
@@ -40,10 +36,6 @@ public class ProfileForm {
 
     public String getLastName() {
         return lastName;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getUsername() {
@@ -64,10 +56,6 @@ public class ProfileForm {
 
     public void setLastName(final String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
     }
 
     public void setUsername(final String username) {

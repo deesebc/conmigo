@@ -2,17 +2,23 @@ package com.conmigo.app.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.conmigo.app.dto.ComboDto;
+import com.conmigo.app.dto.CustomUserDetails;
 import com.conmigo.app.dto.UserDto;
 import com.conmigo.app.form.ProfileForm;
 import com.conmigo.app.service.ComboService;
@@ -27,6 +33,7 @@ public class ProfileController {
     private final static Logger LOGGER = LoggerFactory.getLogger(ProfileController.class);
 
     private final static String PAGE = "site.profile";
+    private final static String REDIRECT_INDEX = "redirect:/";
 
     @Autowired
     UserService uService;
@@ -43,8 +50,7 @@ public class ProfileController {
     public String access(final Model model) {
         try {
             if (SecurityUtil.isFullyAuthenticated()) {
-                final Long idUser = SecurityUtil.getIdUser();
-                final UserDto user = uService.findById(idUser);
+                final CustomUserDetails user = SecurityUtil.getUserDetails();
                 final ProfileForm form = new ProfileForm();
                 PropertyUtils.copyProperties(form, user);
                 model.addAttribute("form", form);
@@ -54,4 +60,32 @@ public class ProfileController {
         }
         return PAGE;
     }
+
+    @PutMapping(value = "/")
+    public String update(@Valid @ModelAttribute("form") final ProfileForm profileForm, final BindingResult bindingResult,
+            final Model model) {
+        try {
+            System.out.println("VAMOS QUE NOS VAMOS PUT");
+        } catch (final Exception except) {
+            LOGGER.error(except.getMessage(), except);
+        }
+        return REDIRECT_INDEX;
+    }
+
+    @PostMapping(value = "/")
+    public String update2(@Valid @ModelAttribute("form") final ProfileForm profileForm, final BindingResult bindingResult,
+            final Model model) {
+        try {
+            CustomUserDetails user = SecurityUtil.getUserDetails();
+            UserDto uDto = new UserDto();
+            PropertyUtils.copyProperties(uDto, user);
+            PropertyUtils.copyProperties(uDto, profileForm);
+            UserDto userSaved = uService.save(uDto);
+            PropertyUtils.copyProperties(user, userSaved);
+        } catch (final Exception except) {
+            LOGGER.error(except.getMessage(), except);
+        }
+        return REDIRECT_INDEX;
+    }
+
 }

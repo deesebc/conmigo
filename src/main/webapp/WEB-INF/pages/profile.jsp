@@ -1,7 +1,7 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
 
 	<div class="col-xs-12 global-messages"></div>
-	<form:form modelAttribute="form" method="put" action="${pageContext.request.contextPath}/profile">
+	<form:form modelAttribute="form" method="put" action="${pageContext.request.contextPath}/profile/">
 		<div class="col-md-12">
 			<h2 class="form-signin-heading"><spring:message code="c.updateYourProfile" /></h2>
 		</div>
@@ -36,9 +36,9 @@
 		<div class="form-group row">
 		     <div class="col"><label for="birthdate" class="col-form-label"><spring:message code="l.birthdate" /></label></div>
 		     <div class="col-4">
-			    <form:input path="birthdate" id="birthdate" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="birthdatedHelp" placeholder="Enter birthdate" />
+			    <form:input path="birthdate" id="birthdate" cssErrorClass="form-control haserror" type="date" cssClass="form-control" aria-describedby="birthdatedHelp" placeholder="Enter birthdate"  />
 			    <small id="birthdateHelp" class="form-text text-muted"><spring:message code="h.birthdate" /></small>
-			     <form:errors path="birthdate" cssClass="error-label" element="label" />
+			    <form:errors path="birthdate" cssClass="error-label" element="label" />
 			</div>
 			<div class="col"><label for="gender" class="col-form-label"><spring:message code="l.gender" /></label></div>
 		     <div class="col-4">
@@ -61,6 +61,17 @@
 		     <div class="col-4">
 			</div>
 		</div>
+		<div class="form-group row">
+		<div class="col-4">
+			<button class="btn btn-primary" type="submit">Cancel form</button>
+			</div>
+			<div class="col-4">
+			<button class="btn btn-primary" type="submit">Submit form</button>
+			</div>
+			<div class="col">
+			<button class="btn btn-primary" type="submit">Change password</button>
+			</div>
+			</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<input type="hidden" name="id" value="${form.id}" />
 	</form:form>
