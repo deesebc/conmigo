@@ -20,7 +20,7 @@ USE `conmigodb`;
 --
 -- Table structure for table `combo`
 --
-
+UNLOCK TABLES;
 DROP TABLE IF EXISTS `combo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -145,7 +145,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (6,'Usuario Prueba 1','Usuario','Prueba 1','usuarioPrueba1@usuario.es','usuarioPrueba1@usuario.es','$2a$10$1qPncyzzUrqfuC5swqkxGuMKAv3RGJI/u7QmSi7Ota7OxtFe7Y.AG',NULL,NULL,NULL,1,0,'2017-02-20',NULL,NULL,1),(11,'Mariela Bc','Mariela','Bc','marielabc2000@yahoo.es','marielabc2000@yahoo.es','$2a$10$H0J2B5ikhrjLzf2.D1oEteDyFn9WRHJI5y3BxD5rRbcqoCpMG63fy',NULL,NULL,NULL,1,0,'2017-02-22',0,'2017-02-22',1),(14,NULL,NULL,NULL,'usuarioPrueba6@usuario.es',NULL,'$2a$10$BLI4EN8LvWkooHO1RKKrE.hOwRSjSbmKY6S0RJ2GCt8ZZRdkrVouK',NULL,NULL,NULL,1,0,'2017-02-22',0,'2017-02-22',1),(15,NULL,NULL,NULL,'usuarioPrueba7@usuario.es',NULL,'$2a$10$/LY6h7vJeq8jXm9kEoHsuuZbgReuIIWtATKXnY4dJOuTiNfZhQbeW',NULL,NULL,NULL,1,0,'2017-02-22',0,'2017-02-22',1),(16,NULL,NULL,NULL,'usuarioPrueba8@usuario.es',NULL,'$2a$10$CBHk38KmD3FRcT3LXnj7AOFjH6.2A9riVEan2iDXOX0dS4LpCbmXq',NULL,NULL,NULL,1,0,'2017-02-22',0,'2017-02-22',1),(17,NULL,NULL,NULL,'usuarioPrueba2@correo.es',NULL,'$2a$10$3V4uBBvdzr1QvAY2/aVXBerEnh3FNHP8M6bHe.NHrkztrp6RWjPR.',NULL,NULL,NULL,1,0,'2018-03-24',0,'2018-03-24',1),(18,NULL,NULL,NULL,'asdf',NULL,'$2a$10$fpPRYJYmySuEbBU9E4YQBehv5fzFxAJkvZUOG8rYpUHCDy4YHaZRC',NULL,NULL,NULL,1,0,'2018-03-25',0,'2018-03-25',1),(19,NULL,NULL,NULL,'usuarioPrueba4@correo.es',NULL,'$2a$10$89p1i.gGXguXsy9NZlDnxupJBjkpQphrAX1OB71gOa6g3xJ1F9NLS',NULL,NULL,NULL,1,0,'2018-03-25',0,'2018-03-25',1);
+INSERT INTO `user` VALUES (6,'Usuario','Prueba 1','usuarioPrueba1@usuario.es','usuarioPrueba1@usuario.es','$2a$10$1qPncyzzUrqfuC5swqkxGuMKAv3RGJI/u7QmSi7Ota7OxtFe7Y.AG',NULL,NULL,NULL,0,'2017-02-20',NULL,NULL,1),(11,'Mariela','Bc','marielabc2000@yahoo.es','marielabc2000@yahoo.es','$2a$10$H0J2B5ikhrjLzf2.D1oEteDyFn9WRHJI5y3BxD5rRbcqoCpMG63fy',NULL,NULL,NULL,0,'2017-02-22',0,'2017-02-22',1),(14,NULL,NULL,'usuarioPrueba6@usuario.es',NULL,'$2a$10$BLI4EN8LvWkooHO1RKKrE.hOwRSjSbmKY6S0RJ2GCt8ZZRdkrVouK',NULL,NULL,NULL,0,'2017-02-22',0,'2017-02-22',1),(15,NULL,NULL,'usuarioPrueba7@usuario.es',NULL,'$2a$10$/LY6h7vJeq8jXm9kEoHsuuZbgReuIIWtATKXnY4dJOuTiNfZhQbeW',NULL,NULL,NULL,0,'2017-02-22',0,'2017-02-22',1),(16,NULL,NULL,'usuarioPrueba8@usuario.es',NULL,'$2a$10$CBHk38KmD3FRcT3LXnj7AOFjH6.2A9riVEan2iDXOX0dS4LpCbmXq',NULL,NULL,NULL,0,'2017-02-22',0,'2017-02-22',1),(17,NULL,NULL,'usuarioPrueba2@correo.es',NULL,'$2a$10$3V4uBBvdzr1QvAY2/aVXBerEnh3FNHP8M6bHe.NHrkztrp6RWjPR.',NULL,NULL,NULL,0,'2018-03-24',0,'2018-03-24',1),(18,NULL,NULL,'asdf',NULL,'$2a$10$fpPRYJYmySuEbBU9E4YQBehv5fzFxAJkvZUOG8rYpUHCDy4YHaZRC',NULL,NULL,NULL,0,'2018-03-25',0,'2018-03-25',1),(19,NULL,NULL,'usuarioPrueba4@correo.es',NULL,'$2a$10$89p1i.gGXguXsy9NZlDnxupJBjkpQphrAX1OB71gOa6g3xJ1F9NLS',NULL,NULL,NULL,0,'2018-03-25',0,'2018-03-25',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
