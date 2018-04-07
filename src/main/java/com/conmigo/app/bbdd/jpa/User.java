@@ -33,7 +33,6 @@ public class User extends GenericEntity<Long> {
     private static final long serialVersionUID = 1L;
 
     protected Long id;
-    protected String name;
     @JsonProperty("first_name")
     protected String firstName;
     @JsonProperty("last_name")
@@ -44,7 +43,6 @@ public class User extends GenericEntity<Long> {
     private Date birthdate;
     private String town;
     private String gender;
-    protected boolean enable;
     private Set<Role> roles = new HashSet<>(0);
 
     public User() {
@@ -55,12 +53,11 @@ public class User extends GenericEntity<Long> {
         this.createdDate = createdDate;
     }
 
-    public User(final Long id, final String name, final String firstName, final String lastName, final String email,
-            final String username, final String password, final Date birthdate, final String town, final String gender,
-            final boolean enable, final Set<Role> roles) {
+    public User(final Long id, final String firstName, final String lastName, final String email, final String username,
+            final String password, final Date birthdate, final String town, final String gender, final boolean enable,
+            final Set<Role> roles) {
         super();
         this.id = id;
-        this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -84,15 +81,6 @@ public class User extends GenericEntity<Long> {
     @Override
     public void setId(final Long id) {
         this.id = id;
-    }
-
-    @Column(name = "NAME", length = 50)
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
     }
 
     @Column(name = "FIRST_NAME", length = 50)
@@ -138,15 +126,6 @@ public class User extends GenericEntity<Long> {
 
     public void setPassword(final String password) {
         this.password = password;
-    }
-
-    @Column(name = "ENABLE")
-    public boolean isEnable() {
-        return enable;
-    }
-
-    public void setEnable(final boolean enable) {
-        this.enable = enable;
     }
 
     @Temporal(TemporalType.DATE)

@@ -33,7 +33,7 @@ CREATE TABLE `combo` (
   `CREATED_DATE` date NOT NULL,
   `LAST_MODIFIED_BY` bigint(20) DEFAULT NULL,
   `LAST_MODIFIED_DATE` date DEFAULT NULL,
-  `ACTIVE` tinyint(1) DEFAULT '1',
+  `ENABLE` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`ID`),
   KEY `COMBO_IDX` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='Tabla de Combos';
@@ -66,7 +66,7 @@ CREATE TABLE `event` (
   `CREATED_DATE` datetime DEFAULT NULL,
   `LAST_MODIFIED_BY` bigint(20) DEFAULT NULL,
   `LAST_MODIFIED_DATE` datetime DEFAULT NULL,
-  `ACTIVE` tinyint(1) DEFAULT '1',
+  `ENABLE` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -96,7 +96,7 @@ CREATE TABLE `role` (
   `CREATED_DATE` datetime DEFAULT NULL,
   `LAST_MODIFIED_BY` bigint(20) DEFAULT NULL,
   `LAST_MODIFIED_DATE` datetime DEFAULT NULL,
-  `ACTIVE` tinyint(1) DEFAULT '1',
+  `ENABLE` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -120,7 +120,6 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(50) DEFAULT NULL,
   `FIRST_NAME` varchar(50) DEFAULT NULL,
   `LAST_NAME` varchar(50) DEFAULT NULL,
   `EMAIL` varchar(50) DEFAULT NULL,
@@ -129,12 +128,11 @@ CREATE TABLE `user` (
   `BIRTHDATE` date DEFAULT NULL,
   `TOWN` varchar(50) DEFAULT NULL,
   `GENDER` varchar(1) DEFAULT NULL,
-  `ENABLE` tinyint(1) DEFAULT '1',
   `CREATED_BY` bigint(20) NOT NULL,
   `CREATED_DATE` date NOT NULL,
   `LAST_MODIFIED_BY` bigint(20) DEFAULT NULL,
   `LAST_MODIFIED_DATE` date DEFAULT NULL,
-  `ACTIVE` tinyint(1) DEFAULT '1',
+  `ENABLE` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `EMAIL` (`EMAIL`),
   KEY `USER_IDX` (`ID`)
