@@ -21,48 +21,48 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final static String LOGOUT_PAGE = "/logout";
     private final static String[] PUBLIC_PAGES = { "/", "/error", "/register", "/event/", "/events/**", "/aboutUs/",
-	    "/legalAdvice/", LOGIN_PAGE, LOGOUT_PAGE };
+            "/legalAdvice/", LOGIN_PAGE, LOGOUT_PAGE };
 
-    private final static String[] RESTRICTED_PAGES = { "/event/create" };
+    private final static String[] RESTRICTED_PAGES = { "/event/create", "/form/validate/**" };
     @Autowired
     UserDetailsService userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
-	return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
     @Autowired
     public void configAuthentication(final AuthenticationManagerBuilder auth) throws Exception {
-	auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-	// @formatter:off
-	http.authorizeRequests()
-		// configure free access urls
-		.antMatchers(PUBLIC_PAGES).permitAll()
-		// configure user pages
-		.antMatchers(RESTRICTED_PAGES).fullyAuthenticated()
-		// autenticar cualquier otra url
-		.anyRequest().authenticated()
-		// configures form login
-		.and().formLogin().loginPage(LOGIN_PAGE).failureUrl("/login?error=bad_credentials")
-		// configure form logout
-		.and().logout().logoutUrl(LOGOUT_PAGE).deleteCookies("JSESSIONID").logoutSuccessUrl("/")
-		.logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_PAGE)).permitAll()
-		// configure remember me
-		.and().rememberMe()
-		// Adds the SocialAuthenticationFilter to Spring Security's
-		// filter chain. Nos permite que funcione la url /auth/provider
-		.and().apply(new SpringSocialConfigurer().postLoginUrl("/").alwaysUsePostLoginUrl(true));
-	// @formatter:on
+        // @formatter:off
+        http.authorizeRequests()
+                // configure free access urls
+                .antMatchers(PUBLIC_PAGES).permitAll()
+                // configure user pages
+                .antMatchers(RESTRICTED_PAGES).fullyAuthenticated()
+                // autenticar cualquier otra url
+                .anyRequest().authenticated()
+                // configures form login
+                .and().formLogin().loginPage(LOGIN_PAGE).failureUrl("/login?error=bad_credentials")
+                // configure form logout
+                .and().logout().logoutUrl(LOGOUT_PAGE).deleteCookies("JSESSIONID").logoutSuccessUrl("/")
+                .logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_PAGE)).permitAll()
+                // configure remember me
+                .and().rememberMe()
+                // Adds the SocialAuthenticationFilter to Spring Security's
+                // filter chain. Nos permite que funcione la url /auth/provider
+                .and().apply(new SpringSocialConfigurer().postLoginUrl("/").alwaysUsePostLoginUrl(true));
+        // @formatter:on
     }
 
     @Override
     public void configure(final WebSecurity web) throws Exception {
-	web.ignoring().antMatchers("/**/*.css", "/**/*.png", "/**/*.gif", "/**/*.jpg", "/**/*.js");
+        web.ignoring().antMatchers("/**/*.css", "/**/*.png", "/**/*.gif", "/**/*.jpg", "/**/*.js");
     }
 
 }
