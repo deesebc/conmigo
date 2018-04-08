@@ -20,36 +20,46 @@ import com.conmigo.app.service.UserService;
 @Transactional
 public class UserServiceImpl extends GenericBSImpl<UserDto, User, Long> implements UserService {
 
-	/**
-	 * Descripcion del campo
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * Descripcion del campo
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Autowired
-	private UserDao dao;
+    @Autowired
+    private UserDao dao;
 
-	@Override
-	protected GenericDao<User, Long> getDao() {
-		return dao;
-	}
+    @Override
+    protected GenericDao<User, Long> getDao() {
+        return dao;
+    }
 
-	@Override
-	protected Converter<User, UserDto> getConverterToDTO() {
-		return UserToDto.INSTANCE;
-	}
+    @Override
+    protected Converter<User, UserDto> getConverterToDTO() {
+        return UserToDto.INSTANCE;
+    }
 
-	@Override
-	protected Converter<UserDto, User> getConverterToEntity() {
-		return UserFromDto.INSTANCE;
-	}
+    @Override
+    protected Converter<UserDto, User> getConverterToEntity() {
+        return UserFromDto.INSTANCE;
+    }
 
-	public void setDao( final UserDao dao ) {
-		this.dao = dao;
-	}
+    public void setDao(final UserDao dao) {
+        this.dao = dao;
+    }
 
-	@Override
-	public List<Long> getEventIdsByUser( final Long idUser ) {
-		return dao.getEventIdsByUser( idUser );
-	}
+    @Override
+    public List<Long> getEventIdsByUser(final Long idUser) {
+        return dao.getEventIdsByUser(idUser);
+    }
+
+    @Override
+    public boolean existUsername(final Long actualId, final String username) {
+        return dao.existUsername(actualId, username) > 0L ? true : false;
+    }
+
+    @Override
+    public boolean existEmail(final Long actualId, final String email) {
+        return dao.existEmail(actualId, email) > 0L ? true : false;
+    }
 
 }
