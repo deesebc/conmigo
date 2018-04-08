@@ -1,0 +1,1 @@
+<script src="${pageContext.request.contextPath}/resources/js/profile.js" ></script>

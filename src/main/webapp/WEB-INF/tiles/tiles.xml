@@ -64,6 +64,7 @@
 	
 	<definition name="site.profile" extends="layout.basic">
 		<put-attribute name="body" value="/WEB-INF/pages/profile.jsp" />
+    <put-attribute name="customScripts" value="/WEB-INF/tiles/view/scripts/profileScript.jsp" />  
 	</definition>
 	
 	<definition name="site.legalAdvice" extends="layout.basic">

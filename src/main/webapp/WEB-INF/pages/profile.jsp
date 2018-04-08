@@ -1,7 +1,7 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
 
 	<div class="col-xs-12 global-messages"></div>
-	<form:form modelAttribute="form" method="put" action="${pageContext.request.contextPath}/profile/">
+	<form:form modelAttribute="form" method="put" action="${pageContext.request.contextPath}/profile/" id="profileForm">
 		<div class="col-md-12">
 			<h2 class="form-signin-heading"><spring:message code="c.updateYourProfile" /></h2>
 		</div>
@@ -22,7 +22,7 @@
 		<div class="form-group row">
 		    <div class="col"><label for="email" class="col-form-label"><spring:message code="l.email" /></label></div>
 		    <div class="col-4">
-			    <form:input path="email" id="email" cssErrorClass="form-control required haserror" type="email" maxlength="50" cssClass="form-control required" aria-describedby="emailHelp" placeholder="Enter email" />
+			    <form:input path="email" id="email" cssErrorClass="form-control required haserror" type="email" maxlength="50" cssClass="form-control required" aria-describedby="emailHelp" placeholder="Enter email" oninput="javascript: alert('h');" />
 			    <small id="emailHelp" class="form-text text-muted"><spring:message code="h.email" /></small>
 			    <form:errors path="email" cssClass="error-label" element="label" />
 		     </div>
@@ -62,16 +62,13 @@
 			</div>
 		</div>
 		<div class="form-group row">
-		<div class="col-4">
-			<button class="btn btn-primary" type="submit">Cancel form</button>
-			</div>
-			<div class="col-4">
-			<button class="btn btn-primary" type="submit">Submit form</button>
+			<div class="col">
+				<button class="btn btn-primary" type="submit">Submit form</button>
 			</div>
 			<div class="col">
-			<button class="btn btn-primary" type="submit">Change password</button>
+				<button class="btn btn-primary" type="submit">Change password</button>
 			</div>
-			</div>
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<input type="hidden" name="id" value="${form.id}" />
+		</div>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="csrfToken" />
+		<input type="hidden" name="id" value="${form.id}" id="userId"/>
 	</form:form>
