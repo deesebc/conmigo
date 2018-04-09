@@ -1,7 +1,7 @@
 package com.conmigo.app.bbdd.jpa;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -26,9 +24,9 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
 
     protected Boolean enable = true;
     protected Long createdBy;
-    protected Date createdDate;
+    protected LocalDateTime createdDate;
     protected Long lastModifiedBy;
-    protected Date lastModifiedDate;
+    protected LocalDateTime lastModifiedDate;
 
     @Column(name = "ENABLE")
     public boolean isEnable() {
@@ -45,10 +43,9 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
         return createdBy;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "CREATED_DATE", nullable = false, length = 19)
     @CreatedDate
-    public Date getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
@@ -63,10 +60,9 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
         return lastModifiedBy;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "LAST_MODIFIED_DATE", length = 19)
     @LastModifiedDate
-    public Date getLastModifiedDate() {
+    public LocalDateTime getLastModifiedDate() {
         return lastModifiedDate;
     }
 
@@ -74,7 +70,7 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
         this.createdBy = createdBy;
     }
 
-    public void setCreatedDate(final Date createdDate) {
+    public void setCreatedDate(final LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -84,7 +80,7 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public void setLastModifiedDate(final Date lastModifiedDate) {
+    public void setLastModifiedDate(final LocalDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 

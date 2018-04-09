@@ -5,6 +5,6 @@
       <description>Devuelve el rango de edad</description>
       <name>getBirthdateRange</name>
       <function-class>com.conmigo.app.function.CustomFunction</function-class>
-      <function-signature>String getDateRange(java.util.Date)</function-signature>  
+      <function-signature>String getDateRange(java.time.LocalDate)</function-signature>  
    </function>
 </taglib>

@@ -1,6 +1,7 @@
 package com.conmigo.app.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ public class UserDto extends GenericDto<Long> {
     protected String username;
     protected String password;
     protected boolean enable;
-    private Date birthdate;
+    private LocalDate birthdate;
     private String town;
     private String gender;
     private Set<RoleDto> roles = new HashSet<>(0);
@@ -30,14 +31,14 @@ public class UserDto extends GenericDto<Long> {
         this.id = id;
     }
 
-    public UserDto(final long createdBy, final Date createdDate) {
+    public UserDto(final long createdBy, final LocalDateTime createdDate) {
         this.createdBy = createdBy;
         this.createdDate = createdDate;
     }
 
     public UserDto(final String name, final String firstName, final String lastName, final String email, final String username,
-            final String password, final Boolean enable, final long createdBy, final Date createdDate, final Long lastModifiedBy,
-            final Date lastModifiedDate, final Set<RoleDto> roles) {
+            final String password, final Boolean enable, final long createdBy, final LocalDateTime createdDate,
+            final Long lastModifiedBy, final LocalDateTime lastModifiedDate, final Set<RoleDto> roles) {
         this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -118,11 +119,11 @@ public class UserDto extends GenericDto<Long> {
         this.enable = enable;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(final Date birthdate) {
+    public void setBirthdate(final LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 

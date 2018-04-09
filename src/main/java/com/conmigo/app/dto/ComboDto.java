@@ -1,6 +1,6 @@
 package com.conmigo.app.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class ComboDto extends GenericDto<Long> {
 
@@ -28,7 +28,7 @@ public class ComboDto extends GenericDto<Long> {
         this.type = type;
     }
 
-    public ComboDto(final long createdBy, final Date createdDate) {
+    public ComboDto(final long createdBy, final LocalDateTime createdDate) {
         this.createdBy = createdBy;
         this.createdDate = createdDate;
     }

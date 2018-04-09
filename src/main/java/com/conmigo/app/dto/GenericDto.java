@@ -1,7 +1,7 @@
 package com.conmigo.app.dto;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public abstract class GenericDto<K extends Serializable> implements Serializable {
 
@@ -9,9 +9,9 @@ public abstract class GenericDto<K extends Serializable> implements Serializable
 
     protected Boolean active = true;
     protected Long createdBy;
-    protected Date createdDate;
+    protected LocalDateTime createdDate;
     protected Long lastModifiedBy;
-    protected Date lastModifiedDate;
+    protected LocalDateTime lastModifiedDate;
 
     public abstract K getId();
 
@@ -35,7 +35,7 @@ public abstract class GenericDto<K extends Serializable> implements Serializable
     /**
      * @return Valor de la propiedad createdDate
      */
-    public Date getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
@@ -43,7 +43,7 @@ public abstract class GenericDto<K extends Serializable> implements Serializable
      * @param createdDate
      *            Valor de la propiedad createdDate a setear
      */
-    public void setCreatedDate(final Date createdDate) {
+    public void setCreatedDate(final LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -65,7 +65,7 @@ public abstract class GenericDto<K extends Serializable> implements Serializable
     /**
      * @return Valor de la propiedad lastModifiedDate
      */
-    public Date getLastModifiedDate() {
+    public LocalDateTime getLastModifiedDate() {
         return lastModifiedDate;
     }
 
@@ -73,7 +73,7 @@ public abstract class GenericDto<K extends Serializable> implements Serializable
      * @param lastModifiedDate
      *            Valor de la propiedad lastModifiedDate a setear
      */
-    public void setLastModifiedDate(final Date lastModifiedDate) {
+    public void setLastModifiedDate(final LocalDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 

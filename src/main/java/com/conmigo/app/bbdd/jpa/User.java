@@ -1,7 +1,8 @@
 package com.conmigo.app.bbdd.jpa;
 // Generated 16-feb-2017 12:22:59 by Hibernate Tools 5.1.0.Beta1
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,8 +18,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -40,7 +39,7 @@ public class User extends GenericEntity<Long> {
     protected String email;
     protected String username;
     protected String password;
-    private Date birthdate;
+    private LocalDate birthdate;
     private String town;
     private String gender;
     private Set<Role> roles = new HashSet<>(0);
@@ -48,13 +47,13 @@ public class User extends GenericEntity<Long> {
     public User() {
     }
 
-    public User(final long createdBy, final Date createdDate) {
+    public User(final long createdBy, final LocalDateTime createdDate) {
         this.createdBy = createdBy;
         this.createdDate = createdDate;
     }
 
     public User(final Long id, final String firstName, final String lastName, final String email, final String username,
-            final String password, final Date birthdate, final String town, final String gender, final boolean enable,
+            final String password, final LocalDate birthdate, final String town, final String gender, final boolean enable,
             final Set<Role> roles) {
         super();
         this.id = id;
@@ -128,13 +127,12 @@ public class User extends GenericEntity<Long> {
         this.password = password;
     }
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "BIRTHDATE", length = 10)
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(final Date birthdate) {
+    public void setBirthdate(final LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 

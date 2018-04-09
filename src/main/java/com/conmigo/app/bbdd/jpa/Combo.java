@@ -1,7 +1,7 @@
 package com.conmigo.app.bbdd.jpa;
 // Generated 16-feb-2017 12:22:59 by Hibernate Tools 5.1.0.Beta1
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ public class Combo extends GenericEntity<Long> {
     public Combo() {
     }
 
-    public Combo(final long createdBy, final Date createdDate) {
+    public Combo(final long createdBy, final LocalDateTime createdDate) {
         this.createdBy = createdBy;
         this.createdDate = createdDate;
     }

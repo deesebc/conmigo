@@ -1,13 +1,9 @@
 package com.conmigo.app.function;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 public class CustomFunction {
-    public static String getDateRange(final Date date) {
-        LocalDate birthdate = new java.util.Date(date.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
+    public static String getDateRange(final LocalDate birthdate) {
         LocalDate today = LocalDate.now();
         LocalDate birthdate25 = birthdate.plusYears(25);
         LocalDate birthdate35 = birthdate.plusYears(35);
