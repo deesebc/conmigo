@@ -53,7 +53,7 @@
 		<div class="form-group row">
 		     <div class="col"><label for="town" class="col-form-label"><spring:message code="l.town" /></label></div>
 		     <div class="col-4">
-			    <form:input path="town" id="town" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="townHelp" placeholder="Enter town" />
+			    <form:input path="town" id="town" cssErrorClass="form-control haserror" type="text" maxlength="50" cssClass="form-control" aria-describedby="townHelp" placeholder="Enter town" />
 			    <small id="townHelp" class="form-text text-muted"><spring:message code="h.town" /></small>
 			     <form:errors path="town" cssClass="error-label" element="label" />
 			</div>

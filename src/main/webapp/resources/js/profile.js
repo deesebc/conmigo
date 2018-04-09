@@ -12,6 +12,18 @@ $("#profileForm").validate({
 					_csrf : $('#csrfToken').val()
 				}
 			}
+		},
+		username : {
+			required : true,
+			remote : {
+				type : 'post',
+				url : config.contextPath + '/form/validate/username/exists',
+				data : {
+					username : $('#username').val(),
+					userId : $('#userId').val(),
+					_csrf : $('#csrfToken').val()
+				}
+			}
 		}
 	},
 	messages : {
@@ -19,6 +31,10 @@ $("#profileForm").validate({
 			required : "Please Enter Email!",
 			email : "This is not a valid email!",
 			remote : "Email already in use!"
+		},
+		username : {
+			required : "Please Enter Username!",
+			remote : "Username already in use!"
 		}
 	}
 });

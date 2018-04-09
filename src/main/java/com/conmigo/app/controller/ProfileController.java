@@ -14,7 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.conmigo.app.dto.ComboDto;
@@ -59,17 +58,6 @@ public class ProfileController {
             LOGGER.error(except.getMessage(), except);
         }
         return PAGE;
-    }
-
-    @PutMapping(value = "/")
-    public String update(@Valid @ModelAttribute("form") final ProfileForm profileForm, final BindingResult bindingResult,
-            final Model model) {
-        try {
-            System.out.println("VAMOS QUE NOS VAMOS PUT");
-        } catch (final Exception except) {
-            LOGGER.error(except.getMessage(), except);
-        }
-        return REDIRECT_INDEX;
     }
 
     @PostMapping(value = "/")
