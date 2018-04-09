@@ -7,7 +7,7 @@ $("#profileForm").validate({
 				type : 'post',
 				url : config.contextPath + '/form/validate/email/exists',
 				data : {
-					email : $('#email').val(),
+					email :function(){return $("#email").val();},
 					userId : $('#userId').val(),
 					_csrf : $('#csrfToken').val()
 				}
@@ -19,7 +19,7 @@ $("#profileForm").validate({
 				type : 'post',
 				url : config.contextPath + '/form/validate/username/exists',
 				data : {
-					username : $('#username').val(),
+					username : function(){return $("#username").val();},
 					userId : $('#userId').val(),
 					_csrf : $('#csrfToken').val()
 				}

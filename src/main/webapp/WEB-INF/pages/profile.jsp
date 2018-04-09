@@ -8,13 +8,13 @@
 		<div class="form-group row">
 		    <div class="col"><label for="name" class="col-form-label"><spring:message code="l.firstName" /></label></div>
 		    <div class="col-4">
-			    <form:input path="firstName" id="firstName" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="firstNameHelp" placeholder="Enter first name"  />
+			    <form:input path="firstName" id="firstName" cssErrorClass="form-control  haserror" type="text" maxlength="50" cssClass="form-control " aria-describedby="firstNameHelp" placeholder="Enter first name"  />
 			    <small id="firstNameHelp" class="form-text text-muted"><spring:message code="h.firstName" /></small>
 			     <form:errors path="firstName" cssClass="error-label" element="label" />
 		     </div>
 		     <div class="col"><label for="lastName" class="col-form-label"><spring:message code="l.lastName" /></label></div>
 		     <div class="col-4">
-			    <form:input path="lastName" id="lastName" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="lastNameHelp" placeholder="Enter last name" />
+			    <form:input path="lastName" id="lastName" cssErrorClass="form-control  haserror" type="text" maxlength="50" cssClass="form-control " aria-describedby="lastNameHelp" placeholder="Enter last name" />
 			    <small id="lastNameHelp" class="form-text text-muted"><spring:message code="h.lastName" /></small>
 				<form:errors path="lastName" cssClass="error-label" element="label" />
 			</div>
@@ -22,7 +22,7 @@
 		<div class="form-group row">
 		    <div class="col"><label for="email" class="col-form-label"><spring:message code="l.email" /></label></div>
 		    <div class="col-4">
-			    <form:input path="email" id="email" cssErrorClass="form-control required haserror" type="email" maxlength="50" cssClass="form-control required" aria-describedby="emailHelp" placeholder="Enter email" />
+			    <form:input path="email" id="email" cssErrorClass="form-control required email haserror" type="email" maxlength="50" cssClass="form-control email required" aria-describedby="emailHelp" placeholder="Enter email" />
 			    <small id="emailHelp" class="form-text text-muted"><spring:message code="h.email" /></small>
 			    <form:errors path="email" cssClass="error-label" element="label" />
 		     </div>
