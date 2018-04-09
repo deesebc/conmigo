@@ -81,15 +81,19 @@
 		    <c:if test="${ not empty event.users}">
 			    <table class="table table-striped">
 					<thead>
-						<th>Name</th>
-						<th>Email</th>
+						<th>Username</th>
+						<th>Datos</th>
 						<th>Acciones</th>
 					</thead>
 					<tbody>
 						<c:forEach items="${event.users}" var="item" varStatus="status">
 							<tr>
-								<td>${item.name}</td>
-								<td>${item.email}</td>
+								<td>${item.username}</td>
+								<td>
+									<c:if test="${item.gender eq 'F'}"><i class="fas fa-female"></i></c:if>
+									<c:if test="${item.gender eq 'M'}"><i class="fas fa-male"></i></c:if>
+									<c:if test="${not empty item.birthdate}">${cf:getBirthdateRange(item.birthdate)}</c:if>
+								</td>
 								<td>
 									<security:authorize access="isFullyAuthenticated()">
 										<c:if test="${item.id ne user.id}">

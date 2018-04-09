@@ -1,0 +1,10 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd" version="2.0">
+<tlib-version>1.0</tlib-version>
+<uri>customFunction</uri>
+   <function>
+      <description>Devuelve el rango de edad</description>
+      <name>getBirthdateRange</name>
+      <function-class>com.conmigo.app.function.CustomFunction</function-class>
+      <function-signature>String getDateRange(java.util.Date)</function-signature>  
+   </function>
+</taglib>

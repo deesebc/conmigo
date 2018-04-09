@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="cf" uri="customFunction"%>
 
 <!-- GLOBAL VARS -->
 <spring:message code="aws.s3.bucket.url" var="varAwsS3BucketUrl" />
