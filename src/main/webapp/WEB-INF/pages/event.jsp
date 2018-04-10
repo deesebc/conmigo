@@ -2,50 +2,46 @@
 <div class="starter-template col-md-12">
 	<div class="col-xs-12 global-messages"></div>
 	<c:if test="${event eq null}">
-		<form:form modelAttribute="eventForm" method="post" action="${pageContext.request.contextPath}/event/create" cssClass="form-signin">
+		<form:form modelAttribute="eventForm" method="post" action="${pageContext.request.contextPath}/event/create" id="eventForm">
 			<div class="col-md-12">
 				<h2 class="form-signin-heading"><spring:message code="c.createYourEvent" /></h2>
 			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="name"><spring:message code="l.event" /></label>
-					<form:select path="type" id="type" class="js-example-basic-single form-control required" cssErrorClass="form-control required haserror">
-						<form:option value="" selected="selected"><spring:message code="c.choose.option" /></form:option>
-						<form:options items="${types}" />
-					</form:select>
-				</div>
-				  
-				<div class="form-group">
-				    <label for="name"><spring:message code="l.name" /></label>
-				    <form:input path="name" id="name" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="nameHelp" placeholder="Enter name" />
-				    <small id="nameHelp" class="form-text text-muted"><spring:message code="c.nameEventWhichYouWant" /></small>
-				     <form:errors path="name" cssClass="error-label" element="label" />
-				  </div>
+			<div class="form-group row">
+				<div class="col"><label for="type" class="col-form-label"><spring:message code="l.event" /></label></div>
+				<div class="col-4">
+					<form:select path="type" class="required" aria-describedby="typeHelp">
+			     		<form:option value="-" selected="selected"><spring:message code="c.choose.option" /></form:option>
+			     		<form:options cssClass="form-control" items="${types}"/>
+			     	</form:select>
+			     	<small id="typeHelp" class="form-text text-muted"><spring:message code="h.eventType" /></small>
+		     	</div>
+		     	<div class="col"><label for="name" class="col-form-label"><spring:message code="l.name" /></label></div>
+		     	<div class="col-4">
+				    <form:input path="name" id="name" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="nameHelp" placeholder="Enter name"  />
+				    <small id="nameHelp" class="form-text text-muted"><spring:message code="h.eventName" /></small>
+				    <form:errors path="name" cssClass="error-label" element="label" />
+			    </div>
 			</div>
-			<div class="col-md-6">  
-				  <div class="form-group">
-				    <label for="place"><spring:message code="l.place" /></label>
-				    <form:input path="place" id="place" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="placeHelp" placeholder="Enter place" />
-				    <small id="placeHelp" class="form-text text-muted"><spring:message code="c.nameEventWhichYouWant" /></small>
+			<div class="form-group row">
+				<div class="col"><label for="place" class="col-form-label"><spring:message code="l.place" /></label></div>
+				<div class="col-4">
+					<form:input path="place" id="place" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="placeHelp" placeholder="Enter place"  />
+				    <small id="placeHelp" class="form-text text-muted"><spring:message code="h.eventPlace" /></small>
 				    <form:errors path="place" cssClass="error-label" element="label" />
-				  </div>
-				  
-		           <div class="form-group">
-		               <div class='input-group date' id='datetimepicker'>
-		                   <form:input path="date" id="date" cssErrorClass="form-control required haserror" type="text" maxlength="50" cssClass="form-control required" aria-describedby="dateHelp" placeholder="Enter date" />
-		                   <span class="input-group-addon">
-		                       <span class="glyphicon glyphicon-calendar" ></span>
-		                   </span>
-		               </div>
-		               <small id="dateHelp" class="form-text text-muted"><spring:message code="c.eventDate" /></small>
-		           </div>
-		    </div>
-		    <div class="col-md-12">
-				<div class="col-md-6">	  
-					<button class="btn btn-lg btn-primary btn-block" type="submit" id="pass" name="pass"><spring:message code="b.createIt" /></button>
+		     	</div>
+		     	<div class="col"><label for="date" class="col-form-label"><spring:message code="l.date" /></label></div>
+			     <div class="col-4">
+				    <form:input path="date" id="date" cssErrorClass="form-control haserror" type="date" cssClass="form-control" aria-describedby="dateHelp" placeholder="Enter Date"  />
+				    <small id="dateHelp" class="form-text text-muted"><spring:message code="h.eventDate" /></small>
+				    <form:errors path="date" cssClass="error-label" element="label" />
 				</div>
-				<div class="col-md-6">
-					<button class="btn btn-lg btn-primary btn-block" type="submit" id="join" name="join"><spring:message code="b.createAndJoin" /></button>
+			</div>
+			<div class="form-group row">
+				<div class="col">
+					<button class="btn btn-primary" type="submit" id="pass" name="pass"><spring:message code="b.createIt" /></button>
+				</div>
+				<div class="col">
+					<button class="btn btn-primary" type="submit" id="join" name="join"><spring:message code="b.createAndJoin" /></button>
 				</div>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

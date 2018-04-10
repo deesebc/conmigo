@@ -38,7 +38,7 @@
 				<tbody>
 					<c:forEach items="${events}" var="item" varStatus="status">
 						<tr>
-							<td><spring:message code="item.type" /></td>
+							<td><spring:message code="${item.type}" /></td>
 							<td>${item.name}</td>
 							<td>${item.place}</td>
 							<td>${item.date}</td>

@@ -11,7 +11,7 @@
     </security:authorize>
     <security:authorize access="isFullyAuthenticated()">
 	    <p>
-	      Poner listado de eventos de la ciudad que aún no hayan pasado
+	      Poner listado de eventos de la ciudad que a&uacute;n no hayan pasado
 	    </p>
     </security:authorize>
   </div>
