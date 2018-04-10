@@ -1,7 +1,7 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
 
 	<div class="col-xs-12 global-messages"></div>
-	<form:form modelAttribute="form" method="put" action="${pageContext.request.contextPath}/profile/" id="profileForm">
+	<form:form modelAttribute="profileForm" method="post" action="${pageContext.request.contextPath}/profile/" id="profileForm">
 		<div class="col-md-12">
 			<h2 class="form-signin-heading"><spring:message code="c.updateYourProfile" /></h2>
 		</div>

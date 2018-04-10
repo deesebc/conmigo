@@ -1,6 +1,6 @@
 package com.conmigo.app.form;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,7 +25,7 @@ public class ProfileForm {
     @Size(max = 50)
     private String username;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date birthdate;
+    private LocalDate birthdate;
     private String gender;
     @Size(max = 50)
     private String town;
@@ -70,11 +70,11 @@ public class ProfileForm {
         this.username = username;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(final Date birthdate) {
+    public void setBirthdate(final LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 

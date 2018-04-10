@@ -7,7 +7,7 @@ public abstract class GenericDto<K extends Serializable> implements Serializable
 
     private static final long serialVersionUID = 1L;
 
-    protected Boolean active = true;
+    protected Boolean enable = true;
     protected Long createdBy;
     protected LocalDateTime createdDate;
     protected Long lastModifiedBy;
@@ -77,12 +77,12 @@ public abstract class GenericDto<K extends Serializable> implements Serializable
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public Boolean getActive() {
-        return active;
+    public Boolean getEnable() {
+        return enable;
     }
 
-    public void setActive(final Boolean active) {
-        this.active = active;
+    public void setEnable(final Boolean enable) {
+        this.enable = enable;
     }
 
 }

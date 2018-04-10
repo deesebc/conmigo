@@ -52,7 +52,7 @@ public class ProfileController {
                 final CustomUserDetails user = SecurityUtil.getUserDetails();
                 final ProfileForm form = new ProfileForm();
                 PropertyUtils.copyProperties(form, user);
-                model.addAttribute("form", form);
+                model.addAttribute("profileForm", form);
             }
         } catch (final Exception except) {
             LOGGER.error(except.getMessage(), except);
@@ -61,7 +61,7 @@ public class ProfileController {
     }
 
     @PostMapping(value = "/")
-    public String update2(@Valid @ModelAttribute("form") final ProfileForm profileForm, final BindingResult bindingResult,
+    public String update2(@Valid @ModelAttribute("profileForm") final ProfileForm profileForm, final BindingResult bindingResult,
             final Model model) {
         try {
             if (bindingResult.hasErrors()) {
