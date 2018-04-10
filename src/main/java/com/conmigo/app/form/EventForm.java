@@ -1,6 +1,6 @@
 package com.conmigo.app.form;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
@@ -12,8 +12,8 @@ public class EventForm {
     @NotEmpty
     private String name;
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime date;
     private String place;
     private String type;
 
@@ -35,7 +35,7 @@ public class EventForm {
     /**
      * @return Valor de la propiedad date
      */
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -43,7 +43,7 @@ public class EventForm {
      * @param date
      *            Valor de la propiedad date a setear
      */
-    public void setDate(final Date date) {
+    public void setDate(final LocalDateTime date) {
         this.date = date;
     }
 

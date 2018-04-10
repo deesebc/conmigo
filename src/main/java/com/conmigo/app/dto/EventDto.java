@@ -1,7 +1,6 @@
 package com.conmigo.app.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +10,7 @@ public class EventDto extends GenericDto<Long> {
 
     private Long id;
     private String name;
-    private Date date;
+    private LocalDateTime date;
     private String place;
     private String type;
     private Set<UserDto> users = new HashSet<>(0);
@@ -20,7 +19,7 @@ public class EventDto extends GenericDto<Long> {
         super();
     }
 
-    public EventDto(final String name, final Date date, final String place, final String type, final Long createdBy,
+    public EventDto(final String name, final LocalDateTime date, final String place, final String type, final Long createdBy,
             final LocalDateTime createdDate, final Long lastModifiedBy, final LocalDateTime lastModifiedDate,
             final Set<UserDto> users) {
         this.name = name;
@@ -52,11 +51,11 @@ public class EventDto extends GenericDto<Long> {
         this.name = name;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(final Date date) {
+    public void setDate(final LocalDateTime date) {
         this.date = date;
     }
 

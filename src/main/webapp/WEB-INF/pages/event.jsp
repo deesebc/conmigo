@@ -31,7 +31,7 @@
 		     	</div>
 		     	<div class="col"><label for="date" class="col-form-label"><spring:message code="l.date" /></label></div>
 			     <div class="col-4">
-				    <form:input path="date" id="date" cssErrorClass="form-control haserror" type="date" cssClass="form-control" aria-describedby="dateHelp" placeholder="Enter Date"  />
+				    <form:input path="date" id="date" cssErrorClass="form-control haserror" type="datetime-local" cssClass="form-control" aria-describedby="dateHelp" placeholder="Enter Date"  />
 				    <small id="dateHelp" class="form-text text-muted"><spring:message code="h.eventDate" /></small>
 				    <form:errors path="date" cssClass="error-label" element="label" />
 				</div>
