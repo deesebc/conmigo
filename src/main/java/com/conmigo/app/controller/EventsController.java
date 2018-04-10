@@ -1,5 +1,6 @@
 package com.conmigo.app.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,41 +19,43 @@ import com.conmigo.app.service.UserService;
 import com.conmigo.app.util.SecurityUtil;
 
 @Controller
-@RequestMapping( "/events" )
+@RequestMapping("/events")
 public class EventsController {
 
-	private final static String PAGE = "site.events";
+    private final static String PAGE = "site.events";
 
-	@Autowired
-	EventService eService;
+    @Autowired
+    EventService eService;
 
-	@Autowired
-	UserService uService;
+    @Autowired
+    UserService uService;
 
-	@GetMapping( value = "/" )
-	public String access( final Model model ) {
-		model.addAttribute( "events", eService.findAll() );
-		obtainUserEvents( model );
-		return PAGE;
-	}
+    @GetMapping(value = "/")
+    public String access(final Model model) {
+        PageRequest pageRequest = new PageRequest(0, 10);
+        Page<EventDto> events = eService.findByDateAfter(pageRequest, LocalDateTime.now());
+        model.addAttribute("events", events);
+        obtainUserEvents(model);
+        return PAGE;
+    }
 
-	@PostMapping( value = "/search" )
-	public String search( @RequestParam( "name" ) final String name, final Model model ) {
-		// obtenemos los eventos
-		PageRequest pageRequest = new PageRequest( 0, 10 );
-		Page<EventDto> page = eService.findByNameContainingIgnoreCase( pageRequest, name );
-		model.addAttribute( "events", page.getContent() );
-		obtainUserEvents( model );
-		return PAGE;
-	}
+    @PostMapping(value = "/search")
+    public String search(@RequestParam("name") final String name, final Model model) {
+        // obtenemos los eventos
+        PageRequest pageRequest = new PageRequest(0, 10);
+        Page<EventDto> page = eService.findByNameContainingIgnoreCase(pageRequest, name);
+        model.addAttribute("events", page.getContent());
+        obtainUserEvents(model);
+        return PAGE;
+    }
 
-	private void obtainUserEvents( final Model model ) {
-		// obtenemos los eventos del usuario
-		if( SecurityUtil.isFullyAuthenticated() ) {
-			Long idUser = SecurityUtil.getIdUser();
-			List<Long> userEvents = uService.getEventIdsByUser( idUser );
-			model.addAttribute( "userEvents", userEvents );
-		}
-	}
+    private void obtainUserEvents(final Model model) {
+        // obtenemos los eventos del usuario
+        if (SecurityUtil.isFullyAuthenticated()) {
+            Long idUser = SecurityUtil.getIdUser();
+            List<Long> userEvents = uService.getEventIdsByUser(idUser);
+            model.addAttribute("userEvents", userEvents);
+        }
+    }
 
 }

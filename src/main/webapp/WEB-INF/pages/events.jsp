@@ -36,7 +36,11 @@
 					<th><spring:message code="l.actions" /></th>
 				</thead>
 				<tbody>
-					<c:forEach items="${events}" var="item" varStatus="status">
+					<c:if test="${empty events.content}">
+						<td colspan="5"><spring:message code="c.thereIsNotEventCreateIt" /></td>
+					</c:if>
+					<c:if test="${not empty events.content}">
+					<c:forEach items="${events.content}" var="item" varStatus="status">
 						<tr>
 							<td><spring:message code="${item.type}" /></td>
 							<td>${item.name}</td>
@@ -55,6 +59,7 @@
 							</td>
 						</tr>
 					</c:forEach>
+					</c:if>
 				</tbody>
 			</table>
 		</c:if>
