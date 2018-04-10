@@ -41,7 +41,7 @@
 							<td><spring:message code="${item.type}" /></td>
 							<td>${item.name}</td>
 							<td>${item.place}</td>
-							<td>${item.date}</td>
+							<td><javatime:format value="${item.date}" style="MS" /></td>
 							<td>
 								<button class="btn btn-primary" onclick="javascript: seeEvent(${item.id})"><spring:message code="b.see" /></button>&nbsp;&nbsp;
 								<c:choose>
