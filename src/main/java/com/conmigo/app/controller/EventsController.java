@@ -43,7 +43,7 @@ public class EventsController {
     public String search(@RequestParam("name") final String name, final Model model) {
         // obtenemos los eventos
         PageRequest pageRequest = new PageRequest(0, 10);
-        Page<EventDto> page = eService.findByNameContainingIgnoreCase(pageRequest, name);
+        Page<EventDto> page = eService.findByNameContainingIgnoreCaseAndDateAfter(pageRequest, name, LocalDateTime.now());
         model.addAttribute("events", page.getContent());
         obtainUserEvents(model);
         return PAGE;

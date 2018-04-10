@@ -12,6 +12,9 @@ public interface EventService extends GenericBS<EventDto, Event, Long> {
 
     public Page<EventDto> findByNameContainingIgnoreCase(Pageable pageRequest, String name);
 
+    public Page<EventDto> findByNameContainingIgnoreCaseAndDateAfter(Pageable pageRequest, final String name,
+            final LocalDateTime date);
+
     public Page<EventDto> findByDateAfter(Pageable pageRequest, LocalDateTime date);
 
 }

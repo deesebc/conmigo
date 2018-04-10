@@ -11,6 +11,8 @@ public interface EventDao extends GenericDao<Event, Long> {
 
     Page<Event> findByNameContainingIgnoreCase(Pageable pageRequest, final String name);
 
+    Page<Event> findByNameContainingIgnoreCaseAndDateAfter(Pageable pageRequest, final String name, final LocalDateTime date);
+
     Page<Event> findByDateAfter(Pageable pageRequest, final LocalDateTime date);
 
 }

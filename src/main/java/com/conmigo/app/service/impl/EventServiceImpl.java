@@ -58,4 +58,11 @@ public class EventServiceImpl extends GenericBSImpl<EventDto, Event, Long> imple
         return pageEntities.map(getConverterToDTO());
     }
 
+    @Override
+    public Page<EventDto> findByNameContainingIgnoreCaseAndDateAfter(final Pageable pageRequest, final String name,
+            final LocalDateTime date) {
+        final Page<Event> pageEntities = dao.findByNameContainingIgnoreCaseAndDateAfter(pageRequest, name, date);
+        return pageEntities.map(getConverterToDTO());
+    }
+
 }
