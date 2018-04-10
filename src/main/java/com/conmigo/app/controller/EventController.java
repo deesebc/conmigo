@@ -25,77 +25,81 @@ import com.conmigo.app.util.ComboUtil;
 import com.conmigo.app.util.SecurityUtil;
 
 @Controller
-@RequestMapping( "/event" )
+@RequestMapping("/event")
 public class EventController {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger( RegisterController.class );
+    private final static Logger LOGGER = LoggerFactory.getLogger(RegisterController.class);
 
-	private final static String PAGE = "site.event";
-	private final static String REDIRECT_EVENT = "redirect:/events/";
-	private final static String FORWARD_EVENT = "forward:/events/";
+    private final static String PAGE = "site.event";
+    private final static String REDIRECT_EVENT = "redirect:/events/";
+    private final static String FORWARD_EVENT = "forward:/events/";
 
-	@Autowired
-	EventService eService;
+    @Autowired
+    EventService eService;
 
-	@GetMapping( "/create" )
-	public String goToCreate( final Model model, final Locale locale ) {
-		model.addAttribute( "types", ComboUtil.getEventTypes( locale ) );
-		model.addAttribute( "eventForm", new EventForm() );
-		return PAGE;
-	}
+    @GetMapping("/create")
+    public String goToCreate(final Model model, final Locale locale) {
+        model.addAttribute("types", ComboUtil.getEventTypes(locale));
+        model.addAttribute("eventForm", new EventForm());
+        return PAGE;
+    }
 
-	@PostMapping( value = "/create", params = "pass" )
-	public String createAndPass( @Valid @ModelAttribute( "eventForm" ) final EventForm eventForm, final BindingResult bindingResult, final Model model ) {
-		return createEvent( eventForm, bindingResult, false );
-	}
+    @PostMapping(value = "/create", params = "pass")
+    public String createAndPass(@Valid @ModelAttribute("eventForm") final EventForm eventForm, final BindingResult bindingResult,
+            final Model model, final Locale locale) {
+        return createEvent(eventForm, bindingResult, model, locale, false);
+    }
 
-	@PostMapping( value = "/create", params = "join" )
-	public String createAndJoin( @Valid @ModelAttribute( "eventForm" ) final EventForm eventForm, final BindingResult bindingResult, final Model model ) {
-		return createEvent( eventForm, bindingResult, true );
-	}
+    @PostMapping(value = "/create", params = "join")
+    public String createAndJoin(@Valid @ModelAttribute("eventForm") final EventForm eventForm, final BindingResult bindingResult,
+            final Model model, final Locale locale) {
+        return createEvent(eventForm, bindingResult, model, locale, true);
+    }
 
-	private String createEvent( final EventForm eventForm, final BindingResult bindingResult, final Boolean join ) {
-		if( bindingResult.hasErrors() ) {
-			return PAGE;
-		}
-		try {
-			EventDto eDto = new EventDto();
-			PropertyUtils.copyProperties( eDto, eventForm );
-			if( join ) {
-				eDto.getUsers().add( new UserDto( SecurityUtil.getIdUser() ) );
-			}
-			eService.save( eDto );
-		} catch( Exception except ) {
-			LOGGER.error( except.getMessage(), except );
-		}
-		return REDIRECT_EVENT;
-	}
+    private String createEvent(final EventForm eventForm, final BindingResult bindingResult, final Model model,
+            final Locale locale, final Boolean join) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("types", ComboUtil.getEventTypes(locale));
+            return PAGE;
+        }
+        try {
+            EventDto eDto = new EventDto();
+            PropertyUtils.copyProperties(eDto, eventForm);
+            if (join) {
+                eDto.getUsers().add(new UserDto(SecurityUtil.getIdUser()));
+            }
+            eService.save(eDto);
+        } catch (Exception except) {
+            LOGGER.error(except.getMessage(), except);
+        }
+        return REDIRECT_EVENT;
+    }
 
-	@PostMapping( value = "/" )
-	public String view( @RequestParam( "id" ) final Long id, final Model model ) {
-		return viewAndJoin( id, model, false );
-	}
+    @PostMapping(value = "/")
+    public String view(@RequestParam("id") final Long id, final Model model) {
+        return viewAndJoin(id, model, false);
+    }
 
-	@PostMapping( value = "/join" )
-	public String join( @RequestParam( "id" ) final Long id, final Model model ) {
-		return viewAndJoin( id, model, true );
-	}
+    @PostMapping(value = "/join")
+    public String join(@RequestParam("id") final Long id, final Model model) {
+        return viewAndJoin(id, model, true);
+    }
 
-	@PostMapping( value = "/disjoin" )
-	public String disjoin( @RequestParam( "id" ) final Long id, final Model model ) {
-		EventDto eDto = eService.findById( id );
-		eDto.getUsers().remove( new UserDto( SecurityUtil.getIdUser() ) );
-		eDto = eService.save( eDto );
-		return REDIRECT_EVENT;
-	}
+    @PostMapping(value = "/disjoin")
+    public String disjoin(@RequestParam("id") final Long id, final Model model) {
+        EventDto eDto = eService.findById(id);
+        eDto.getUsers().remove(new UserDto(SecurityUtil.getIdUser()));
+        eDto = eService.save(eDto);
+        return REDIRECT_EVENT;
+    }
 
-	private String viewAndJoin( final Long id, final Model model, final Boolean join ) {
-		EventDto eDto = eService.findById( id );
-		if( join ) {
-			eDto.getUsers().add( new UserDto( SecurityUtil.getIdUser() ) );
-			eDto = eService.save( eDto );
-		}
-		model.addAttribute( "event", eDto );
-		return PAGE;
-	}
+    private String viewAndJoin(final Long id, final Model model, final Boolean join) {
+        EventDto eDto = eService.findById(id);
+        if (join) {
+            eDto.getUsers().add(new UserDto(SecurityUtil.getIdUser()));
+            eDto = eService.save(eDto);
+        }
+        model.addAttribute("event", eDto);
+        return PAGE;
+    }
 }
