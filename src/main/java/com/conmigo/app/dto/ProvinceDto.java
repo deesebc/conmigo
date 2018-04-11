@@ -3,21 +3,21 @@ package com.conmigo.app.dto;
 
 import java.time.LocalDateTime;
 
-public class ProvinciasDto extends GenericDto<Long> {
+public class ProvinceDto extends GenericDto<Long> {
 
     private static final long serialVersionUID = 2957611324448228619L;
     private Long id;
     private String provincia;
 
-    public ProvinciasDto() {
+    public ProvinceDto() {
     }
 
-    public ProvinciasDto(final long createdBy, final LocalDateTime createdDate) {
+    public ProvinceDto(final long createdBy, final LocalDateTime createdDate) {
         this.createdBy = createdBy;
         this.createdDate = createdDate;
     }
 
-    public ProvinciasDto(final String provincia, final long createdBy, final LocalDateTime createdDate, final Long lastModifiedBy,
+    public ProvinceDto(final String provincia, final long createdBy, final LocalDateTime createdDate, final Long lastModifiedBy,
             final LocalDateTime lastModifiedDate, final Boolean enable) {
         this.provincia = provincia;
         this.createdBy = createdBy;

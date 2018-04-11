@@ -29,6 +29,7 @@ public class ProfileForm {
     private String gender;
     @Size(max = 50)
     private String town;
+    private Long provinceId;
 
     public String getEmail() {
         return email;
@@ -92,6 +93,14 @@ public class ProfileForm {
 
     public void setTown(final String town) {
         this.town = town;
+    }
+
+    public Long getProvinceId() {
+        return provinceId;
+    }
+
+    public void setProvinceId(final Long provinceId) {
+        this.provinceId = provinceId;
     }
 
 }
