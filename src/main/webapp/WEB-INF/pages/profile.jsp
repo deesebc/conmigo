@@ -53,12 +53,18 @@
 		<div class="form-group row">
 		     <div class="col"><label for="town" class="col-form-label"><spring:message code="l.town" /></label></div>
 		     <div class="col-4">
+			    <form:select path="provinceId">
+		     		<form:option value="">-</form:option>
+		     		<form:options cssClass="form-control" items="${provinceList}" itemLabel="provincia" itemValue="id"/>
+		     	</form:select>
+			    <small id="townHelp" class="form-text text-muted"><spring:message code="h.town" /></small>
+			    <form:errors path="town" cssClass="error-label" element="label" />
+			</div>
+			<div class="col"><label for="town" class="col-form-label"><spring:message code="l.town" /></label></div>
+		     <div class="col-4">
 			    <form:input path="town" id="town" cssErrorClass="form-control haserror" type="text" maxlength="50" cssClass="form-control" aria-describedby="townHelp" placeholder="Enter town" />
 			    <small id="townHelp" class="form-text text-muted"><spring:message code="h.town" /></small>
-			     <form:errors path="town" cssClass="error-label" element="label" />
-			</div>
-			<div class="col"></div>
-		     <div class="col-4">
+			    <form:errors path="town" cssClass="error-label" element="label" />
 			</div>
 		</div>
 		<div class="form-group row">
@@ -70,5 +76,5 @@
 			</div>
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="csrfToken" />
-		<input type="hidden" name="id" value="${form.id}" id="userId"/>
+		<input type="hidden" name="id" value="${profileForm.id}" id="id"/>
 	</form:form>

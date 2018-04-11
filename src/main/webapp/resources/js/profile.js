@@ -8,7 +8,7 @@ $("#profileForm").validate({
 				url : config.contextPath + '/form/validate/email/exists',
 				data : {
 					email :function(){return $("#email").val();},
-					userId : $('#userId').val(),
+					userId : $('#id').val(),
 					_csrf : $('#csrfToken').val()
 				}
 			}
@@ -20,7 +20,7 @@ $("#profileForm").validate({
 				url : config.contextPath + '/form/validate/username/exists',
 				data : {
 					username : function(){return $("#username").val();},
-					userId : $('#userId').val(),
+					userId : $('#id').val(),
 					_csrf : $('#csrfToken').val()
 				}
 			}
