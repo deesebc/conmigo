@@ -18,6 +18,38 @@ USE `conmigodb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `combo`
+--
+
+DROP TABLE IF EXISTS `combo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `combo` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(50) DEFAULT NULL,
+  `VALUE` varchar(50) DEFAULT NULL,
+  `TYPE` varchar(50) DEFAULT NULL,
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` date NOT NULL,
+  `LAST_MODIFIED_BY` bigint(20) DEFAULT NULL,
+  `LAST_MODIFIED_DATE` date DEFAULT NULL,
+  `ENABLE` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `COMBO_IDX` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='Tabla de Combos';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `combo`
+--
+
+LOCK TABLES `combo` WRITE;
+/*!40000 ALTER TABLE `combo` DISABLE KEYS */;
+INSERT INTO `combo` VALUES (1,'FEMENINO','F','GENDER',0,'2017-02-22',0,'2017-02-22',1),(2,'MASCULINO','M','GENDER',0,'2017-02-22',0,'2017-02-22',1);
+/*!40000 ALTER TABLE `combo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `event`
 --
 
@@ -245,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-10 22:40:00
+-- Dump completed on 2018-04-11 17:38:04
