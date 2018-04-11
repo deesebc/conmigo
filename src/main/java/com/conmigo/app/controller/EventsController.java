@@ -3,6 +3,7 @@ package com.conmigo.app.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,9 +43,14 @@ public class EventsController {
     @PostMapping(value = "/search")
     public String search(@RequestParam("name") final String name, final Model model) {
         // obtenemos los eventos
+        Page<EventDto> events;
         PageRequest pageRequest = new PageRequest(0, 10);
-        Page<EventDto> page = eService.findByNameContainingIgnoreCaseAndDateAfter(pageRequest, name, LocalDateTime.now());
-        model.addAttribute("events", page.getContent());
+        if (StringUtils.isNotBlank(name)) {
+            events = eService.findByNameContainingIgnoreCaseAndDateAfter(pageRequest, name, LocalDateTime.now());
+        } else {
+            events = eService.findByDateAfter(pageRequest, LocalDateTime.now());
+        }
+        model.addAttribute("events", events);
         obtainUserEvents(model);
         return PAGE;
     }
