@@ -33,7 +33,7 @@ public class User extends GenericEntity<Long> {
     private static final long serialVersionUID = 1L;
 
     protected Long id;
-    protected Province province = new Province();
+    protected Province province;
     @JsonProperty("first_name")
     protected String firstName;
     @JsonProperty("last_name")
