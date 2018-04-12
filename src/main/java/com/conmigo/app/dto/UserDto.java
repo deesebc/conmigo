@@ -10,17 +10,17 @@ public class UserDto extends GenericDto<Long> {
     private static final long serialVersionUID = 1L;
 
     protected Long id;
-    protected String name;
+    protected ProvinceDto province;
     protected String firstName;
     protected String lastName;
     protected String email;
     protected String username;
     protected String password;
     protected boolean enable;
-    private LocalDate birthdate;
-    private String town;
-    private String gender;
-    private Set<RoleDto> roles = new HashSet<>(0);
+    protected LocalDate birthdate;
+    protected String town;
+    protected String gender;
+    protected Set<RoleDto> roles = new HashSet<>(0);
 
     public UserDto() {
         super();
@@ -32,14 +32,16 @@ public class UserDto extends GenericDto<Long> {
     }
 
     public UserDto(final long createdBy, final LocalDateTime createdDate) {
+        super();
         this.createdBy = createdBy;
         this.createdDate = createdDate;
     }
 
-    public UserDto(final String name, final String firstName, final String lastName, final String email, final String username,
-            final String password, final Boolean enable, final long createdBy, final LocalDateTime createdDate,
-            final Long lastModifiedBy, final LocalDateTime lastModifiedDate, final Set<RoleDto> roles) {
-        this.name = name;
+    public UserDto(final ProvinceDto province, final String firstName, final String lastName, final String email,
+            final String username, final String password, final Boolean enable, final long createdBy,
+            final LocalDateTime createdDate, final Long lastModifiedBy, final LocalDateTime lastModifiedDate,
+            final Set<RoleDto> roles) {
+        this.province = province;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -61,14 +63,6 @@ public class UserDto extends GenericDto<Long> {
     @Override
     public void setId(final Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
     }
 
     public String getFirstName() {
@@ -156,6 +150,14 @@ public class UserDto extends GenericDto<Long> {
      */
     public void setRoles(final Set<RoleDto> roles) {
         this.roles = roles;
+    }
+
+    public ProvinceDto getProvince() {
+        return province;
+    }
+
+    public void setProvince(final ProvinceDto province) {
+        this.province = province;
     }
 
     /*

@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
@@ -32,6 +33,7 @@ public class User extends GenericEntity<Long> {
     private static final long serialVersionUID = 1L;
 
     protected Long id;
+    protected Province province = new Province();
     @JsonProperty("first_name")
     protected String firstName;
     @JsonProperty("last_name")
@@ -39,9 +41,9 @@ public class User extends GenericEntity<Long> {
     protected String email;
     protected String username;
     protected String password;
-    private LocalDate birthdate;
-    private String town;
-    private String gender;
+    protected LocalDate birthdate;
+    protected String town;
+    protected String gender;
     private Set<Role> roles = new HashSet<>(0);
 
     public User() {
@@ -152,6 +154,16 @@ public class User extends GenericEntity<Long> {
 
     public void setGender(final String gender) {
         this.gender = gender;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PROVINCE")
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(final Province province) {
+        this.province = province;
     }
 
     @ManyToMany(fetch = FetchType.LAZY)
