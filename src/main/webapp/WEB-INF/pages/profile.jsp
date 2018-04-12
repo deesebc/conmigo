@@ -76,8 +76,8 @@
 			</div>
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="csrfToken" />
-		<input type="hidden" name="enable" value="${profileForm.enable}" id="enable"/>
 		<form:hidden path="id" id="id"/>
+		<form:hidden path="enable" id="enable"/>
 		<form:hidden path="createdBy" id="createdBy"/>
 		<form:hidden path="createdDate" id="createdDate"/>
 	</form:form>

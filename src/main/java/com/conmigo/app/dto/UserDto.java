@@ -16,7 +16,6 @@ public class UserDto extends GenericDto<Long> {
     protected String email;
     protected String username;
     protected String password;
-    protected boolean enable;
     protected LocalDate birthdate;
     protected String town;
     protected String gender;
@@ -103,14 +102,6 @@ public class UserDto extends GenericDto<Long> {
 
     public void setPassword(final String password) {
         this.password = password;
-    }
-
-    public boolean isEnable() {
-        return enable;
-    }
-
-    public void setEnable(final boolean enable) {
-        this.enable = enable;
     }
 
     public LocalDate getBirthdate() {
