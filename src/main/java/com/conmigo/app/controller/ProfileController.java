@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.conmigo.app.dto.ComboDto;
 import com.conmigo.app.dto.CustomUserDetails;
+import com.conmigo.app.dto.ProvinceDto;
 import com.conmigo.app.dto.UserDto;
 import com.conmigo.app.form.ProfileForm;
 import com.conmigo.app.service.ComboService;
+import com.conmigo.app.service.ProvinceService;
 import com.conmigo.app.service.UserService;
 import com.conmigo.app.util.Constant;
 import com.conmigo.app.util.SecurityUtil;
@@ -40,9 +43,17 @@ public class ProfileController {
     @Autowired
     ComboService cService;
 
+    @Autowired
+    ProvinceService pService;
+
     @ModelAttribute("genderList")
-    public List<ComboDto> populateDepartments() {
+    public List<ComboDto> populateGenders() {
         return cService.getCombosByType(Constant.Combo.GENDER.name());
+    }
+
+    @ModelAttribute("provinceList")
+    public List<ProvinceDto> populateProvinces() {
+        return pService.findAll();
     }
 
     @GetMapping(value = "/")
@@ -50,8 +61,8 @@ public class ProfileController {
         try {
             if (SecurityUtil.isFullyAuthenticated()) {
                 final CustomUserDetails user = SecurityUtil.getUserDetails();
-                final ProfileForm form = new ProfileForm();
-                PropertyUtils.copyProperties(form, user);
+                ModelMapper modelMapper = new ModelMapper();
+                ProfileForm form = modelMapper.map(user, ProfileForm.class);
                 model.addAttribute("profileForm", form);
             }
         } catch (final Exception except) {
@@ -68,10 +79,12 @@ public class ProfileController {
                 return PAGE;
             }
             CustomUserDetails user = SecurityUtil.getUserDetails();
-            UserDto uDto = new UserDto();
-            PropertyUtils.copyProperties(uDto, user);
-            PropertyUtils.copyProperties(uDto, profileForm);
+            UserDto uDto = uService.findById(SecurityUtil.getIdUser());
+            ModelMapper modelMapper = new ModelMapper();
+            modelMapper.map(profileForm, uDto);
             UserDto userSaved = uService.save(uDto);
+            user = modelMapper.map(userSaved, CustomUserDetails.class);
+            // TODO update correctly userDetails
             PropertyUtils.copyProperties(user, userSaved);
         } catch (final Exception except) {
             LOGGER.error(except.getMessage(), except);
