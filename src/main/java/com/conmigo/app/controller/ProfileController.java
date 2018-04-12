@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.apache.commons.beanutils.PropertyUtils;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -84,8 +86,10 @@ public class ProfileController {
             modelMapper.map(profileForm, uDto);
             UserDto userSaved = uService.save(uDto);
             user = modelMapper.map(userSaved, CustomUserDetails.class);
-            // TODO update correctly userDetails
-            PropertyUtils.copyProperties(user, userSaved);
+            modelMapper.map(userSaved, user);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(),
+                    user.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (final Exception except) {
             LOGGER.error(except.getMessage(), except);
         }
