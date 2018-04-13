@@ -27,22 +27,22 @@
 		</form>
 		<c:if test="${not empty events}">
 			<br/>
-			<table class="table table-striped">
+			<table class="table">
 				<thead>
-					<th><spring:message code="l.type" /></th>
-					<th><spring:message code="l.name" /></th>
-					<th><spring:message code="l.place" /></th>
-					<th><spring:message code="l.date" /></th>
-					<th><spring:message code="l.actions" /></th>
+					<th scope="col"><spring:message code="l.type" /></th>
+					<th scope="col"><spring:message code="l.name" /></th>
+					<th scope="col"><spring:message code="l.place" /></th>
+					<th scope="col"><spring:message code="l.date" /></th>
+					<th scope="col"><spring:message code="l.actions" /></th>
 				</thead>
 				<tbody>
 					<c:if test="${empty events.content}">
-						<td colspan="5"><spring:message code="c.thereIsNotEventCreateIt" /></td>
+						<th scope="row" colspan="5"><spring:message code="c.thereIsNotEventCreateIt" /></td>
 					</c:if>
 					<c:if test="${not empty events.content}">
 					<c:forEach items="${events.content}" var="item" varStatus="status">
 						<tr>
-							<td><spring:message code="${item.type}" /></td>
+							<th scope="row"><spring:message code="${item.type}" /></td>
 							<td>${item.name}</td>
 							<td>${item.place}</td>
 							<td><javatime:format value="${item.date}" style="MS" /></td>

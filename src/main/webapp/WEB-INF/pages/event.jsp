@@ -76,7 +76,7 @@
 				<div class="col"><label for="type" class="col-form-label"><spring:message code="l.place" /></label></div>
 				<div class="col-4">${event.place}</div>
 		     	<div class="col"><label for="name" class="col-form-label"><spring:message code="l.date" /></label></div>
-		     	<div class="col-4">${event.date}</div>
+		     	<div class="col-4"><javatime:format value="${event.date}" style="MS" /></div>
 			</div>
 			<div class="form-group row">
 				<div class="col"><label for="type" class="col-form-label"><spring:message code="l.province" /></label></div>
@@ -85,16 +85,16 @@
 		     	<div class="col-4"></div>
 			</div>
 			<c:if test="${ not empty event.users}">
-			    <table class="table table-striped">
+			    <table class="table">
 					<thead>
-						<th>Username</th>
-						<th>Datos</th>
-						<th>Acciones</th>
+						<th scope="col"><spring:message code="l.username" /></th>
+						<th scope="col"><spring:message code="l.datas" /></th>
+						<th scope="col"><spring:message code="l.actions" /></th>
 					</thead>
 					<tbody>
 						<c:forEach items="${event.users}" var="item" varStatus="status">
 							<tr>
-								<td>${item.username}</td>
+								<th scope="row">${item.username}</td>
 								<td>
 									<c:if test="${item.gender eq 'F'}"><i class="fas fa-female"></i></c:if>
 									<c:if test="${item.gender eq 'M'}"><i class="fas fa-male"></i></c:if>
