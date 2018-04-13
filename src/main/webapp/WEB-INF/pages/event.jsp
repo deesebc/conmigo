@@ -63,32 +63,28 @@
 	<c:if test="${event ne null}">
 		<c:set var="showBtnJoin" value="true" />
 		<security:authentication var="user" property="principal" />
-		<br/>
-		<div class="col-md-12">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="name"><spring:message code="l.event" /></label>
-					<spring:message code="${event.type}" />
-				</div>
-				  
-				<div class="form-group">
-				    <label for="name">Name</label>
-				    ${event.name }
-				  </div>
+			<div class="col-md-12">
+				<h2 class="form-signin-heading"><spring:message code="c.Event" /></h2>
 			</div>
-			<div class="col-md-6">  
-				  <div class="form-group">
-				    <label for="place">Place</label>
-				    ${event.place }
-				  </div>
-				  
-		           <div class="form-group">
-		           	 <label for="place">Date</label>
-		               ${event.date }
-		           </div>
-		    </div>
-		    <!-- TODO reformat page and include provinceId -->
-		    <c:if test="${ not empty event.users}">
+			<div class="form-group row">
+				<div class="col"><label for="type" class="col-form-label"><spring:message code="l.event" /></label></div>
+				<div class="col-4"><spring:message code="${event.type}" /></div>
+		     	<div class="col"><label for="name" class="col-form-label"><spring:message code="l.name" /></label></div>
+		     	<div class="col-4">${event.name }</div>
+			</div>
+			<div class="form-group row">
+				<div class="col"><label for="type" class="col-form-label"><spring:message code="l.place" /></label></div>
+				<div class="col-4">${event.place}</div>
+		     	<div class="col"><label for="name" class="col-form-label"><spring:message code="l.date" /></label></div>
+		     	<div class="col-4">${event.date}</div>
+			</div>
+			<div class="form-group row">
+				<div class="col"><label for="type" class="col-form-label"><spring:message code="l.province" /></label></div>
+				<div class="col-4">${event.province.provincia}</div>
+		     	<div class="col"></div>
+		     	<div class="col-4"></div>
+			</div>
+			<c:if test="${ not empty event.users}">
 			    <table class="table table-striped">
 					<thead>
 						<th>Username</th>
@@ -123,7 +119,6 @@
 					</tbody>
 				</table>
 			</c:if>
-		</div>
 		<section class="row">
 		  <div class="btn-group center">
 		  	<form action="${pageContext.request.contextPath}/events/">
