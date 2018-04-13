@@ -80,7 +80,6 @@ public class EventController {
         }
         try {
             EventDto eDto = new EventDto();
-            // PropertyUtils.copyProperties(eDto, eventForm);
             ModelMapper modelMapper = new ModelMapper();
             modelMapper.map(eventForm, eDto);
             if (join) {

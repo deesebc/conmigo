@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.conmigo.app.bbdd.jpa.Event;
+import com.conmigo.app.bbdd.jpa.Province;
 
 public interface EventDao extends GenericDao<Event, Long> {
 
@@ -14,5 +15,9 @@ public interface EventDao extends GenericDao<Event, Long> {
     Page<Event> findByNameContainingIgnoreCaseAndDateAfter(Pageable pageRequest, final String name, final LocalDateTime date);
 
     Page<Event> findByDateAfter(Pageable pageRequest, final LocalDateTime date);
+
+    Page<Event> findByDateAfterAndProvinceOrderByDateAsc(Pageable pageRequest, final LocalDateTime date, final Province province);
+
+    Page<Event> findByDateAfterOrderByDateAsc(Pageable pageRequest, final LocalDateTime date);
 
 }

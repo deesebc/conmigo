@@ -17,4 +17,9 @@ public interface EventService extends GenericBS<EventDto, Event, Long> {
 
     public Page<EventDto> findByDateAfter(Pageable pageRequest, LocalDateTime date);
 
+    Page<EventDto> findByDateAfterAndProvinceOrderByDateAsc(Pageable pageRequest, final LocalDateTime date,
+            final Long provinceId);
+
+    Page<EventDto> findByDateAfterOrderByDateAsc(Pageable pageRequest, final LocalDateTime date);
+
 }
