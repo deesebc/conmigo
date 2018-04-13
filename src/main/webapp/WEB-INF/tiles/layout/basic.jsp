@@ -19,6 +19,7 @@
 	    <tiles:insertAttribute name="pageCssStyle" />
 	    <!-- Custom styles for this template -->
 	    <link href="${pageContext.request.contextPath}/resources/css/conmigo.css" rel="stylesheet">
+	    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/fav.jpg">
 	</head>
 	<body>
 		<header>
