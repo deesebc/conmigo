@@ -51,14 +51,14 @@
 			</div>
 		</div>
 		<div class="form-group row">
-		     <div class="col"><label for="town" class="col-form-label"><spring:message code="l.town" /></label></div>
+		     <div class="col"><label for="provinceId" class="col-form-label"><spring:message code="l.province" /></label></div>
 		     <div class="col-4">
 			    <form:select path="provinceId">
 		     		<form:option value="">-</form:option>
 		     		<form:options cssClass="form-control" items="${provinceList}" itemLabel="provincia" itemValue="id"/>
 		     	</form:select>
-			    <small id="townHelp" class="form-text text-muted"><spring:message code="h.town" /></small>
-			    <form:errors path="town" cssClass="error-label" element="label" />
+			    <small id="provinceHelp" class="form-text text-muted"><spring:message code="h.province" /></small>
+			    <form:errors path="provinceId" cssClass="error-label" element="label" />
 			</div>
 			<div class="col"><label for="town" class="col-form-label"><spring:message code="l.town" /></label></div>
 		     <div class="col-4">

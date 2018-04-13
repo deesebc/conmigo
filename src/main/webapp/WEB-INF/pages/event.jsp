@@ -11,7 +11,7 @@
 				<div class="col-4">
 					<form:select path="type" class="required" aria-describedby="typeHelp">
 			     		<form:option value="-" selected="selected"><spring:message code="c.choose.option" /></form:option>
-			     		<form:options cssClass="form-control" items="${types}"/>
+			     		<form:options cssClass="form-control" items="${typeList}"/>
 			     	</form:select>
 			     	<small id="typeHelp" class="form-text text-muted"><spring:message code="h.eventType" /></small>
 		     	</div>
@@ -37,6 +37,19 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<div class="col"><label for="provinceId" class="col-form-label"><spring:message code="l.province" /></label></div>
+			    <div class="col-4">
+				    <form:select path="provinceId">
+			     		<form:option value="">-</form:option>
+			     		<form:options cssClass="form-control" items="${provinceList}" itemLabel="provincia" itemValue="id"/>
+			     	</form:select>
+				    <small id="provinceHelp" class="form-text text-muted"><spring:message code="h.province" /></small>
+				    <form:errors path="provinceId" cssClass="error-label" element="label" />
+				</div>
+		     	<div class="col"></div>
+			    <div class="col-4"></div>
+			</div>
+			<div class="form-group row">
 				<div class="col">
 					<button class="btn btn-primary" type="submit" id="pass" name="pass"><spring:message code="b.createIt" /></button>
 				</div>
@@ -55,7 +68,7 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="name"><spring:message code="l.event" /></label>
-					<spring:message code="event.type" />
+					<spring:message code="${event.type}" />
 				</div>
 				  
 				<div class="form-group">
@@ -74,6 +87,7 @@
 		               ${event.date }
 		           </div>
 		    </div>
+		    <!-- TODO reformat page and include provinceId -->
 		    <c:if test="${ not empty event.users}">
 			    <table class="table table-striped">
 					<thead>

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +23,7 @@ public class Event extends GenericEntity<Long> {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    protected Province province;
     private String name;
     private LocalDateTime date;
     private String place;
@@ -32,9 +34,10 @@ public class Event extends GenericEntity<Long> {
         super();
     }
 
-    public Event(final String name, final LocalDateTime date, final String place, final String type, final Long createdBy,
-            final LocalDateTime createdDate, final Long lastModifiedBy, final LocalDateTime lastModifiedDate,
-            final Set<User> users) {
+    public Event(final Province province, final String name, final LocalDateTime date, final String place, final String type,
+            final Long createdBy, final LocalDateTime createdDate, final Long lastModifiedBy,
+            final LocalDateTime lastModifiedDate, final Set<User> users) {
+        this.province = province;
         this.name = name;
         this.date = date;
         this.place = place;
@@ -93,6 +96,16 @@ public class Event extends GenericEntity<Long> {
 
     public void setType(final String type) {
         this.type = type;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PROVINCE")
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(final Province province) {
+        this.province = province;
     }
 
     @ManyToMany(fetch = FetchType.LAZY)

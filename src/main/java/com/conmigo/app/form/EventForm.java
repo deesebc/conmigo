@@ -16,6 +16,7 @@ public class EventForm {
     private LocalDateTime date;
     private String place;
     private String type;
+    private Long provinceId;
 
     /**
      * @return Valor de la propiedad name
@@ -75,6 +76,14 @@ public class EventForm {
      */
     public void setType(final String type) {
         this.type = type;
+    }
+
+    public Long getProvinceId() {
+        return provinceId;
+    }
+
+    public void setProvinceId(final Long provinceId) {
+        this.provinceId = provinceId;
     }
 
 }

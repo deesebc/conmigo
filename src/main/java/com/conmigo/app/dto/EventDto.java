@@ -9,6 +9,7 @@ public class EventDto extends GenericDto<Long> {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    private ProvinceDto province;
     private String name;
     private LocalDateTime date;
     private String place;
@@ -19,9 +20,10 @@ public class EventDto extends GenericDto<Long> {
         super();
     }
 
-    public EventDto(final String name, final LocalDateTime date, final String place, final String type, final Long createdBy,
-            final LocalDateTime createdDate, final Long lastModifiedBy, final LocalDateTime lastModifiedDate,
-            final Set<UserDto> users) {
+    public EventDto(final ProvinceDto province, final String name, final LocalDateTime date, final String place,
+            final String type, final Long createdBy, final LocalDateTime createdDate, final Long lastModifiedBy,
+            final LocalDateTime lastModifiedDate, final Set<UserDto> users) {
+        setProvince(province);
         this.name = name;
         this.date = date;
         this.place = place;
@@ -95,6 +97,14 @@ public class EventDto extends GenericDto<Long> {
 
     public void setUsers(final Set<UserDto> users) {
         this.users = users;
+    }
+
+    public ProvinceDto getProvince() {
+        return province;
+    }
+
+    public void setProvince(final ProvinceDto province) {
+        this.province = province;
     }
 
 }

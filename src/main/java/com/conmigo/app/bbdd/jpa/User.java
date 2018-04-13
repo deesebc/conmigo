@@ -54,10 +54,11 @@ public class User extends GenericEntity<Long> {
         this.createdDate = createdDate;
     }
 
-    public User(final Long id, final String firstName, final String lastName, final String email, final String username,
-            final String password, final LocalDate birthdate, final String town, final String gender, final boolean enable,
-            final Set<Role> roles) {
+    public User(final Long id, final Province province, final String firstName, final String lastName, final String email,
+            final String username, final String password, final LocalDate birthdate, final String town, final String gender,
+            final boolean enable, final Set<Role> roles) {
         super();
+        this.province = province;
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

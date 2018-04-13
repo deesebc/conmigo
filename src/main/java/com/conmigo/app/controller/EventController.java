@@ -1,10 +1,12 @@
 package com.conmigo.app.controller;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.apache.commons.beanutils.PropertyUtils;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.conmigo.app.dto.EventDto;
+import com.conmigo.app.dto.ProvinceDto;
 import com.conmigo.app.dto.UserDto;
 import com.conmigo.app.form.EventForm;
 import com.conmigo.app.service.EventService;
+import com.conmigo.app.service.ProvinceService;
 import com.conmigo.app.util.ComboUtil;
 import com.conmigo.app.util.SecurityUtil;
 
@@ -37,9 +41,21 @@ public class EventController {
     @Autowired
     EventService eService;
 
+    @Autowired
+    ProvinceService pService;
+
+    @ModelAttribute("typeList")
+    public Map<String, String> populateTypess(final Locale locale) {
+        return ComboUtil.getEventTypes(locale);
+    }
+
+    @ModelAttribute("provinceList")
+    public List<ProvinceDto> populateProvinces() {
+        return pService.findAll();
+    }
+
     @GetMapping("/create")
     public String goToCreate(final Model model, final Locale locale) {
-        model.addAttribute("types", ComboUtil.getEventTypes(locale));
         model.addAttribute("eventForm", new EventForm());
         return PAGE;
     }
@@ -64,7 +80,9 @@ public class EventController {
         }
         try {
             EventDto eDto = new EventDto();
-            PropertyUtils.copyProperties(eDto, eventForm);
+            // PropertyUtils.copyProperties(eDto, eventForm);
+            ModelMapper modelMapper = new ModelMapper();
+            modelMapper.map(eventForm, eDto);
             if (join) {
                 eDto.getUsers().add(new UserDto(SecurityUtil.getIdUser()));
             }

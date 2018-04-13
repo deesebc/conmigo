@@ -1,7 +1,6 @@
 package com.conmigo.app.form;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -10,7 +9,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class ProfileForm {
+public class ProfileForm extends GenericAuditForm {
 
     @NotEmpty
     @Size(max = 50)
@@ -31,33 +30,6 @@ public class ProfileForm {
     @Size(max = 50)
     private String town;
     private Long provinceId;
-    private Boolean enable = true;
-    private Long createdBy;
-    private LocalDateTime createdDate;
-
-    public Boolean getEnable() {
-        return enable;
-    }
-
-    public void setEnable(final Boolean enable) {
-        this.enable = enable;
-    }
-
-    public Long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(final Long createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(final LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
 
     public String getEmail() {
         return email;
