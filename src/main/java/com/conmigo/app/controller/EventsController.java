@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +34,15 @@ public class EventsController {
 
     @GetMapping(value = "/")
     public String access(final Model model) {
-        PageRequest pageRequest = new PageRequest(0, 10);
-        Page<EventDto> events = eService.findByDateAfter(pageRequest, LocalDateTime.now());
+        return accessPage(0, model);
+    }
+
+    @GetMapping(value = "/{page}")
+    public String accessPage(@PathVariable final Integer page, final Model model) {
+        int iPage = page == null ? 0 : page;
+        PageRequest pageRequest = new PageRequest(iPage, 2);
+        // Page<EventDto> events = eService.findByDateAfter(pageRequest, LocalDateTime.now());
+        Page<EventDto> events = eService.getPage(pageRequest);
         model.addAttribute("events", events);
         obtainUserEvents(model);
         return PAGE;
