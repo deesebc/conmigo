@@ -1,7 +1,9 @@
 package com.conmigo.app.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,15 +34,8 @@ public class EventsController {
 
     @GetMapping(value = "/")
     public String access(final Model model) {
-        return accessPage(0, model);
-    }
-
-    @GetMapping(value = "/{page}")
-    public String accessPage(@PathVariable final Integer page, final Model model) {
-        int iPage = page == null ? 0 : page;
-        PageRequest pageRequest = new PageRequest(iPage, 2);
-        // Page<EventDto> events = eService.findByDateAfter(pageRequest, LocalDateTime.now());
-        Page<EventDto> events = eService.getPage(pageRequest);
+        PageRequest pageRequest = new PageRequest(0, 10);
+        Page<EventDto> events = eService.findByDateAfter(pageRequest, LocalDateTime.now());
         model.addAttribute("events", events);
         model.addAttribute("eventSearchForm", new EventSearchForm());
         obtainUserEvents(model);
@@ -50,15 +44,14 @@ public class EventsController {
 
     @PostMapping(value = "/search")
     public String search(@ModelAttribute("eventSearchForm") final EventSearchForm eventSearchForm, final Model model) {
-        // obtenemos los eventos
-        // Page<EventDto> events;
+        Page<EventDto> events;
         PageRequest pageRequest = new PageRequest(eventSearchForm.getPage(), 2);
-        // if (StringUtils.isNotBlank(name)) {
-        // events = eService.findByNameContainingIgnoreCaseAndDateAfter(pageRequest, name, LocalDateTime.now());
-        // } else {
-        // events = eService.findByDateAfter(pageRequest, LocalDateTime.now());
-        // }
-        Page<EventDto> events = eService.getPage(pageRequest);
+        if (StringUtils.isNotBlank(eventSearchForm.getName())) {
+            events = eService.findByNameContainingIgnoreCaseAndDateAfter(pageRequest, eventSearchForm.getName(),
+                    LocalDateTime.now());
+        } else {
+            events = eService.findByDateAfter(pageRequest, LocalDateTime.now());
+        }
         model.addAttribute("events", events);
         model.addAttribute("eventSearchForm", eventSearchForm);
         obtainUserEvents(model);
