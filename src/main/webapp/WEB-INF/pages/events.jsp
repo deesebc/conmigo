@@ -79,7 +79,7 @@
 			  	<c:if test="${events.number gt 0}">
 			  		<a class="page-link" onclick="javascript: searchPaginate(${events.number-1})" href="#" tabindex="-1">${events.number}</a>
 			  	</c:if>
-			  	<li class="page-item active"><a class="page-link" onclick="javascript: searchPaginate(${events.number})" href="#">${events.number + 1} <span class="sr-only">(current)</span></a></li>
+			  	<li class="page-item active"><a class="page-link" href="#">${events.number + 1} <span class="sr-only">(current)</span></a></li>
 			  	<c:if test="${events.number + 1 lt events.totalPages}">
 			  		<a class="page-link" onclick="javascript: searchPaginate(${events.number+1})" href="#" tabindex="-1">${events.number + 2}</a>
 			  	</c:if>

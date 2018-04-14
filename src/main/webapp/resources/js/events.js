@@ -1,5 +1,4 @@
 function searchPaginate(page){
-	alert('page: '+page);
 	$('input#page').val(page);
 	$( "#eventSearchForm" ).submit();
 }
