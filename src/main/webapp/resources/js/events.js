@@ -1,3 +1,8 @@
+function searchPaginate(page){
+	alert('page: '+page);
+	$('input#page').val(page);
+	$( "#eventSearchForm" ).submit();
+}
 function joinToEvent(id){
 	$('input#idJoinEvent').val(id);
 	$( "#joinEventForm" ).submit();

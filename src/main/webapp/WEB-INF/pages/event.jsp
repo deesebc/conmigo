@@ -106,7 +106,7 @@
 											<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#mesaggeDialog" onclick="javascript: setUserIdMessageTo(${item.id},${user.id});"><spring:message code="b.sendMessage" /></button>
 										</c:if>
 										<c:if test="${item.id eq user.id}">
-											<button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})""><spring:message code="b.disjoin" /></button>
+											<button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})"><spring:message code="b.disjoin" /></button>
 											<c:set var="showBtnJoin" value="false" />
 										</c:if>
 									</security:authorize>

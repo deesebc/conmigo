@@ -14,7 +14,7 @@
 			  <a href="${pageContext.request.contextPath}/login" class="alert-link"><spring:message code="b.login" /></a>
 			</div>
 		</security:authorize>
-		<form modelAttribute="eventForm" method="post" action="${pageContext.request.contextPath}/events/search" cssClass="form-signin">
+		<form:form modelAttribute="eventSearchForm" method="post" action="${pageContext.request.contextPath}/events/search" id="eventSearchForm">
 		  <div class="row">
 		  	<div class="col-md-10">
 		  		<input id="name" name="name" cssErrorClass="form-control required haserror" type="text" maxlength="50" class="form-control required"  placeholder="Busca el evento al que quieres ir" />
@@ -24,7 +24,8 @@
 		  	</div>
 		  </div>
 		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		</form>
+		  <form:hidden path="page" id="page"/>
+		</form:form>
 		<c:if test="${not empty events}">
 			<br/>
 			<table class="table">
@@ -65,29 +66,29 @@
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination justify-content-end">
 				<c:if test="${events.number gt 0}">
-			  		<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/events/">First</a></li>
-			  		<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/events/${events.number-1}">Previous</a></li>
+			  		<li class="page-item"><a class="page-link"  onclick="javascript: searchPaginate(0)" href="#">First</a></li>
+			  		<li class="page-item"><a class="page-link" onclick="javascript: searchPaginate(${events.number-1})" href="#">Previous</a></li>
 			  	</c:if>
 			  	<c:if test="${events.number eq 0}">
 			  		<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">First</a></li>
 			  		<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
 			  	</c:if>
 			  	<c:if test="${events.number gt 1}">
-			  		<a class="page-link" href="${pageContext.request.contextPath}/events/${events.number-2}" tabindex="-1">${events.number - 1}</a>
+			  		<a class="page-link" onclick="javascript: searchPaginate(${events.number-2})" href="#" tabindex="-1">${events.number - 1}</a>
 			  	</c:if>
 			  	<c:if test="${events.number gt 0}">
-			  		<a class="page-link" href="${pageContext.request.contextPath}/events/${events.number-1}" tabindex="-1">${events.number}</a>
+			  		<a class="page-link" onclick="javascript: searchPaginate(${events.number-1})" href="#" tabindex="-1">${events.number}</a>
 			  	</c:if>
-			  	<li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath}/events/${events.number}">${events.number + 1} <span class="sr-only">(current)</span></a></li>
+			  	<li class="page-item active"><a class="page-link" onclick="javascript: searchPaginate(${events.number})" href="#">${events.number + 1} <span class="sr-only">(current)</span></a></li>
 			  	<c:if test="${events.number + 1 lt events.totalPages}">
-			  		<a class="page-link" href="${pageContext.request.contextPath}/events/${events.number+1}" tabindex="-1">${events.number + 2}</a>
+			  		<a class="page-link" onclick="javascript: searchPaginate(${events.number+1})" href="#" tabindex="-1">${events.number + 2}</a>
 			  	</c:if>
 			    <c:if test="${events.number + 2 lt events.totalPages}">
-			  		<a class="page-link" href="${pageContext.request.contextPath}/events/${events.number+2}" tabindex="-1">${events.number + 3}</a>
+			  		<a class="page-link" onclick="javascript: searchPaginate(${events.number+2})" href="#" tabindex="-1">${events.number + 3}</a>
 			  	</c:if>
 			  	<c:if test="${events.number + 1 lt events.totalPages}">
-			  		<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/events/${events.number+1}">Next</a></li>
-			  		<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/events/${events.totalPages-1}">Last</a></li>
+			  		<li class="page-item"><a class="page-link" onclick="javascript: searchPaginate(${events.number+1});" href="#">Next</a></li>
+			  		<li class="page-item"><a class="page-link" onclick="javascript: searchPaginate(${events.totalPages});" href="#">Last</a></li>
 			  	</c:if>
 			  	<c:if test="${events.number+1 eq events.totalPages}">
 			  		<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Next</a></li>
