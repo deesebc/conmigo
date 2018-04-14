@@ -62,7 +62,7 @@
 					</c:forEach>
 					</c:if>
 				</tbody>
-			</table>-number-${events.number}-totalPages-${events.totalPages}
+			</table>
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination justify-content-end">
 				<c:if test="${events.number gt 0}">
