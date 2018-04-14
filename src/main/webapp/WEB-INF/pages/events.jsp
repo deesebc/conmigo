@@ -61,7 +61,45 @@
 					</c:forEach>
 					</c:if>
 				</tbody>
-			</table>
+			</table>-number-${events.number}-totalPages-${events.totalPages}
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination justify-content-end">
+				<c:if test="${events.number gt 0}">
+			  		<li class="page-item"><a class="page-link" href="#">First</a></li>
+			  		<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+			  	</c:if>
+			  	<c:if test="${events.number eq 0}">
+			  		<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">First</a></li>
+			  		<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
+			  	</c:if>
+			  	<c:if test="${events.number gt 1}">
+			  		<a class="page-link" href="#" tabindex="-1">${events.number - 1}</a>
+			  	</c:if>
+			  	<c:if test="${events.number gt 0}">
+			  		<a class="page-link" href="#" tabindex="-1">${events.number}</a>
+			  	</c:if>
+			  	<li class="page-item active"><a class="page-link" href="#">${events.number + 1} <span class="sr-only">(current)</span></a></li>
+			  	<c:if test="${events.number + 1 lt events.totalPages}">
+			  		<a class="page-link" href="#" tabindex="-1">${events.number + 2}</a>
+			  	</c:if>
+			    <c:if test="${events.number + 2 lt events.totalPages}">
+			  		<a class="page-link" href="#" tabindex="-1">${events.number + 3}</a>
+			  	</c:if>
+			  	<c:if test="${events.number + 1 lt events.totalPages}">
+			  		<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			  	</c:if>
+			  	<c:if test="${events.number + 1 gt events.totalPages}">
+			  		<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Next</a></li>
+			  	</c:if>
+			  	<c:if test="${events.number lt events.totalPages}">
+			  		<li class="page-item"><a class="page-link" href="#">Last</a></li>
+			  	</c:if>
+			  	<c:if test="${events.number gt events.totalPages}">
+			  		<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Last</a></li>
+			  	</c:if>
+			  	
+			  </ul>
+			</nav>
 		</c:if>
 		<p>
 			<form id="createEventForm" action="${pageContext.request.contextPath}/event/create">
