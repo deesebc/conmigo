@@ -1,17 +1,18 @@
 package com.conmigo.app.service.impl;
 
+import java.util.function.Function;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 
 import com.conmigo.app.bbdd.dao.GenericDao;
 import com.conmigo.app.bbdd.dao.ProvinceDao;
 import com.conmigo.app.bbdd.jpa.Province;
-import com.conmigo.app.converter.ProvinceFromDto;
-import com.conmigo.app.converter.ProvinceToDto;
 import com.conmigo.app.dto.ProvinceDto;
+import com.conmigo.app.function.ProvinceFromDto;
+import com.conmigo.app.function.ProvinceToDto;
 import com.conmigo.app.service.ProvinceService;
 
 @Service
@@ -31,12 +32,12 @@ public class ProvinceServiceImpl extends GenericBSImpl<ProvinceDto, Province, Lo
     }
 
     @Override
-    protected Converter<Province, ProvinceDto> getConverterToDTO() {
+    protected Function<Province, ProvinceDto> getConverterToDTO() {
         return ProvinceToDto.INSTANCE;
     }
 
     @Override
-    protected Converter<ProvinceDto, Province> getConverterToEntity() {
+    protected Function<ProvinceDto, Province> getConverterToEntity() {
         return ProvinceFromDto.INSTANCE;
     }
 

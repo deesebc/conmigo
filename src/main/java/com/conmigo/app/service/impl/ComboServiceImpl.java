@@ -1,19 +1,19 @@
 package com.conmigo.app.service.impl;
 
 import java.util.List;
+import java.util.function.Function;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 
 import com.conmigo.app.bbdd.dao.ComboDao;
 import com.conmigo.app.bbdd.dao.GenericDao;
 import com.conmigo.app.bbdd.jpa.Combo;
-import com.conmigo.app.converter.ComboFromDto;
-import com.conmigo.app.converter.ComboToDto;
 import com.conmigo.app.dto.ComboDto;
+import com.conmigo.app.function.ComboFromDto;
+import com.conmigo.app.function.ComboToDto;
 import com.conmigo.app.service.ComboService;
 
 @Service
@@ -31,12 +31,12 @@ public class ComboServiceImpl extends GenericBSImpl<ComboDto, Combo, Long> imple
     }
 
     @Override
-    protected Converter<Combo, ComboDto> getConverterToDTO() {
+    protected Function<Combo, ComboDto> getConverterToDTO() {
         return ComboToDto.INSTANCE;
     }
 
     @Override
-    protected Converter<ComboDto, Combo> getConverterToEntity() {
+    protected Function<ComboDto, Combo> getConverterToEntity() {
         return ComboFromDto.INSTANCE;
     }
 

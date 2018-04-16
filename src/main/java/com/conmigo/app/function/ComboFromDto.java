@@ -1,17 +1,18 @@
-package com.conmigo.app.converter;
+package com.conmigo.app.function;
+
+import java.util.function.Function;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.core.convert.converter.Converter;
 
 import com.conmigo.app.bbdd.jpa.Combo;
 import com.conmigo.app.dto.ComboDto;
 
-public enum ComboFromDto implements Converter<ComboDto, Combo> {
+public enum ComboFromDto implements Function<ComboDto, Combo> {
     INSTANCE;
 
     @Override
-    public Combo convert(final ComboDto input) {
+    public Combo apply(final ComboDto input) {
         Combo output = new Combo();
         if (input != null) {
             ModelMapper model = new ModelMapper();

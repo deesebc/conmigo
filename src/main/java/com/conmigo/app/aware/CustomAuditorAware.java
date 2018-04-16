@@ -1,5 +1,7 @@
 package com.conmigo.app.aware;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,13 +12,14 @@ import com.conmigo.app.dto.CustomUserDetails;
 @Component
 public class CustomAuditorAware implements AuditorAware<Long> {
 
-	@Override
-	public Long getCurrentAuditor() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if( authentication == null || !authentication.isAuthenticated() || !(authentication.getPrincipal() instanceof CustomUserDetails) ) {
-			return 0l;
-		}
-		return ((CustomUserDetails) authentication.getPrincipal()).getId();
-	}
+    @Override
+    public Optional<Long> getCurrentAuditor() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()
+                || !(authentication.getPrincipal() instanceof CustomUserDetails)) {
+            return Optional.of(0l);
+        }
+        return Optional.of(((CustomUserDetails) authentication.getPrincipal()).getId());
+    }
 
 }

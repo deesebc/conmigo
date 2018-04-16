@@ -1,22 +1,23 @@
-package com.conmigo.app.converter;
+package com.conmigo.app.function;
+
+import java.util.function.Function;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.core.convert.converter.Converter;
 
 import com.conmigo.app.bbdd.jpa.Province;
 import com.conmigo.app.dto.ProvinceDto;
 
-public enum ProvinceFromDto implements Converter<ProvinceDto, Province> {
+public enum ProvinceToDto implements Function<Province, ProvinceDto> {
     INSTANCE;
 
     @Override
-    public Province convert(final ProvinceDto input) {
-        Province output = new Province();
+    public ProvinceDto apply(final Province input) {
+        ProvinceDto output = new ProvinceDto();
         if (input != null) {
             ModelMapper model = new ModelMapper();
             model.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-            output = model.map(input, Province.class);
+            output = model.map(input, ProvinceDto.class);
         }
         return output;
     }
