@@ -48,13 +48,13 @@
 							<td>${item.place}</td>
 							<td><javatime:format value="${item.date}" style="MS" /></td>
 							<td>
-								<button class="btn btn-primary" onclick="javascript: seeEvent(${item.id})"><spring:message code="b.see" /></button>&nbsp;&nbsp;
+								<button class="btn btn-primary" onclick="javascript: seeEvent(${item.id});"><spring:message code="b.see" /></button>&nbsp;&nbsp;
 								<c:choose>
 								  <c:when test="${fn:contains(userEvents, item.id)}">
-								    <button class="btn btn-primary" onclick="javascript: disjoinToEvent(${item.id})" ><spring:message code="b.disjoin" /></button>
+								    <button class="btn btn-primary" onclick="javascript: disjoinToEvent(${item.id});" ><spring:message code="b.disjoin" /></button>
 								  </c:when>
 								  <c:otherwise>
-								    <button class="btn btn-primary ${btnJoinDisable}" onclick="javascript: joinToEvent(${item.id})" ${btnJoinDisable}"><spring:message code="b.join" /></button>
+								    <button class="btn btn-primary ${btnJoinDisable}" onclick="javascript: joinToEvent(${item.id});" ${btnJoinDisable}><spring:message code="b.join" /></button>
 								  </c:otherwise>
 								</c:choose>
 							</td>
