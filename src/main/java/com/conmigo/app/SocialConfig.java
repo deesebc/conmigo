@@ -3,6 +3,7 @@ package com.conmigo.app;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.encrypt.Encryptors;
@@ -14,6 +15,7 @@ import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
+import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 
 /**
@@ -23,25 +25,33 @@ import org.springframework.social.security.AuthenticationNameUserIdSource;
 @EnableSocial
 public class SocialConfig implements SocialConfigurer {
 
-	@Autowired
-	private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-	@Autowired
-	private ConnectionSignUp customConnection;
+    @Autowired
+    private ConnectionSignUp customConnection;
 
-	@Override
-	public void addConnectionFactories( final ConnectionFactoryConfigurer connectionFactoryConfigurer, final Environment environment ) {
-	}
+    @Value("${spring.social.facebook.appId}")
+    private String facebookAppId;
 
-	@Override
-	public UserIdSource getUserIdSource() {
-		return new AuthenticationNameUserIdSource();
-	}
+    @Value("${spring.social.facebook.appSecret}")
+    private String facebookAppSecret;
 
-	@Override
-	public UsersConnectionRepository getUsersConnectionRepository( final ConnectionFactoryLocator connectionFactoryLocator ) {
-		JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository( dataSource, connectionFactoryLocator, Encryptors.noOpText() );
-		repository.setConnectionSignUp( customConnection );
-		return repository;
-	}
+    @Override
+    public void addConnectionFactories(final ConnectionFactoryConfigurer cfConfig, final Environment env) {
+        cfConfig.addConnectionFactory(new FacebookConnectionFactory(facebookAppId, facebookAppSecret));
+    }
+
+    @Override
+    public UserIdSource getUserIdSource() {
+        return new AuthenticationNameUserIdSource();
+    }
+
+    @Override
+    public UsersConnectionRepository getUsersConnectionRepository(final ConnectionFactoryLocator connectionFactoryLocator) {
+        JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator,
+                Encryptors.noOpText());
+        repository.setConnectionSignUp(customConnection);
+        return repository;
+    }
 }
