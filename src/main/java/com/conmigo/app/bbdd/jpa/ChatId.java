@@ -2,6 +2,7 @@ package com.conmigo.app.bbdd.jpa;
 // Generated Apr 21, 2018 8:15:12 AM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -11,6 +12,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ChatId implements java.io.Serializable {
 
+    private static final long serialVersionUID = 1L;
     private long event;
     private long sender;
     private long receiver;
@@ -19,7 +21,7 @@ public class ChatId implements java.io.Serializable {
     public ChatId() {
     }
 
-    public ChatId(long event, long sender, long receiver, Date date) {
+    public ChatId(final long event, final long sender, final long receiver, final Date date) {
         this.event = event;
         this.sender = sender;
         this.receiver = receiver;
@@ -28,61 +30,66 @@ public class ChatId implements java.io.Serializable {
 
     @Column(name = "EVENT", nullable = false)
     public long getEvent() {
-        return this.event;
+        return event;
     }
 
-    public void setEvent(long event) {
+    public void setEvent(final long event) {
         this.event = event;
     }
 
     @Column(name = "SENDER", nullable = false)
     public long getSender() {
-        return this.sender;
+        return sender;
     }
 
-    public void setSender(long sender) {
+    public void setSender(final long sender) {
         this.sender = sender;
     }
 
     @Column(name = "RECEIVER", nullable = false)
     public long getReceiver() {
-        return this.receiver;
+        return receiver;
     }
 
-    public void setReceiver(long receiver) {
+    public void setReceiver(final long receiver) {
         this.receiver = receiver;
     }
 
     @Column(name = "DATE", nullable = false, length = 19)
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(final Date date) {
         this.date = date;
     }
 
-    public boolean equals(Object other) {
-        if ((this == other))
+    @Override
+    public boolean equals(final Object other) {
+        if (this == other) {
             return true;
-        if ((other == null))
+        }
+        if (other == null) {
             return false;
-        if (!(other instanceof ChatId))
+        }
+        if (!(other instanceof ChatId)) {
             return false;
+        }
         ChatId castOther = (ChatId) other;
 
-        return (this.getEvent() == castOther.getEvent()) && (this.getSender() == castOther.getSender())
-                && (this.getReceiver() == castOther.getReceiver()) && ((this.getDate() == castOther.getDate())
-                        || (this.getDate() != null && castOther.getDate() != null && this.getDate().equals(castOther.getDate())));
+        return getEvent() == castOther.getEvent() && getSender() == castOther.getSender()
+                && getReceiver() == castOther.getReceiver() && (getDate() == castOther.getDate()
+                        || getDate() != null && castOther.getDate() != null && getDate().equals(castOther.getDate()));
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
 
-        result = 37 * result + (int) this.getEvent();
-        result = 37 * result + (int) this.getSender();
-        result = 37 * result + (int) this.getReceiver();
-        result = 37 * result + (getDate() == null ? 0 : this.getDate().hashCode());
+        result = 37 * result + (int) getEvent();
+        result = 37 * result + (int) getSender();
+        result = 37 * result + (int) getReceiver();
+        result = 37 * result + (getDate() == null ? 0 : getDate().hashCode());
         return result;
     }
 

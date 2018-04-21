@@ -2,35 +2,38 @@ package com.conmigo.app.dto;
 
 import java.time.LocalDateTime;
 
-public class ChatDto extends GenericDto<Long> {
+import com.conmigo.app.bbdd.jpa.ChatId;
+
+public class ChatDto extends GenericDto<ChatId> {
+
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private ChatId id;
     private EventDto event;
-    private UserDto userBySender;
     private UserDto userByReceiver;
+    private UserDto userBySender;
     private String text;
-    private LocalDateTime date;
 
     public ChatDto() {
     }
 
-    public ChatDto(final EventDto event, final UserDto userBySender, final UserDto userByReceiver, final long createdBy,
-            final LocalDateTime createdDate) {
+    public ChatDto(final ChatId id, final EventDto event, final UserDto userByReceiver, final UserDto userBySender,
+            final long createdBy, final LocalDateTime createdDate) {
+        this.id = id;
         this.event = event;
-        this.userBySender = userBySender;
         this.userByReceiver = userByReceiver;
+        this.userBySender = userBySender;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
     }
 
-    public ChatDto(final EventDto event, final UserDto userBySender, final UserDto userByReceiver, final String text,
-            final LocalDateTime date, final long createdBy, final LocalDateTime createdDate, final Long lastModifiedBy,
+    public ChatDto(final ChatId id, final EventDto event, final UserDto userByReceiver, final UserDto userBySender,
+            final String text, final long createdBy, final LocalDateTime createdDate, final Long lastModifiedBy,
             final LocalDateTime lastModifiedDate, final Boolean enable) {
+        this.id = id;
         this.event = event;
-        this.userBySender = userBySender;
         this.userByReceiver = userByReceiver;
+        this.userBySender = userBySender;
         this.text = text;
-        this.date = date;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
@@ -39,12 +42,12 @@ public class ChatDto extends GenericDto<Long> {
     }
 
     @Override
-    public Long getId() {
+    public ChatId getId() {
         return id;
     }
 
     @Override
-    public void setId(final Long id) {
+    public void setId(final ChatId id) {
         this.id = id;
     }
 
@@ -56,14 +59,6 @@ public class ChatDto extends GenericDto<Long> {
         this.event = event;
     }
 
-    public UserDto getUserBySender() {
-        return userBySender;
-    }
-
-    public void setUserBySender(final UserDto userBySender) {
-        this.userBySender = userBySender;
-    }
-
     public UserDto getUserByReceiver() {
         return userByReceiver;
     }
@@ -72,20 +67,20 @@ public class ChatDto extends GenericDto<Long> {
         this.userByReceiver = userByReceiver;
     }
 
+    public UserDto getUserBySender() {
+        return userBySender;
+    }
+
+    public void setUserBySender(final UserDto userBySender) {
+        this.userBySender = userBySender;
+    }
+
     public String getText() {
         return text;
     }
 
     public void setText(final String text) {
         this.text = text;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(final LocalDateTime date) {
-        this.date = date;
     }
 
 }
