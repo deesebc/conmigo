@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.conmigo.app.dto.ChatDto;
 import com.conmigo.app.service.ChatService;
-import com.conmigo.app.vo.ChatMessageVo;
+import com.conmigo.app.util.SecurityUtil;
 import com.conmigo.app.vo.ChatRoomVo;
 
 @Controller
@@ -32,19 +32,10 @@ public class ChatRoomController {
         // Long idUser = SecurityUtil.getIdUser();
         List<ChatDto> list = cService.findAll();
         model.addAttribute("messages", list);
-        model.addAttribute("receiver", chatroom.getReceiverChat());
-        model.addAttribute("event", chatroom.getEventChat());
+        model.addAttribute("receiverId", chatroom.getReceiverId());
+        model.addAttribute("eventId", chatroom.getEventId());
+        model.addAttribute("senderId", SecurityUtil.getIdUser());
         return PAGE;
     }
 
-    @PostMapping("/send")
-    public String send(@ModelAttribute("chatroom") final ChatMessageVo message, final Model model) {
-        LOGGER.info("ChatRoom - send");
-        // Long idUser = SecurityUtil.getIdUser();
-        List<ChatDto> list = cService.findAll();
-        model.addAttribute("messages", list);
-        model.addAttribute("receiver", message.getReceiver());
-        model.addAttribute("event", message.getEvent());
-        return PAGE;
-    }
 }

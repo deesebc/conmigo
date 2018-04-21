@@ -2,8 +2,19 @@ package com.conmigo.app.vo;
 
 public class ChatMessageVo {
     private String message;
-    private Long event;
-    private Long receiver;
+    private Long eventId;
+    private Long receiverId;
+    private Long senderId;
+    private String receiverUsername;
+    private String senderUsername;
+
+    public Long getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(final Long senderId) {
+        this.senderId = senderId;
+    }
 
     public String getMessage() {
         return message;
@@ -13,20 +24,36 @@ public class ChatMessageVo {
         this.message = message;
     }
 
-    public Long getEvent() {
-        return event;
+    public Long getEventId() {
+        return eventId;
     }
 
-    public void setEvent(final Long event) {
-        this.event = event;
+    public void setEventId(final Long eventId) {
+        this.eventId = eventId;
     }
 
-    public Long getReceiver() {
-        return receiver;
+    public Long getReceiverId() {
+        return receiverId;
     }
 
-    public void setReceiver(final Long receiver) {
-        this.receiver = receiver;
+    public void setReceiverId(final Long receiverId) {
+        this.receiverId = receiverId;
+    }
+
+    public String getReceiverUsername() {
+        return receiverUsername;
+    }
+
+    public void setReceiverUsername(final String receiverUsername) {
+        this.receiverUsername = receiverUsername;
+    }
+
+    public String getSenderUsername() {
+        return senderUsername;
+    }
+
+    public void setSenderUsername(final String senderUsername) {
+        this.senderUsername = senderUsername;
     }
 
 }

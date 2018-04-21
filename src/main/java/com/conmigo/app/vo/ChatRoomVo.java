@@ -2,23 +2,23 @@ package com.conmigo.app.vo;
 
 public class ChatRoomVo {
 
-    private Long receiverChat;
-    private Long eventChat;
+    private Long receiverId;
+    private Long eventId;
 
-    public Long getReceiverChat() {
-        return receiverChat;
+    public Long getReceiverId() {
+        return receiverId;
     }
 
-    public void setReceiverChat(final Long receiverChat) {
-        this.receiverChat = receiverChat;
+    public void setReceiverId(final Long receiverId) {
+        this.receiverId = receiverId;
     }
 
-    public Long getEventChat() {
-        return eventChat;
+    public Long getEventId() {
+        return eventId;
     }
 
-    public void setEventChat(final Long eventChat) {
-        this.eventChat = eventChat;
+    public void setEventId(final Long eventId) {
+        this.eventId = eventId;
     }
 
 }

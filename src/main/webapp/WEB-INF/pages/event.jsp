@@ -103,7 +103,7 @@
 								<td>
 									<security:authorize access="isFullyAuthenticated()">
 										<c:if test="${item.id ne user.id}">
-											<button class="btn btn-primary" type="button" onclick="javascript: sendMessageTo(${item.id},${user.id});"><spring:message code="b.sendMessage" /></button>
+											<button class="btn btn-primary" type="button" onclick="javascript: sendMessageTo(${event.id},${item.id});"><spring:message code="b.sendMessage" /></button>
 										</c:if>
 										<c:if test="${item.id eq user.id}">
 											<button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})"><spring:message code="b.disjoin" /></button>
@@ -135,7 +135,7 @@
 </div>
 <!-- hidden forms -->
 <form id="sendMessageToForm" action="${pageContext.request.contextPath}/chatroom/" method="post">
-	<input type="hidden" id="eventChat" name="eventChat" />
-	<input type="hidden" id="receiverChat" name="receiverChat" />
+	<input type="hidden" id="eventId" name="eventId" />
+	<input type="hidden" id="receiverId" name="receiverId" />
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>

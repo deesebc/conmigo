@@ -1,4 +1,5 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
+<security:authentication var="user" property="principal" />
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="chat-header">
@@ -13,8 +14,9 @@
             <form id="messageForm" name="messageForm" >
                 <div class="form-group">
                     <div class="input-group clearfix">
-                    		<input type="hidden" id="receiver" name="receiver" value="${receiver}" />
-                    		<input type="hidden" id="event" name="event" value="${event}"/>
+                    		<input type="hidden" id="receiverId" name="receiverId" value="${receiverId}" />
+                    		<input type="hidden" id="eventId" name="eventId" value="${eventId}"/>
+                    		<input type="hidden" id="senderId" name="senderId" value="${senderId}"/>
                     		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
                         <button type="submit" class="primary">Send</button>
