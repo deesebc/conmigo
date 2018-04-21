@@ -51,6 +51,11 @@
 		<put-attribute name="body" value="/WEB-INF/pages/messages.jsp" />
 		<put-attribute name="customScripts" value="" />
 	</definition>
+  
+  <definition name="site.chatroom" extends="layout.basic">
+    <put-attribute name="body" value="/WEB-INF/pages/chatroom.jsp" />
+    <put-attribute name="customScripts" value="/WEB-INF/tiles/view/scripts/chatroomScript.jsp" />
+  </definition>
 	
 	<definition name="site.login" extends="layout.basic">
 		<put-attribute name="pageCssStyle" value="/WEB-INF/tiles/view/css/signinCss.jsp" />

@@ -103,7 +103,7 @@
 								<td>
 									<security:authorize access="isFullyAuthenticated()">
 										<c:if test="${item.id ne user.id}">
-											<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#mesaggeDialog" onclick="javascript: setUserIdMessageTo(${item.id},${user.id});"><spring:message code="b.sendMessage" /></button>
+											<button class="btn btn-primary" type="button" onclick="javascript: sendMessageTo(${item.id},${user.id});"><spring:message code="b.sendMessage" /></button>
 										</c:if>
 										<c:if test="${item.id eq user.id}">
 											<button class="btn btn-primary" onclick="javascript: joinToEvent(${item.id})"><spring:message code="b.disjoin" /></button>
@@ -133,21 +133,9 @@
 		</section>
 	</c:if>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="mesaggeDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><spring:message code="b.sendMessage" /></h4>
-      </div>
-      <div class="modal-body interest-grid col-xs-12"> 
-      	<div class="create-popup-messages"></div>
-      	<textarea id="message" name="message"></textarea> 	
-      </div>
-      <div class="modal-footer">
-        <button id="save-message" onclick="javascript:sendMessage();" class="btn btn-primary"><spring:message code="b.sendMessage" /></button>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- hidden forms -->
+<form id="sendMessageToForm" action="${pageContext.request.contextPath}/chatroom/" method="post">
+	<input type="hidden" id="eventChat" name="eventChat" />
+	<input type="hidden" id="receiverChat" name="receiverChat" />
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</form>

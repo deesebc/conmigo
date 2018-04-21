@@ -1,8 +1,7 @@
-function setUserIdMessageTo(userIdMessageTo, userIdMessageFrom){
-	localStorage.setItem("userIdMessageTo", userToId);
-	localStorage.setItem("userIdMessageFrom", userIdMessageFrom);
-	//borramos el mensaje anterior
-	$('#message').val('');
+function sendMessageTo(eventChat, receiverChat){
+	$('input#eventChat').val(eventChat);
+	$('input#receiverChat').val(receiverChat);
+	$( "#sendMessageToForm" ).submit();
 }
 
 function sendMessage(){

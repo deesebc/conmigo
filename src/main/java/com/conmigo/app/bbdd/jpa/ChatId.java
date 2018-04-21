@@ -1,7 +1,7 @@
 package com.conmigo.app.bbdd.jpa;
 // Generated Apr 21, 2018 8:15:12 AM by Hibernate Tools 5.2.8.Final
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -16,12 +16,12 @@ public class ChatId implements java.io.Serializable {
     private long event;
     private long sender;
     private long receiver;
-    private Date date;
+    private LocalDateTime date;
 
     public ChatId() {
     }
 
-    public ChatId(final long event, final long sender, final long receiver, final Date date) {
+    public ChatId(final long event, final long sender, final long receiver, final LocalDateTime date) {
         this.event = event;
         this.sender = sender;
         this.receiver = receiver;
@@ -56,11 +56,11 @@ public class ChatId implements java.io.Serializable {
     }
 
     @Column(name = "DATE", nullable = false, length = 19)
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(final Date date) {
+    public void setDate(final LocalDateTime date) {
         this.date = date;
     }
 

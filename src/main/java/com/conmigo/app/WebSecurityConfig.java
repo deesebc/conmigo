@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final static String[] PUBLIC_PAGES = { "/", "/error", "/register", "/event/", "/events/**", "/aboutUs/",
             "/legalAdvice/", LOGIN_PAGE, LOGOUT_PAGE };
 
-    private final static String[] RESTRICTED_PAGES = { "/event/create", "/form/validate/**" };
+    private final static String[] RESTRICTED_PAGES = { "/chatroom/**", "/event/create", "/form/validate/**" };
     @Autowired
     UserDetailsService userDetailsService;
 
