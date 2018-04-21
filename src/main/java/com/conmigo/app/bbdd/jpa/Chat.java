@@ -1,15 +1,13 @@
 package com.conmigo.app.bbdd.jpa;
-// Generated Apr 19, 2018 9:14:36 PM by Hibernate Tools 5.2.8.Final
+// Generated Apr 21, 2018 8:15:12 AM by Hibernate Tools 5.2.8.Final
 
-import static javax.persistence.GenerationType.IDENTITY;
-
-import java.time.LocalDateTime;
-
+import java.util.Date;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,35 +19,38 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "chat", catalog = "conmigodb")
-public class Chat extends GenericEntity<Long> {
-    private static final long serialVersionUID = 1L;
-    private Long id;
+public class Chat implements java.io.Serializable {
+
+    private ChatId id;
     private Event event;
-    private User userBySender;
     private User userByReceiver;
+    private User userBySender;
     private String text;
-    private LocalDateTime date;
+    private long createdBy;
+    private Date createdDate;
+    private Long lastModifiedBy;
+    private Date lastModifiedDate;
+    private Boolean enable;
 
     public Chat() {
     }
 
-    public Chat(final Event event, final User userBySender, final User userByReceiver, final long createdBy,
-            final LocalDateTime createdDate) {
+    public Chat(ChatId id, Event event, User userByReceiver, User userBySender, long createdBy, Date createdDate) {
+        this.id = id;
         this.event = event;
-        this.userBySender = userBySender;
         this.userByReceiver = userByReceiver;
+        this.userBySender = userBySender;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
     }
 
-    public Chat(final Event event, final User userBySender, final User userByReceiver, final String text,
-            final LocalDateTime date, final long createdBy, final LocalDateTime createdDate, final Long lastModifiedBy,
-            final LocalDateTime lastModifiedDate, final Boolean enable) {
+    public Chat(ChatId id, Event event, User userByReceiver, User userBySender, String text, long createdBy, Date createdDate,
+            Long lastModifiedBy, Date lastModifiedDate, Boolean enable) {
+        this.id = id;
         this.event = event;
-        this.userBySender = userBySender;
         this.userByReceiver = userByReceiver;
+        this.userBySender = userBySender;
         this.text = text;
-        this.date = date;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
@@ -57,66 +58,104 @@ public class Chat extends GenericEntity<Long> {
         this.enable = enable;
     }
 
-    @Override
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
-    public Long getId() {
-        return id;
+    @EmbeddedId
+
+    @AttributeOverrides({ @AttributeOverride(name = "event", column = @Column(name = "EVENT", nullable = false)),
+            @AttributeOverride(name = "sender", column = @Column(name = "SENDER", nullable = false)),
+            @AttributeOverride(name = "receiver", column = @Column(name = "RECEIVER", nullable = false)),
+            @AttributeOverride(name = "date", column = @Column(name = "DATE", nullable = false, length = 19)) })
+    public ChatId getId() {
+        return this.id;
     }
 
-    @Override
-    public void setId(final Long id) {
+    public void setId(ChatId id) {
         this.id = id;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EVENT", nullable = false)
+    @JoinColumn(name = "EVENT", nullable = false, insertable = false, updatable = false)
     public Event getEvent() {
-        return event;
+        return this.event;
     }
 
-    public void setEvent(final Event event) {
+    public void setEvent(Event event) {
         this.event = event;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SENDER", nullable = false)
-    public User getUserBySender() {
-        return userBySender;
+    @JoinColumn(name = "RECEIVER", nullable = false, insertable = false, updatable = false)
+    public User getUserByReceiver() {
+        return this.userByReceiver;
     }
 
-    public void setUserBySender(final User userBySender) {
-        this.userBySender = userBySender;
+    public void setUserByReceiver(User userByReceiver) {
+        this.userByReceiver = userByReceiver;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "RECEIVER", nullable = false)
-    public User getUserByReceiver() {
-        return userByReceiver;
+    @JoinColumn(name = "SENDER", nullable = false, insertable = false, updatable = false)
+    public User getUserBySender() {
+        return this.userBySender;
     }
 
-    public void setUserByReceiver(final User userByReceiver) {
-        this.userByReceiver = userByReceiver;
+    public void setUserBySender(User userBySender) {
+        this.userBySender = userBySender;
     }
 
     @Column(name = "TEXT", length = 65535)
     public String getText() {
-        return text;
+        return this.text;
     }
 
-    public void setText(final String text) {
+    public void setText(String text) {
         this.text = text;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATE", length = 19)
-    public LocalDateTime getDate() {
-        return date;
+    @Column(name = "CREATED_BY", nullable = false)
+    public long getCreatedBy() {
+        return this.createdBy;
     }
 
-    public void setDate(final LocalDateTime date) {
-        this.date = date;
+    public void setCreatedBy(long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "CREATED_DATE", nullable = false, length = 10)
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    @Column(name = "LAST_MODIFIED_BY")
+    public Long getLastModifiedBy() {
+        return this.lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(Long lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "LAST_MODIFIED_DATE", length = 10)
+    public Date getLastModifiedDate() {
+        return this.lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    @Column(name = "ENABLE")
+    public Boolean getEnable() {
+        return this.enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
     }
 
 }
