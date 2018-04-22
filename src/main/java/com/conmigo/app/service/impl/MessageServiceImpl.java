@@ -5,19 +5,14 @@ import java.util.function.Function;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.conmigo.app.bbdd.dao.GenericDao;
 import com.conmigo.app.bbdd.dao.MessageDao;
 import com.conmigo.app.bbdd.jpa.Message;
-import com.conmigo.app.bbdd.jpa.User;
 import com.conmigo.app.dto.MessageDto;
-import com.conmigo.app.dto.UserDto;
 import com.conmigo.app.function.MessageFromDto;
 import com.conmigo.app.function.MessageToDto;
-import com.conmigo.app.function.UserFromDto;
 import com.conmigo.app.service.MessageService;
 
 @Service
@@ -46,13 +41,6 @@ public class MessageServiceImpl extends GenericBSImpl<MessageDto, Message, Long>
 
     public void setDao(final MessageDao dao) {
         this.dao = dao;
-    }
-
-    @Override
-    public Page<MessageDto> findByReceiver(final Pageable pageRequest, final UserDto receiver) {
-        User user = UserFromDto.INSTANCE.apply(receiver);
-        final Page<Message> pageEntities = dao.findByReceiver(pageRequest, user);
-        return pageEntities.map(getConverterToDTO());
     }
 
 }

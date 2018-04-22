@@ -29,13 +29,24 @@ public class ChatRoomController {
     @PostMapping("/")
     public String view(@ModelAttribute("chatroom") final ChatRoomVo chatroom, final Model model) {
         LOGGER.info("ChatRoom - view");
-        // Long idUser = SecurityUtil.getIdUser();
+        Long idUser = SecurityUtil.getIdUser();
         List<ChatDto> list = cService.findAll();
         model.addAttribute("messages", list);
         model.addAttribute("receiverId", chatroom.getReceiverId());
         model.addAttribute("eventId", chatroom.getEventId());
-        model.addAttribute("senderId", SecurityUtil.getIdUser());
+        model.addAttribute("senderId", idUser);
+        model.addAttribute("chatroomId", getHash(chatroom.getEventId(), chatroom.getReceiverId(), idUser));
         return PAGE;
+    }
+
+    private int getHash(final Long eventId, final Long receiverId, final Long userId) {
+        String exit = eventId + "#";
+        if (receiverId < userId) {
+            exit += receiverId + "#" + userId;
+        } else {
+            exit += userId + "#" + receiverId;
+        }
+        return exit.hashCode();
     }
 
 }

@@ -7,6 +7,15 @@ public class ChatMessageVo {
     private Long senderId;
     private String receiverUsername;
     private String senderUsername;
+    private Integer chatroomId;
+
+    public Integer getChatroomId() {
+        return chatroomId;
+    }
+
+    public void setChatroomId(final Integer chatroomId) {
+        this.chatroomId = chatroomId;
+    }
 
     public Long getSenderId() {
         return senderId;

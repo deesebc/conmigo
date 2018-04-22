@@ -7,6 +7,7 @@ var messageArea = document.querySelector('#messageArea');
 var senderId = document.querySelector('#senderId');
 var receiverId = document.querySelector('#receiverId');
 var eventId = document.querySelector('#eventId');
+var chatroomId = document.querySelector('#chatroomId');
 
 var colors = [ '#2196F3', '#32c787', '#00BCD4', '#ff5652', '#ffc107',
 		'#ff85af', '#FF9800', '#39bbb0' ];
@@ -19,9 +20,10 @@ function connectWebSocket() {
 }
 
 function onConnected() {
-	// Subscribe to the Public Topic
-	stompClient.subscribe('/topic/public', onMessageReceived);
-
+	// Subscribe to the room Topic
+	var room = '/topic/room/'+chatroomId.value;
+	alert('conectando: '+room);
+	stompClient.subscribe('/topic/room/'+chatroomId.value, onMessageReceived);
 	connectingElement.classList.add('hidden');
 }
 
@@ -39,9 +41,10 @@ function sendMessage(event) {
 			receiverId : receiverId.value,
 			eventId : eventId.value,
 			senderId: senderId.value,
+			chatroomId: chatroomId.value,
 			message : messageContent
 		};
-		stompClient.send("/chat.sendMessage", {}, JSON.stringify(chatMessage));
+		stompClient.send("/chat."+chatroomId.value+".sendMessage", {}, JSON.stringify(chatMessage));
 		messageInput.value = '';
 	}
 	event.preventDefault();
