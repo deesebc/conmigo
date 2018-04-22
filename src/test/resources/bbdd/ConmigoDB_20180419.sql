@@ -39,9 +39,9 @@ CREATE TABLE `chat` (
   KEY `CHAT_EVENT_FK` (`EVENT`),
   KEY `CHAT_SENDER_FK` (`SENDER`),
   KEY `CHAT_RECEIVER_FK` (`RECEIVER`),
-  CONSTRAINT `CHAT_SENDER_FK` FOREIGN KEY (`SENDER`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `CHAT_EVENT_FK` FOREIGN KEY (`EVENT`) REFERENCES `event` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `CHAT_RECEIVER_FK` FOREIGN KEY (`RECEIVER`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `CHAT_EVENT_FK` FOREIGN KEY (`EVENT`) REFERENCES `event` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `CHAT_SENDER_FK` FOREIGN KEY (`SENDER`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabla de Mensajes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,7 +51,44 @@ CREATE TABLE `chat` (
 
 LOCK TABLES `chat` WRITE;
 /*!40000 ALTER TABLE `chat` DISABLE KEYS */;
+INSERT INTO `chat` VALUES (11,6,19,'asdf','2018-04-21 19:24:34',0,'2018-04-21',0,'2018-04-21',1),(11,6,19,'asdf','2018-04-21 19:25:14',0,'2018-04-21',0,'2018-04-21',1),(11,6,19,'asdf','2018-04-21 19:29:06',0,'2018-04-21',0,'2018-04-21',1),(11,6,19,'asdf','2018-04-21 19:29:13',0,'2018-04-21',0,'2018-04-21',1);
 /*!40000 ALTER TABLE `chat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `chatroom`
+--
+
+DROP TABLE IF EXISTS `chatroom`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `chatroom` (
+  `ID` bigint(20) NOT NULL,
+  `COMPONENT1` bigint(20) NOT NULL,
+  `COMPONENT2` bigint(20) NOT NULL,
+  `EVENT` bigint(20) NOT NULL,
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` date NOT NULL,
+  `LAST_MODIFIED_BY` bigint(20) DEFAULT NULL,
+  `LAST_MODIFIED_DATE` date DEFAULT NULL,
+  `ENABLE` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `CHATROOM_EVENT_FK` (`EVENT`),
+  KEY `CHATROOM_COMPONENT1_FK` (`COMPONENT1`),
+  KEY `CHATROOM_COMPONENT2_FK` (`COMPONENT2`),
+  CONSTRAINT `CHATROOM_COMPONENT1_FK` FOREIGN KEY (`COMPONENT1`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `CHATROOM_COMPONENT2_FK` FOREIGN KEY (`COMPONENT2`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `CHATROOM_EVENT_FK` FOREIGN KEY (`EVENT`) REFERENCES `event` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabla de chat rooms';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `chatroom`
+--
+
+LOCK TABLES `chatroom` WRITE;
+/*!40000 ALTER TABLE `chatroom` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chatroom` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -119,6 +156,39 @@ LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
 INSERT INTO `event` VALUES (1,'Gran pelicula','2017-02-28 12:27:00',NULL,NULL,NULL,0,NULL,NULL,NULL,1),(2,'Gran pelicula','2017-02-22 12:20:00','Cine de Bormujos','event.type.cinema',NULL,0,'2017-02-21 15:46:13',6,'2017-02-21 15:46:13',1),(3,'prueba con provincia','2018-04-20 00:00:00','prueba con provincia lugar','event.type.cinema',3,NULL,NULL,6,'2018-04-13 07:42:19',1),(4,'Gran pelicula 4','2017-02-22 13:13:00','Cine de Bormujos','event.type.cinema',NULL,6,'2017-02-22 13:14:24',6,'2017-02-22 13:14:24',1),(5,'Gran pelicula 5','2017-02-22 13:14:00','Cine de Bormujos','event.type.cinema',NULL,6,'2017-02-22 13:15:53',6,'2017-02-22 13:15:53',1),(6,'Gran pelicula 6','2017-02-22 13:31:00','Cine de Bormujos','event.type.cinema',NULL,6,'2017-02-22 13:31:45',6,'2017-02-22 13:31:45',1),(7,'nombre',NULL,'lugar','event.type.cinema',NULL,6,'2018-04-10 18:46:23',6,'2018-04-10 18:46:23',1),(8,'nombre dos',NULL,'lugar','event.type.concert',NULL,6,'2018-04-10 18:47:50',6,'2018-04-10 18:47:50',1),(9,'datetime',NULL,'','-',NULL,6,'2018-04-10 18:55:12',6,'2018-04-10 18:55:12',1),(10,'name','2009-10-19 15:20:00','lugar','event.type.cinema',NULL,6,'2018-04-10 19:02:46',6,'2018-04-10 19:02:46',1),(11,'Evento eterno','2100-09-15 15:30:00','bormuji','event.type.concert',3,6,'2018-04-10 21:03:25',6,'2018-04-10 21:03:25',1);
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `message` (
+  `ID` bigint(20) NOT NULL,
+  `CHATROOM` bigint(20) NOT NULL,
+  `SENDER` bigint(20) NOT NULL,
+  `TEXT` text,
+  `DATE` datetime NOT NULL,
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` date NOT NULL,
+  `LAST_MODIFIED_BY` bigint(20) DEFAULT NULL,
+  `LAST_MODIFIED_DATE` date DEFAULT NULL,
+  `ENABLE` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `MESSAGE_CHATROOM_FK` (`CHATROOM`),
+  CONSTRAINT `MESSAGE_CHATROOM_FK` FOREIGN KEY (`CHATROOM`) REFERENCES `chatroom` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabla de mensajes';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `message`
+--
+
+LOCK TABLES `message` WRITE;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -320,4 +390,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-20 22:00:33
+-- Dump completed on 2018-04-21 23:42:23

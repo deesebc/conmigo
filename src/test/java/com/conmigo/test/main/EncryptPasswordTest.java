@@ -12,24 +12,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 public class EncryptPasswordTest {
 
-	public static void main( final String... args ) {
-		try {
-			// String password = generatePassword();
-			String password = "usuarioPrueba1";
-			System.out.println( "password: " + password );
-			String encrypt = encryptPassword( password );
-			System.out.println( "encrypt: " + encrypt );
-		} catch( Exception except ) {
-			except.printStackTrace();
-		}
-	}
+    public static void main(final String... args) {
+        try {
+            // String password = generatePassword();
+            String password = "usuarioPrueba1";
+            System.out.println("password: " + password);
+            String encrypt = encryptPassword(password);
+            System.out.println("encrypt: " + encrypt);
+            System.out.println("19#84#8->" + encryptPassword("19#84#8"));
+            System.out.println("19#84#8->" + encryptPassword("19#84#8"));
+        } catch (Exception except) {
+            except.printStackTrace();
+        }
+    }
 
-	private static String generatePassword() {
-		return RandomStringUtils.randomAlphanumeric( 17 );
-	}
+    private static String generatePassword() {
+        return RandomStringUtils.randomAlphanumeric(17);
+    }
 
-	private static String encryptPassword( final String password ) {
-		return new BCryptPasswordEncoder().encode( password );
-	}
+    private static String encryptPassword(final String password) {
+        return new BCryptPasswordEncoder().encode(password);
+    }
 
 }
