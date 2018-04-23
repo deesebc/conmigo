@@ -22,6 +22,7 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
 
     private static final long serialVersionUID = 4037578824025696367L;
 
+    protected K id;
     protected Boolean enable = true;
     protected Long createdBy;
     protected LocalDateTime createdDate;
@@ -52,7 +53,9 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
-    public abstract K getId();
+    public K getId() {
+        return id;
+    }
 
     @Column(name = "LAST_MODIFIED_BY")
     @LastModifiedBy
@@ -74,7 +77,9 @@ public abstract class GenericEntity<K extends Serializable> implements Serializa
         this.createdDate = createdDate;
     }
 
-    public abstract void setId(K id);
+    public void setId(final K id) {
+        this.id = id;
+    };
 
     public void setLastModifiedBy(final Long lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;

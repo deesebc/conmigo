@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,7 +18,6 @@ import javax.persistence.Table;
 public class Message extends GenericEntity<Long> {
 
     private static final long serialVersionUID = 1L;
-    private Long id;
     private Chatroom chatroom;
     private long sender;
     private String text;
@@ -51,19 +49,6 @@ public class Message extends GenericEntity<Long> {
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
         this.enable = enable;
-    }
-
-    @Override
-    @Id
-
-    @Column(name = "ID", unique = true, nullable = false)
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(final Long id) {
-        this.id = id;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
