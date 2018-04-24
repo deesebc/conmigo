@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.conmigo.app.bbdd.dao.ChatroomDao;
 import com.conmigo.app.bbdd.dao.GenericDao;
 import com.conmigo.app.bbdd.jpa.Chatroom;
-import com.conmigo.app.bbdd.jpa.User;
 import com.conmigo.app.dto.ChatroomDto;
 import com.conmigo.app.function.ChatroomFromDto;
 import com.conmigo.app.function.ChatroomToDto;
@@ -47,9 +46,7 @@ public class ChatroomServiceImpl extends GenericBSImpl<ChatroomDto, Chatroom, Lo
 
     @Override
     public List<ChatroomDto> findByUser(final Long idUser) {
-        User user = new User();
-        user.setId(idUser);
-        List<Chatroom> list = dao.findByUserByComponent1OrUserByComponent2AndMessagesIsNotEmpty(user, user);
+        List<Chatroom> list = dao.findMessagesOrderByDate(idUser);
         return getDtoList(list);
     }
 
