@@ -1,6 +1,7 @@
 package com.conmigo.app.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.function.Function;
 
 import javax.transaction.Transactional;
@@ -67,18 +68,18 @@ public class EventServiceImpl extends GenericBSImpl<EventDto, Event, Long> imple
     }
 
     @Override
-    public Page<EventDto> findByDateAfterAndProvinceOrderByDateAsc(final Pageable pageRequest, final LocalDateTime date,
+    public List<EventDto> findByDateAfterAndProvinceOrderByDateAsc(final Pageable pageRequest, final LocalDateTime date,
             final Long provinceId) {
         Province province = new Province();
         province.setId(provinceId);
-        final Page<Event> pageEntities = dao.findByDateAfterAndProvinceOrderByDateAsc(pageRequest, date, province);
-        return pageEntities.map(getConverterToDTO());
+        final List<Event> pageEntities = dao.findTop5ByDateAfterAndProvinceOrderByDateAsc(date, province);
+        return getDtoList(pageEntities);
     }
 
     @Override
-    public Page<EventDto> findByDateAfterOrderByDateAsc(final Pageable pageRequest, final LocalDateTime date) {
-        final Page<Event> pageEntities = dao.findByDateAfterOrderByDateAsc(pageRequest, date);
-        return pageEntities.map(getConverterToDTO());
+    public List<EventDto> findByDateAfterOrderByDateAsc(final Pageable pageRequest, final LocalDateTime date) {
+        final List<Event> pageEntities = dao.findTop5ByDateAfterOrderByDateAsc(date);
+        return getDtoList(pageEntities);
     }
 
 }

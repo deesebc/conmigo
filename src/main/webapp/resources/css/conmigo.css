@@ -1,7 +1,25 @@
+body, html {
+    height: 100%;
+}
+
 body > .container {
     padding: 60px 15px 0;
 }
+
 .center{margin:auto;} 
+
+.bg { 
+    /* The image used */
+    background-image: url("../images/fondo.jpg");
+
+    /* Full height */
+    height: 50%;  
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 /** INICIO FA SOCIAL ICONS */
 .fa-facebook, .fa-facebook-square {

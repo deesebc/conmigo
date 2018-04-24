@@ -8,7 +8,7 @@
 	<definition name="layout.basic" template="/WEB-INF/tiles/layout/basic.jsp">
 		<put-attribute name="title" value="Conmigo" />
 		<put-attribute name="pageCssStyle" value="" />
-		<put-attribute name="bodyClass" value="" />
+        <put-attribute name="bodyClass" value="" />
 		<put-attribute name="header" value="/WEB-INF/tiles/view/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="menu" value="/WEB-INF/tiles/view/menu.jsp" />
@@ -34,6 +34,7 @@
 	<!-- Single Pages -->
 	
 	<definition name="site.index" extends="layout.basic">
+        <put-attribute name="bodyClass" value="bg" />
 		<put-attribute name="body" value="/WEB-INF/pages/index.jsp" />
         <put-attribute name="customScripts" value="/WEB-INF/tiles/view/scripts/eventsScript.jsp" />
 	</definition>

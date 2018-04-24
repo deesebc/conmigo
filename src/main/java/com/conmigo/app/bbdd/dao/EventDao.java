@@ -1,6 +1,7 @@
 package com.conmigo.app.bbdd.dao;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,8 +18,8 @@ public interface EventDao extends GenericDao<Event, Long> {
 
     Page<Event> findByDateAfter(Pageable pageRequest, final LocalDateTime date);
 
-    Page<Event> findByDateAfterAndProvinceOrderByDateAsc(Pageable pageRequest, final LocalDateTime date, final Province province);
+    List<Event> findTop5ByDateAfterAndProvinceOrderByDateAsc(final LocalDateTime date, final Province province);
 
-    Page<Event> findByDateAfterOrderByDateAsc(Pageable pageRequest, final LocalDateTime date);
+    List<Event> findTop5ByDateAfterOrderByDateAsc(final LocalDateTime date);
 
 }

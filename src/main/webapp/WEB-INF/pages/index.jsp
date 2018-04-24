@@ -19,11 +19,11 @@
 					<th scope="col"><spring:message code="l.actions" /></th>
 				</thead>
 				<tbody>
-					<c:if test="${empty events.content}">
+					<c:if test="${empty events}">
 						<th scope="row" colspan="5"><spring:message code="c.thereIsNotEventCreateIt" /></td>
 					</c:if>
-					<c:if test="${not empty events.content}">
-					<c:forEach items="${events.content}" var="item" varStatus="status">
+					<c:if test="${not empty events}">
+					<c:forEach items="${events}" var="item" varStatus="status">
 						<tr>
 							<th scope="row"><spring:message code="${item.type}" /></td>
 							<td>${item.name}</td>

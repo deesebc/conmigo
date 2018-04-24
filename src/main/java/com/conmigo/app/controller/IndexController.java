@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +29,7 @@ public class IndexController {
         if (SecurityUtil.isFullyAuthenticated()) {
             PageRequest pageRequest = PageRequest.of(0, 10);
             Province province = SecurityUtil.getUserDetails().getProvince();
-            Page<EventDto> events = null;
+            List<EventDto> events = null;
             if (province != null && province.getId() != null) {
                 events = eService.findByDateAfterAndProvinceOrderByDateAsc(pageRequest, LocalDateTime.now(), province.getId());
             } else {

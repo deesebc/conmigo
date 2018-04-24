@@ -1,6 +1,7 @@
 package com.conmigo.app.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,9 +18,9 @@ public interface EventService extends GenericBS<EventDto, Event, Long> {
 
     public Page<EventDto> findByDateAfter(Pageable pageRequest, LocalDateTime date);
 
-    Page<EventDto> findByDateAfterAndProvinceOrderByDateAsc(Pageable pageRequest, final LocalDateTime date,
+    List<EventDto> findByDateAfterAndProvinceOrderByDateAsc(Pageable pageRequest, final LocalDateTime date,
             final Long provinceId);
 
-    Page<EventDto> findByDateAfterOrderByDateAsc(Pageable pageRequest, final LocalDateTime date);
+    List<EventDto> findByDateAfterOrderByDateAsc(Pageable pageRequest, final LocalDateTime date);
 
 }

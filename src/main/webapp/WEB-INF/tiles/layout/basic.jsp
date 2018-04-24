@@ -21,7 +21,7 @@
 	    <link href="${pageContext.request.contextPath}/resources/css/conmigo.css" rel="stylesheet">
 	    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/fav.jpg">
 	</head>
-	<body>
+	<body class='<tiles:insertAttribute name="bodyClass" />'>
 		<header>
 			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 				<tiles:insertAttribute name="header" />
