@@ -14,14 +14,10 @@ public enum ChatroomToDto implements Function<Chatroom, ChatroomDto> {
     @Override
     public ChatroomDto apply(final Chatroom input) {
         ChatroomDto output = null;
-        try {
-            if (input != null && input.getId() != null) {
-                ModelMapper model = new ModelMapper();
-                model.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-                output = model.map(input, ChatroomDto.class);
-            }
-        } catch (Exception except) {
-            except.printStackTrace();
+        if (input != null) {
+            ModelMapper model = new ModelMapper();
+            model.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+            output = model.map(input, ChatroomDto.class);
         }
         return output;
     }

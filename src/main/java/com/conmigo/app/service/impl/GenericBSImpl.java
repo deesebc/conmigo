@@ -6,6 +6,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 
+import org.modelmapper.MappingException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
@@ -18,6 +21,8 @@ import com.conmigo.app.service.GenericBS;
 
 public abstract class GenericBSImpl<D extends GenericDto<K>, E extends GenericEntity<K>, K extends Serializable>
         implements GenericBS<D, E, K> {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(GenericBSImpl.class);
 
     private static final long serialVersionUID = 1L;
 
@@ -48,7 +53,17 @@ public abstract class GenericBSImpl<D extends GenericDto<K>, E extends GenericEn
 
     @Override
     public D findById(final K key) {
-        return getConverterToDTO().apply(getDao().getOne(key));
+        D exit = null;
+        try {
+            E entity = getDao().getOne(key);
+            getDao().flush();
+            if (entity != null && entity.getId() != null) {
+                exit = getConverterToDTO().apply(entity);
+            }
+        } catch (MappingException exception) {
+            LOGGER.info(exception.getMessage());
+        }
+        return exit;
     }
 
     @Override
