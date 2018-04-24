@@ -45,6 +45,18 @@
 					</c:if>
 				</tbody>
 			</table>
+			<form id="seeEventForm" action="${pageContext.request.contextPath}/event/" method="post">
+				<input type="hidden" id="idSeeEvent" name="id" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			</form>
+			<form id="joinEventForm" action="${pageContext.request.contextPath}/event/join" method="post">
+				<input type="hidden" id="idJoinEvent" name="id" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			</form>
+			<form id="disjoinEventForm" action="${pageContext.request.contextPath}/event/disjoin" method="post">
+				<input type="hidden" id="idDisjoinEvent" name="id" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			</form>
     </security:authorize>
   </div>
 </section>
