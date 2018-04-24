@@ -28,7 +28,7 @@ public class IndexController {
     @GetMapping(value = "/")
     public String home(final Model model) {
         if (SecurityUtil.isFullyAuthenticated()) {
-            PageRequest pageRequest = new PageRequest(0, 10);
+            PageRequest pageRequest = PageRequest.of(0, 10);
             Province province = SecurityUtil.getUserDetails().getProvince();
             Page<EventDto> events = null;
             if (province != null && province.getId() != null) {

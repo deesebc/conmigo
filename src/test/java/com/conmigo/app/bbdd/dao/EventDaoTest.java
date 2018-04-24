@@ -22,7 +22,7 @@ public class EventDaoTest {
 
     @Test
     public void metodo() {
-        PageRequest pageRequest = new PageRequest(0, 10);
+        PageRequest pageRequest = PageRequest.of(0, 10);
         LocalDateTime date = LocalDateTime.now();
         Province province = new Province();
         province.setId(3L);

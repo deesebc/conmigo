@@ -4,15 +4,15 @@
 		<c:if test="${not empty messages}">
 			<table class="table table-striped">
 				<thead>
-					<th>User</th>
+					<th>event</th>
 					<th>Date</th>
 					<th>Acciones</th>
 				</thead>
 				<tbody>
 					<c:forEach items="${messages}" var="item" varStatus="status">
 						<tr>
-							<td>${item.sender.name}</td>
-							<td>${item.date}</td>
+							<td>${item.event.name}</td>
+							<td></td>
 							<td></td>
 						</tr>
 					</c:forEach>

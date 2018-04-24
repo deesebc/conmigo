@@ -34,7 +34,7 @@ public class EventsController {
 
     @GetMapping(value = "/")
     public String access(final Model model) {
-        PageRequest pageRequest = new PageRequest(0, 10);
+        PageRequest pageRequest = PageRequest.of(0, 10);
         Page<EventDto> events = eService.findByDateAfter(pageRequest, LocalDateTime.now());
         model.addAttribute("events", events);
         model.addAttribute("eventSearchForm", new EventSearchForm());
@@ -45,7 +45,7 @@ public class EventsController {
     @PostMapping(value = "/search")
     public String search(@ModelAttribute("eventSearchForm") final EventSearchForm eventSearchForm, final Model model) {
         Page<EventDto> events;
-        PageRequest pageRequest = new PageRequest(eventSearchForm.getPage(), 2);
+        PageRequest pageRequest = PageRequest.of(eventSearchForm.getPage(), 2);
         if (StringUtils.isNotBlank(eventSearchForm.getName())) {
             events = eService.findByNameContainingIgnoreCaseAndDateAfter(pageRequest, eventSearchForm.getName(),
                     LocalDateTime.now());
