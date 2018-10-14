@@ -1,77 +1,99 @@
 package com.conmigo.app.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 import com.conmigo.app.util.Constant;
 import com.conmigo.app.util.Constant.Role;
 
 public class RegisterForm {
 
-    @NotEmpty
-    private String email = "";
+	@NotBlank
+	private String name = "";
+	@NotBlank
+	private String lastName = "";
 
-    @NotEmpty
-    private String password = "";
+	@NotBlank
+	@Email
+	private String email = "";
 
-    @NotEmpty
-    private String repeatPassword = "";
+	@NotBlank
+	private String password = "";
 
-    @NotNull
-    private Role role = Constant.Role.USER;
+	@NotBlank
+	private String repeatPassword = "";
 
-    /**
-     * @return Valor de la propiedad email
-     */
-    public String getEmail() {
-	return email;
-    }
+	@NotNull
+	private Role role = Constant.Role.USER;
 
-    /**
-     * @return Valor de la propiedad password
-     */
-    public String getPassword() {
-	return password;
-    }
+	/**
+	 * @return Valor de la propiedad email
+	 */
+	public String getEmail() {
+		return email;
+	}
 
-    public String getRepeatPassword() {
-	return repeatPassword;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    /**
-     * @return Valor de la propiedad role
-     */
-    public Role getRole() {
-	return role;
-    }
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * @param email
-     *            Valor de la propiedad email a setear
-     */
-    public void setEmail(final String email) {
-	this.email = email;
-    }
+	/**
+	 * @return Valor de la propiedad password
+	 */
+	public String getPassword() {
+		return password;
+	}
 
-    /**
-     * @param password
-     *            Valor de la propiedad password a setear
-     */
-    public void setPassword(final String password) {
-	this.password = password;
-    }
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
 
-    public void setRepeatPassword(String repeatPassword) {
-	this.repeatPassword = repeatPassword;
-    }
+	/**
+	 * @return Valor de la propiedad role
+	 */
+	public Role getRole() {
+		return role;
+	}
 
-    /**
-     * @param role
-     *            Valor de la propiedad role a setear
-     */
-    public void setRole(final Role role) {
-	this.role = role;
-    }
+	/**
+	 * @param email
+	 *            Valor de la propiedad email a setear
+	 */
+	public void setEmail(final String email) {
+		this.email = email;
+	}
+
+	public void setLastName(final String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setName(final String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @param password
+	 *            Valor de la propiedad password a setear
+	 */
+	public void setPassword(final String password) {
+		this.password = password;
+	}
+
+	public void setRepeatPassword(final String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
+
+	/**
+	 * @param role
+	 *            Valor de la propiedad role a setear
+	 */
+	public void setRole(final Role role) {
+		this.role = role;
+	}
 
 }

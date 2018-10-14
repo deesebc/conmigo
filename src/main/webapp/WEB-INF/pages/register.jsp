@@ -1,6 +1,11 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
 <form:form modelAttribute="registerForm" cssClass="form-signin" action="${pageContext.request.contextPath}/register" method="post">
+ <button class="foo-button mdc-button">Button</button>
   <h1 class="h3 mb-3 font-weight-normal"><spring:message code="c.pleaseSignUp" /></h1>
+  <label for="inputName" class="sr-only"><spring:message code="l.name" /></label>
+  <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" required autofocus>
+  <label for="inputLastName" class="sr-only"><spring:message code="l.lastName" /></label>
+  <input type="text" id="inputLastName" class="form-control" placeholder="Lastname" name="lastname" required autofocus>
   <label for="inputEmail" class="sr-only"><spring:message code="l.email" /></label>
   <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
   <label for="inputPassword" class="sr-only"><spring:message code="l.password" /></label>
