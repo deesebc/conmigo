@@ -18,7 +18,7 @@
 <form class="form-signin" id="facebookForm" action="/auth/facebook">
   <input type="hidden" name="scope" value="email, public_profile" />
   <div class="checkbox mb-3">
-    <label><spring:message code="c.pleaseAuthFacebook" /></label>
+    <label><spring:message code="c.ifYouPrefer" /></label>
   </div>
-  <button class="btn btn-lg btn-primary btn-block btn-facebook" type="submit"><spring:message code="b.login" /></button>
+  <button class="btn btn-block btn-social btn-facebook" type="submit"><span class="fab fa-facebook-f"></span><spring:message code="b.loginFacebook" /></button>
 </form>
