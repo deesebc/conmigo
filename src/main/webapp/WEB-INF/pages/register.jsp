@@ -1,24 +1,42 @@
 <%@ include file="../tiles/view/taglib.jsp"%>
-<form:form modelAttribute="registerForm" cssClass="form-signin" action="${pageContext.request.contextPath}/register" method="post">
- <button class="foo-button mdc-button">Button</button>
+<spring:message code="p.lastName" var="lastNamePHolder"/>
+<spring:message code="p.name" var="namePHolder"/>
+<spring:message code="p.email" var="emailPHolder"/>
+<spring:message code="p.password" var="passwordPHolder"/>
+<spring:message code="p.repeatPassword" var="repeatPasswordPHolder"/>
+<div class="main-login main-center">
+<form:form modelAttribute="registerForm" cssClass="form-horizontal" action="${pageContext.request.contextPath}/register" method="post">
+  <fieldset>
   <h1 class="h3 mb-3 font-weight-normal"><spring:message code="c.pleaseSignUp" /></h1>
-  <label for="inputName" class="sr-only"><spring:message code="l.name" /></label>
-  <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" required autofocus>
-  <label for="inputLastName" class="sr-only"><spring:message code="l.lastName" /></label>
-  <input type="text" id="inputLastName" class="form-control" placeholder="Lastname" name="lastname" required autofocus>
-  <label for="inputEmail" class="sr-only"><spring:message code="l.email" /></label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
-  <label for="inputPassword" class="sr-only"><spring:message code="l.password" /></label>
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
-  <label for="inputRepeatPassword" class="sr-only"><spring:message code="l.password" /></label>
-  <input type="password" id="inputRepeatPassword" class="form-control" placeholder="Repeat Password" name="repeatPassword" required>
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me">&nbsp;<spring:message code="l.rememberMe" />
-    </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="b.registerYou" /></button>
-  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<div class="form-group">
+	  <div class="col-md-4">
+	  <input id="name" name="name" type="text" placeholder="${namePHolder}" class="form-control input-md">
+	  </div>
+	</div>
+	<div class="form-group">
+	  <div class="col-md-4">
+	  <input id="lastName" name="lastName" type="text" placeholder="${lastNamePHolder}" class="form-control input-md" required autofocus>
+	  </div>
+	</div>
+	<div class="form-group">
+	  <div class="col-md-4">
+	  <input id="email" name="email" type="email" placeholder="${emailPHolder}" class="form-control input-md" required autofocus>
+	  </div>
+	</div>
+	<div class="form-group">
+	  <div class="col-md-4">
+	  <input id="password" name="password" type="password" placeholder="${passwordPHolder}" class="form-control input-md" required autofocus>
+	  </div>
+	</div>
+	<div class="form-group">
+	  <div class="col-md-4">
+	  <input id="repeatPassword" name="repeatPassword" type="password" placeholder="${repeatPasswordPHolder}" class="form-control input-md" required autofocus>
+	  </div>
+	</div>
+	<div class="form-group">
+  		<button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="b.registerYou" /></button>
+  		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</div>
+</fieldset>
 </form:form>
-
-
+</div>
